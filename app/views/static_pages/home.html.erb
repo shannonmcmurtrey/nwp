@@ -1,9 +1,22 @@
+
+<% if user_signed_in? %>
 <div class="container hero">
-    <div class="row">
-        <div class="col-lg-5 col-lg-offset-1 col-md-12 col-md-offset-0">
-            <h1>The Northwest Project</h1>
-            <p>Focusing on a brighter futrue for families.</p>
-            <%= link_to "Learn More", "http://cfozarks.org/cfo-grantmaking-programs/metropolitan-springfield-community-grantmaking/northwest/", target: '_blank', :class => 'btn btn-lg action-button' %>
-        </div>
-    </div>
+	<div class="well">
+Welcome <%= current_user.email %>
+	</div>
+	    
 </div>
+
+
+<% else %>
+	<div class="container hero">
+	    <div class="row">
+	        <div class="col-lg-5 col-lg-offset-1 col-md-12 col-md-offset-0">
+	            <h1>The Northwest Project</h1>
+	            <p>Focusing on a brighter futrue for families.</p>
+	            <%= link_to "Learn More", "http://cfozarks.org/cfo-grantmaking-programs/metropolitan-springfield-community-grantmaking/northwest/", target: '_blank', :class => 'btn btn-lg action-button' %>
+	        </div>
+	    </div>
+	</div>
+
+<% end %>

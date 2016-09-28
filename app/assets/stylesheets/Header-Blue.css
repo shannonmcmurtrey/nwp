@@ -143,6 +143,7 @@
   box-shadow:none;
   text-shadow:none;
   padding:6px 15px;
+  margin: 10px;
   background:transparent;
   transition:background-color 0.25s;
   outline:none;
