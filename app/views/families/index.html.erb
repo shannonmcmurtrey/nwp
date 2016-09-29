@@ -25,28 +25,12 @@
                     <div class="container-fluid">
                         <div class="row-fluid">
                             <div class="span8 well">
-                              <%= form_for(@family) do |f| %>
-                                <ul class="nav nav-tabs">
-                                    <li class="active"> 
-                                      <a href="#demographics" data-target="#demographics" data-toggle="tab">Demographics</a>
-                                    </li>
-                                    <li>
-                                      <a href="#medical" data-target="#medical" data-toggle="tab">Medical</a>
-                                    </li>
-                                    <li>
-                                      <a href="#financial" data-target="#financial" data-toggle="tab">Financial</a>
-                                    </li>
-                                </ul>
+                               <ul class="families">
+                                 <%= render @families %>
+                               </ul>
                                 <div class="tab-content panel-body">
                                     <div class="tab-pane active fade in" id="demographics">
-                                        <%= f.label :name %>
-                                        <%= f.text_field :name %>
-
-                                        <%= f.label :address %>
-                                        <%= f.email_field :address %>
-
-                                        <%= f.label :city %>
-                                        <%= f.email_field :city %>
+                                        
                                         <p>
                                         
                                     </div>
@@ -57,8 +41,7 @@
                                       Financial tab content
                                     </div>
                                 </div>
-                                <%= f.submit "Add family", class: "btn btn-primary button action-button-reverse'" %>
-                                <% end %>
+                               
                             </div>
                         </div>
                     </div>

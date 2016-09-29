@@ -2,9 +2,9 @@ class StaticPagesController < ApplicationController
   def home
   end
 
-  def enter_family
+  def assistance
   end
 
-  def help
+  def reports
   end
 end

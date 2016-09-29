@@ -23,8 +23,8 @@
                         <ul class="nav navbar-nav">
                             <li class="dropdown collapsed"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="#">Families<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><a href="#">Demographics</a></li>
-                                    <li role="presentation"><a href="#">Medical </a></li>
+                                    <li role="presentation"><a href="/families">Families</a></li>
+                                    <li role="presentation"><a href="/assistance">Assistance </a></li>
                                     <li role="presentation"><a href="#">Financial </a></li>
                                     <li role="presentation"><a href="<%= new_family_path %>">Enter Family</a></li>
                                 </ul>
@@ -51,42 +51,15 @@
                     </div>
                 </div>
             </nav>
-  <% if current_user %>
-  <div id="wrapper">
-    <div id="sidebar-wrapper" class="col-md-1">
-            <div id="sidebar">
-                <ul class="nav list-group">
-                    <li>
-                        <a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 1</a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 2</a>
-                    </li>
-                    <li>
-                        <a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 3</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div id="main-wrapper" class="col-md-11 pull-right">
-            <div id="main">
-              <div class="navbar">
-                <h1>Drew Lewis Foundation @ The Fairbanks</h1>
-              </div>
-<% end %>
-              <div class="container">
-          <% if notice %>
+         <% if notice %>
             <p class="alert alert-success"><%= notice %></p>
           <% end %>
           <% if alert %>
             <p class="alert alert-danger"><%= alert %></p>
           <% end %>
         <%= yield %>
-      </div>
-            </div>
-        </div>
-</div>
+
 	    
-</div>
+      </div>
   </body>
 </html>
