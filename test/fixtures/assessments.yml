@@ -1,0 +1,161 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  self_sufficency_goal: MyText
+  self_sufficiency_goal_other: MyText
+  currently_registered_to_vote: 
+  vote_local: MyString
+  boolean: MyString
+  vote_state: MyString
+  boolean: MyString
+  vote_federal: MyString
+  boolean: MyString
+  vote_frequency: 
+  educational_training_last_six_months: false
+  education_currently_enrolled: false
+  education_institution_name: MyText
+  education_studying: MyText
+  education_program_length_in_months: 
+  education_progress: 
+  education_degree_type: MyText
+  medical_high_blood_sugar: false
+  medical_diabetes: false
+  medical_diabetes_type: MyText
+  medical_pulmonary_disease: false
+  medical_elevated_blood_pressure: false
+  medical_elevated_blood_pressure_gestational: MyText
+  medical_mental_health_diagnosis: false
+  medical_tobacco_products: false
+  medical_alcohol: false
+  medical_alcohol_avg_drinks_per_week: 
+  medical_height: 
+  medical_weight: 
+  medical_physical_family_member_impact: 
+  health_insurance: 
+  health_insurance_primary: false
+  health_insurance_primary_type: 
+  health_insurance_primary_other: MyText
+  health_insurance_children: false
+  health_insurance_children_type: 
+  health_insurance_children_other: MyText
+  health_insurance_spouse_significant: false
+  health_insurance_spouse_significant: MyString
+  type: 
+  health_insurance_spouse_significant_other: MyText
+  primary_care_physician: false
+  primary_care_physician_children: false
+  medical_treatment_location: 
+  current_health: 
+  happiness_level: 
+  childhood_raisedby_other_than_parents: 
+  childhood_raisedby_other_than_parents_length_in_months: 
+  childhood_raisedby_other_than_parents_by_who: 
+  childhood_residence_away_from_family: false
+  childhood_residence_away_from_family_length_in_months: 
+  childhood_swore_at_or_put_down: 
+  childhood_made_to_feel_afraid_of_injury: 
+  childhood_pushed: 
+  childhood_hit_hard: 
+  childhood_lived_with_alcoholic: 
+  childhood_lived_with_drug_user: 
+  childhood_lived_with_depressed_or_mentally_ill: 
+  childhood_lived_with_member_who_attempted_suicide: 
+  childhood_lived_with_member_went_to_jail: 
+  childhood_jailed_family_member_which: MyText
+  childhood_caregiver_was_pushed: 
+  childhood_caregiver_bitten_or_hit: 
+  childhood_caregiver_hit_repeatedly: 
+  childhood_caregiver_threatened_with_weapon: 
+  ever_been_to_jail: false
+  household_member_in_jail: false
+  household_member_in_jail_resoution_need: false
+  adult_household_member_gone_to_jail: false
+  adult_criminal_resolution_needed: false
+  legal_matters_need_resolved: false
+  cocaine_crack_speed: false
+  meth: false
+  marijuana: false
+  heroin_opiates: false
+  other_boolean: MyString
+  drug_date_of_last_use: 2016-10-02
+  individual: one
+
+two:
+  self_sufficency_goal: MyText
+  self_sufficiency_goal_other: MyText
+  currently_registered_to_vote: 
+  vote_local: MyString
+  boolean: MyString
+  vote_state: MyString
+  boolean: MyString
+  vote_federal: MyString
+  boolean: MyString
+  vote_frequency: 
+  educational_training_last_six_months: false
+  education_currently_enrolled: false
+  education_institution_name: MyText
+  education_studying: MyText
+  education_program_length_in_months: 
+  education_progress: 
+  education_degree_type: MyText
+  medical_high_blood_sugar: false
+  medical_diabetes: false
+  medical_diabetes_type: MyText
+  medical_pulmonary_disease: false
+  medical_elevated_blood_pressure: false
+  medical_elevated_blood_pressure_gestational: MyText
+  medical_mental_health_diagnosis: false
+  medical_tobacco_products: false
+  medical_alcohol: false
+  medical_alcohol_avg_drinks_per_week: 
+  medical_height: 
+  medical_weight: 
+  medical_physical_family_member_impact: 
+  health_insurance: 
+  health_insurance_primary: false
+  health_insurance_primary_type: 
+  health_insurance_primary_other: MyText
+  health_insurance_children: false
+  health_insurance_children_type: 
+  health_insurance_children_other: MyText
+  health_insurance_spouse_significant: false
+  health_insurance_spouse_significant: MyString
+  type: 
+  health_insurance_spouse_significant_other: MyText
+  primary_care_physician: false
+  primary_care_physician_children: false
+  medical_treatment_location: 
+  current_health: 
+  happiness_level: 
+  childhood_raisedby_other_than_parents: 
+  childhood_raisedby_other_than_parents_length_in_months: 
+  childhood_raisedby_other_than_parents_by_who: 
+  childhood_residence_away_from_family: false
+  childhood_residence_away_from_family_length_in_months: 
+  childhood_swore_at_or_put_down: 
+  childhood_made_to_feel_afraid_of_injury: 
+  childhood_pushed: 
+  childhood_hit_hard: 
+  childhood_lived_with_alcoholic: 
+  childhood_lived_with_drug_user: 
+  childhood_lived_with_depressed_or_mentally_ill: 
+  childhood_lived_with_member_who_attempted_suicide: 
+  childhood_lived_with_member_went_to_jail: 
+  childhood_jailed_family_member_which: MyText
+  childhood_caregiver_was_pushed: 
+  childhood_caregiver_bitten_or_hit: 
+  childhood_caregiver_hit_repeatedly: 
+  childhood_caregiver_threatened_with_weapon: 
+  ever_been_to_jail: false
+  household_member_in_jail: false
+  household_member_in_jail_resoution_need: false
+  adult_household_member_gone_to_jail: false
+  adult_criminal_resolution_needed: false
+  legal_matters_need_resolved: false
+  cocaine_crack_speed: false
+  meth: false
+  marijuana: false
+  heroin_opiates: false
+  other_boolean: MyString
+  drug_date_of_last_use: 2016-10-02
+  individual: two

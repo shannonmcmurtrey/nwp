@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyText
+  last_name: MyText
+  address_line_1: MyText
+  address_line_2: MyText
+  city: MyText
+  state: MyText
+  zip: MyText
+  phone_number: MyText
+  mobile_phone_number: MyText
+  email_address: MyText
+  DOB: 2016-10-02
+  start_date: 2016-10-02
+  us_citizen: false
+  non_us_citizen: MyText
+  ethnicity: 
+  ethnicity_other: MyText
+  lanuage_primary: MyText
+  language_other: MyText
+  springfield_native: false
+  springfield_native_neighborhood: MyText
+  springfield_non_native_population: 
+  neighborhood_resident_length_in_months: 
+  springfield_non_native_distance: 
+
+two:
+  first_name: MyText
+  last_name: MyText
+  address_line_1: MyText
+  address_line_2: MyText
+  city: MyText
+  state: MyText
+  zip: MyText
+  phone_number: MyText
+  mobile_phone_number: MyText
+  email_address: MyText
+  DOB: 2016-10-02
+  start_date: 2016-10-02
+  us_citizen: false
+  non_us_citizen: MyText
+  ethnicity: 
+  ethnicity_other: MyText
+  lanuage_primary: MyText
+  language_other: MyText
+  springfield_native: false
+  springfield_native_neighborhood: MyText
+  springfield_non_native_population: 
+  neighborhood_resident_length_in_months: 
+  springfield_non_native_distance: 

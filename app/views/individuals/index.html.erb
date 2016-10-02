@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Individuals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Address line 1</th>
+      <th>Address line 2</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Phone number</th>
+      <th>Mobile phone number</th>
+      <th>Email address</th>
+      <th>Dob</th>
+      <th>Start date</th>
+      <th>Us citizen</th>
+      <th>Non us citizen</th>
+      <th>Ethnicity</th>
+      <th>Ethnicity other</th>
+      <th>Lanuage primary</th>
+      <th>Language other</th>
+      <th>Springfield native</th>
+      <th>Springfield native neighborhood</th>
+      <th>Springfield non native population</th>
+      <th>Neighborhood resident length in months</th>
+      <th>Springfield non native distance</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @individuals.each do |individual| %>
+      <tr>
+        <td><%= individual.first_name %></td>
+        <td><%= individual.last_name %></td>
+        <td><%= individual.address_line_1 %></td>
+        <td><%= individual.address_line_2 %></td>
+        <td><%= individual.city %></td>
+        <td><%= individual.state %></td>
+        <td><%= individual.zip %></td>
+        <td><%= individual.phone_number %></td>
+        <td><%= individual.mobile_phone_number %></td>
+        <td><%= individual.email_address %></td>
+        <td><%= individual.DOB %></td>
+        <td><%= individual.start_date %></td>
+        <td><%= individual.us_citizen %></td>
+        <td><%= individual.non_us_citizen %></td>
+        <td><%= individual.ethnicity %></td>
+        <td><%= individual.ethnicity_other %></td>
+        <td><%= individual.lanuage_primary %></td>
+        <td><%= individual.language_other %></td>
+        <td><%= individual.springfield_native %></td>
+        <td><%= individual.springfield_native_neighborhood %></td>
+        <td><%= individual.springfield_non_native_population %></td>
+        <td><%= individual.neighborhood_resident_length_in_months %></td>
+        <td><%= individual.springfield_non_native_distance %></td>
+        <td><%= link_to 'Show', individual %></td>
+        <td><%= link_to 'Edit', edit_individual_path(individual) %></td>
+        <td><%= link_to 'Destroy', individual, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Individual', new_individual_path %>

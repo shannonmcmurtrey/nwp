@@ -1,0 +1,50 @@
+<div class="well">
+	<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @organization.name %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @organization.address_line_1 %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @organization.address_line_2 %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @organization.city %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @organization.state %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @organization.zip %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @organization.phone_number %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @organization.website %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @organization.primary_contact %>
+</p>
+<%= link_to 'Edit', edit_organization_path(@organization) %> |
+<%= link_to 'Back', organizations_path %>
+</div>

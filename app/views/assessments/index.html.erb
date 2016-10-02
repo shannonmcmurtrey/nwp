@@ -1,0 +1,181 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Assessments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Self sufficency goal</th>
+      <th>Self sufficiency goal other</th>
+      <th>Currently registered to vote</th>
+      <th>Vote local</th>
+      <th>Boolean</th>
+      <th>Vote state</th>
+      <th>Boolean</th>
+      <th>Vote federal</th>
+      <th>Boolean</th>
+      <th>Vote frequency</th>
+      <th>Educational training last six months</th>
+      <th>Education currently enrolled</th>
+      <th>Education institution name</th>
+      <th>Education studying</th>
+      <th>Education program length in months</th>
+      <th>Education progress</th>
+      <th>Education degree type</th>
+      <th>Medical high blood sugar</th>
+      <th>Medical diabetes</th>
+      <th>Medical diabetes type</th>
+      <th>Medical pulmonary disease</th>
+      <th>Medical elevated blood pressure</th>
+      <th>Medical elevated blood pressure gestational</th>
+      <th>Medical mental health diagnosis</th>
+      <th>Medical tobacco products</th>
+      <th>Medical alcohol</th>
+      <th>Medical alcohol avg drinks per week</th>
+      <th>Medical height</th>
+      <th>Medical weight</th>
+      <th>Medical physical family member impact</th>
+      <th>Health insurance</th>
+      <th>Health insurance primary</th>
+      <th>Health insurance primary type</th>
+      <th>Health insurance primary other</th>
+      <th>Health insurance children</th>
+      <th>Health insurance children type</th>
+      <th>Health insurance children other</th>
+      <th>Health insurance spouse significant</th>
+      <th>Health insurance spouse significant</th>
+      <th>Type</th>
+      <th>Health insurance spouse significant other</th>
+      <th>Primary care physician</th>
+      <th>Primary care physician children</th>
+      <th>Medical treatment location</th>
+      <th>Current health</th>
+      <th>Happiness level</th>
+      <th>Childhood raisedby other than parents</th>
+      <th>Childhood raisedby other than parents length in months</th>
+      <th>Childhood raisedby other than parents by who</th>
+      <th>Childhood residence away from family</th>
+      <th>Childhood residence away from family length in months</th>
+      <th>Childhood swore at or put down</th>
+      <th>Childhood made to feel afraid of injury</th>
+      <th>Childhood pushed</th>
+      <th>Childhood hit hard</th>
+      <th>Childhood lived with alcoholic</th>
+      <th>Childhood lived with drug user</th>
+      <th>Childhood lived with depressed or mentally ill</th>
+      <th>Childhood lived with member who attempted suicide</th>
+      <th>Childhood lived with member went to jail</th>
+      <th>Childhood jailed family member which</th>
+      <th>Childhood caregiver was pushed</th>
+      <th>Childhood caregiver bitten or hit</th>
+      <th>Childhood caregiver hit repeatedly</th>
+      <th>Childhood caregiver threatened with weapon</th>
+      <th>Ever been to jail</th>
+      <th>Household member in jail</th>
+      <th>Household member in jail resoution need</th>
+      <th>Adult household member gone to jail</th>
+      <th>Adult criminal resolution needed</th>
+      <th>Legal matters need resolved</th>
+      <th>Cocaine crack speed</th>
+      <th>Meth</th>
+      <th>Marijuana</th>
+      <th>Heroin opiates</th>
+      <th>Other boolean</th>
+      <th>Drug date of last use</th>
+      <th>Individual</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assessments.each do |assessment| %>
+      <tr>
+        <td><%= assessment.self_sufficency_goal %></td>
+        <td><%= assessment.self_sufficiency_goal_other %></td>
+        <td><%= assessment.currently_registered_to_vote %></td>
+        <td><%= assessment.vote_local %></td>
+        <td><%= assessment.boolean %></td>
+        <td><%= assessment.vote_state %></td>
+        <td><%= assessment.boolean %></td>
+        <td><%= assessment.vote_federal %></td>
+        <td><%= assessment.boolean %></td>
+        <td><%= assessment.vote_frequency %></td>
+        <td><%= assessment.educational_training_last_six_months %></td>
+        <td><%= assessment.education_currently_enrolled %></td>
+        <td><%= assessment.education_institution_name %></td>
+        <td><%= assessment.education_studying %></td>
+        <td><%= assessment.education_program_length_in_months %></td>
+        <td><%= assessment.education_progress %></td>
+        <td><%= assessment.education_degree_type %></td>
+        <td><%= assessment.medical_high_blood_sugar %></td>
+        <td><%= assessment.medical_diabetes %></td>
+        <td><%= assessment.medical_diabetes_type %></td>
+        <td><%= assessment.medical_pulmonary_disease %></td>
+        <td><%= assessment.medical_elevated_blood_pressure %></td>
+        <td><%= assessment.medical_elevated_blood_pressure_gestational %></td>
+        <td><%= assessment.medical_mental_health_diagnosis %></td>
+        <td><%= assessment.medical_tobacco_products %></td>
+        <td><%= assessment.medical_alcohol %></td>
+        <td><%= assessment.medical_alcohol_avg_drinks_per_week %></td>
+        <td><%= assessment.medical_height %></td>
+        <td><%= assessment.medical_weight %></td>
+        <td><%= assessment.medical_physical_family_member_impact %></td>
+        <td><%= assessment.health_insurance %></td>
+        <td><%= assessment.health_insurance_primary %></td>
+        <td><%= assessment.health_insurance_primary_type %></td>
+        <td><%= assessment.health_insurance_primary_other %></td>
+        <td><%= assessment.health_insurance_children %></td>
+        <td><%= assessment.health_insurance_children_type %></td>
+        <td><%= assessment.health_insurance_children_other %></td>
+        <td><%= assessment.health_insurance_spouse_significant %></td>
+        <td><%= assessment.health_insurance_spouse_significant %></td>
+        <td><%= assessment.type %></td>
+        <td><%= assessment.health_insurance_spouse_significant_other %></td>
+        <td><%= assessment.primary_care_physician %></td>
+        <td><%= assessment.primary_care_physician_children %></td>
+        <td><%= assessment.medical_treatment_location %></td>
+        <td><%= assessment.current_health %></td>
+        <td><%= assessment.happiness_level %></td>
+        <td><%= assessment.childhood_raisedby_other_than_parents %></td>
+        <td><%= assessment.childhood_raisedby_other_than_parents_length_in_months %></td>
+        <td><%= assessment.childhood_raisedby_other_than_parents_by_who %></td>
+        <td><%= assessment.childhood_residence_away_from_family %></td>
+        <td><%= assessment.childhood_residence_away_from_family_length_in_months %></td>
+        <td><%= assessment.childhood_swore_at_or_put_down %></td>
+        <td><%= assessment.childhood_made_to_feel_afraid_of_injury %></td>
+        <td><%= assessment.childhood_pushed %></td>
+        <td><%= assessment.childhood_hit_hard %></td>
+        <td><%= assessment.childhood_lived_with_alcoholic %></td>
+        <td><%= assessment.childhood_lived_with_drug_user %></td>
+        <td><%= assessment.childhood_lived_with_depressed_or_mentally_ill %></td>
+        <td><%= assessment.childhood_lived_with_member_who_attempted_suicide %></td>
+        <td><%= assessment.childhood_lived_with_member_went_to_jail %></td>
+        <td><%= assessment.childhood_jailed_family_member_which %></td>
+        <td><%= assessment.childhood_caregiver_was_pushed %></td>
+        <td><%= assessment.childhood_caregiver_bitten_or_hit %></td>
+        <td><%= assessment.childhood_caregiver_hit_repeatedly %></td>
+        <td><%= assessment.childhood_caregiver_threatened_with_weapon %></td>
+        <td><%= assessment.ever_been_to_jail %></td>
+        <td><%= assessment.household_member_in_jail %></td>
+        <td><%= assessment.household_member_in_jail_resoution_need %></td>
+        <td><%= assessment.adult_household_member_gone_to_jail %></td>
+        <td><%= assessment.adult_criminal_resolution_needed %></td>
+        <td><%= assessment.legal_matters_need_resolved %></td>
+        <td><%= assessment.cocaine_crack_speed %></td>
+        <td><%= assessment.meth %></td>
+        <td><%= assessment.marijuana %></td>
+        <td><%= assessment.heroin_opiates %></td>
+        <td><%= assessment.other_boolean %></td>
+        <td><%= assessment.drug_date_of_last_use %></td>
+        <td><%= assessment.individual %></td>
+        <td><%= link_to 'Show', assessment %></td>
+        <td><%= link_to 'Edit', edit_assessment_path(assessment) %></td>
+        <td><%= link_to 'Destroy', assessment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Assessment', new_assessment_path %>

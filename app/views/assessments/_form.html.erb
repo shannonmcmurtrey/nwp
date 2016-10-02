@@ -1,0 +1,407 @@
+<%= form_for(assessment) do |f| %>
+  <% if assessment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(assessment.errors.count, "error") %> prohibited this assessment from being saved:</h2>
+
+      <ul>
+      <% assessment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :self_sufficency_goal %>
+    <%= f.text_area :self_sufficency_goal %>
+  </div>
+
+  <div class="field">
+    <%= f.label :self_sufficiency_goal_other %>
+    <%= f.text_area :self_sufficiency_goal_other %>
+  </div>
+
+  <div class="field">
+    <%= f.label :currently_registered_to_vote %>
+    <%= f.text_field :currently_registered_to_vote %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vote_local %>
+    <%= f.text_field :vote_local %>
+  </div>
+
+  <div class="field">
+    <%= f.label :boolean %>
+    <%= f.text_field :boolean %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vote_state %>
+    <%= f.text_field :vote_state %>
+  </div>
+
+  <div class="field">
+    <%= f.label :boolean %>
+    <%= f.text_field :boolean %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vote_federal %>
+    <%= f.text_field :vote_federal %>
+  </div>
+
+  <div class="field">
+    <%= f.label :boolean %>
+    <%= f.text_field :boolean %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vote_frequency %>
+    <%= f.text_field :vote_frequency %>
+  </div>
+
+  <div class="field">
+    <%= f.label :educational_training_last_six_months %>
+    <%= f.check_box :educational_training_last_six_months %>
+  </div>
+
+  <div class="field">
+    <%= f.label :education_currently_enrolled %>
+    <%= f.check_box :education_currently_enrolled %>
+  </div>
+
+  <div class="field">
+    <%= f.label :education_institution_name %>
+    <%= f.text_area :education_institution_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :education_studying %>
+    <%= f.text_area :education_studying %>
+  </div>
+
+  <div class="field">
+    <%= f.label :education_program_length_in_months %>
+    <%= f.text_field :education_program_length_in_months %>
+  </div>
+
+  <div class="field">
+    <%= f.label :education_progress %>
+    <%= f.text_field :education_progress %>
+  </div>
+
+  <div class="field">
+    <%= f.label :education_degree_type %>
+    <%= f.text_area :education_degree_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_high_blood_sugar %>
+    <%= f.check_box :medical_high_blood_sugar %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_diabetes %>
+    <%= f.check_box :medical_diabetes %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_diabetes_type %>
+    <%= f.text_area :medical_diabetes_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_pulmonary_disease %>
+    <%= f.check_box :medical_pulmonary_disease %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_elevated_blood_pressure %>
+    <%= f.check_box :medical_elevated_blood_pressure %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_elevated_blood_pressure_gestational %>
+    <%= f.text_area :medical_elevated_blood_pressure_gestational %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_mental_health_diagnosis %>
+    <%= f.check_box :medical_mental_health_diagnosis %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_tobacco_products %>
+    <%= f.check_box :medical_tobacco_products %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_alcohol %>
+    <%= f.check_box :medical_alcohol %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_alcohol_avg_drinks_per_week %>
+    <%= f.text_field :medical_alcohol_avg_drinks_per_week %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_height %>
+    <%= f.text_field :medical_height %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_weight %>
+    <%= f.text_field :medical_weight %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_physical_family_member_impact %>
+    <%= f.text_field :medical_physical_family_member_impact %>
+  </div>
+
+  <div class="field">
+    <%= f.label :health_insurance %>
+    <%= f.text_field :health_insurance %>
+  </div>
+
+  <div class="field">
+    <%= f.label :health_insurance_primary %>
+    <%= f.check_box :health_insurance_primary %>
+  </div>
+
+  <div class="field">
+    <%= f.label :health_insurance_primary_type %>
+    <%= f.text_field :health_insurance_primary_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :health_insurance_primary_other %>
+    <%= f.text_area :health_insurance_primary_other %>
+  </div>
+
+  <div class="field">
+    <%= f.label :health_insurance_children %>
+    <%= f.check_box :health_insurance_children %>
+  </div>
+
+  <div class="field">
+    <%= f.label :health_insurance_children_type %>
+    <%= f.text_field :health_insurance_children_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :health_insurance_children_other %>
+    <%= f.text_area :health_insurance_children_other %>
+  </div>
+
+  <div class="field">
+    <%= f.label :health_insurance_spouse_significant %>
+    <%= f.check_box :health_insurance_spouse_significant %>
+  </div>
+
+  <div class="field">
+    <%= f.label :health_insurance_spouse_significant %>
+    <%= f.text_field :health_insurance_spouse_significant %>
+  </div>
+
+  <div class="field">
+    <%= f.label :type %>
+    <%= f.text_field :type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :health_insurance_spouse_significant_other %>
+    <%= f.text_area :health_insurance_spouse_significant_other %>
+  </div>
+
+  <div class="field">
+    <%= f.label :primary_care_physician %>
+    <%= f.check_box :primary_care_physician %>
+  </div>
+
+  <div class="field">
+    <%= f.label :primary_care_physician_children %>
+    <%= f.check_box :primary_care_physician_children %>
+  </div>
+
+  <div class="field">
+    <%= f.label :medical_treatment_location %>
+    <%= f.text_field :medical_treatment_location %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_health %>
+    <%= f.text_field :current_health %>
+  </div>
+
+  <div class="field">
+    <%= f.label :happiness_level %>
+    <%= f.text_field :happiness_level %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_raisedby_other_than_parents %>
+    <%= f.text_field :childhood_raisedby_other_than_parents %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_raisedby_other_than_parents_length_in_months %>
+    <%= f.text_field :childhood_raisedby_other_than_parents_length_in_months %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_raisedby_other_than_parents_by_who %>
+    <%= f.text_field :childhood_raisedby_other_than_parents_by_who %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_residence_away_from_family %>
+    <%= f.check_box :childhood_residence_away_from_family %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_residence_away_from_family_length_in_months %>
+    <%= f.text_field :childhood_residence_away_from_family_length_in_months %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_swore_at_or_put_down %>
+    <%= f.text_field :childhood_swore_at_or_put_down %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_made_to_feel_afraid_of_injury %>
+    <%= f.text_field :childhood_made_to_feel_afraid_of_injury %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_pushed %>
+    <%= f.text_field :childhood_pushed %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_hit_hard %>
+    <%= f.text_field :childhood_hit_hard %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_lived_with_alcoholic %>
+    <%= f.text_field :childhood_lived_with_alcoholic %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_lived_with_drug_user %>
+    <%= f.text_field :childhood_lived_with_drug_user %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_lived_with_depressed_or_mentally_ill %>
+    <%= f.text_field :childhood_lived_with_depressed_or_mentally_ill %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_lived_with_member_who_attempted_suicide %>
+    <%= f.text_field :childhood_lived_with_member_who_attempted_suicide %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_lived_with_member_went_to_jail %>
+    <%= f.text_field :childhood_lived_with_member_went_to_jail %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_jailed_family_member_which %>
+    <%= f.text_area :childhood_jailed_family_member_which %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_caregiver_was_pushed %>
+    <%= f.text_field :childhood_caregiver_was_pushed %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_caregiver_bitten_or_hit %>
+    <%= f.text_field :childhood_caregiver_bitten_or_hit %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_caregiver_hit_repeatedly %>
+    <%= f.text_field :childhood_caregiver_hit_repeatedly %>
+  </div>
+
+  <div class="field">
+    <%= f.label :childhood_caregiver_threatened_with_weapon %>
+    <%= f.text_field :childhood_caregiver_threatened_with_weapon %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ever_been_to_jail %>
+    <%= f.check_box :ever_been_to_jail %>
+  </div>
+
+  <div class="field">
+    <%= f.label :household_member_in_jail %>
+    <%= f.check_box :household_member_in_jail %>
+  </div>
+
+  <div class="field">
+    <%= f.label :household_member_in_jail_resoution_need %>
+    <%= f.check_box :household_member_in_jail_resoution_need %>
+  </div>
+
+  <div class="field">
+    <%= f.label :adult_household_member_gone_to_jail %>
+    <%= f.check_box :adult_household_member_gone_to_jail %>
+  </div>
+
+  <div class="field">
+    <%= f.label :adult_criminal_resolution_needed %>
+    <%= f.check_box :adult_criminal_resolution_needed %>
+  </div>
+
+  <div class="field">
+    <%= f.label :legal_matters_need_resolved %>
+    <%= f.check_box :legal_matters_need_resolved %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cocaine_crack_speed %>
+    <%= f.check_box :cocaine_crack_speed %>
+  </div>
+
+  <div class="field">
+    <%= f.label :meth %>
+    <%= f.check_box :meth %>
+  </div>
+
+  <div class="field">
+    <%= f.label :marijuana %>
+    <%= f.check_box :marijuana %>
+  </div>
+
+  <div class="field">
+    <%= f.label :heroin_opiates %>
+    <%= f.check_box :heroin_opiates %>
+  </div>
+
+  <div class="field">
+    <%= f.label :other_boolean %>
+    <%= f.text_field :other_boolean %>
+  </div>
+
+  <div class="field">
+    <%= f.label :drug_date_of_last_use %>
+    <%= f.date_select :drug_date_of_last_use %>
+  </div>
+
+  <div class="field">
+    <%= f.label :individual_id %>
+    <%= f.text_field :individual_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

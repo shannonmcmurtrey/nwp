@@ -1,0 +1,132 @@
+<%= form_for(individual) do |f| %>
+  <% if individual.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(individual.errors.count, "error") %> prohibited this individual from being saved:</h2>
+
+      <ul>
+      <% individual.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_area :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_area :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_line_1 %>
+    <%= f.text_area :address_line_1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_line_2 %>
+    <%= f.text_area :address_line_2 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %>
+    <%= f.text_area :city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state %>
+    <%= f.text_area :state %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zip %>
+    <%= f.text_area :zip %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone_number %>
+    <%= f.text_area :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :mobile_phone_number %>
+    <%= f.text_area :mobile_phone_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email_address %>
+    <%= f.text_area :email_address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :DOB %>
+    <%= f.date_select :DOB %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :us_citizen %>
+    <%= f.check_box :us_citizen %>
+  </div>
+
+  <div class="field">
+    <%= f.label :non_us_citizen %>
+    <%= f.text_area :non_us_citizen %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ethnicity %>
+    <%= f.text_field :ethnicity %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ethnicity_other %>
+    <%= f.text_area :ethnicity_other %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lanuage_primary %>
+    <%= f.text_area :lanuage_primary %>
+  </div>
+
+  <div class="field">
+    <%= f.label :language_other %>
+    <%= f.text_area :language_other %>
+  </div>
+
+  <div class="field">
+    <%= f.label :springfield_native %>
+    <%= f.check_box :springfield_native %>
+  </div>
+
+  <div class="field">
+    <%= f.label :springfield_native_neighborhood %>
+    <%= f.text_area :springfield_native_neighborhood %>
+  </div>
+
+  <div class="field">
+    <%= f.label :springfield_non_native_population %>
+    <%= f.text_field :springfield_non_native_population %>
+  </div>
+
+  <div class="field">
+    <%= f.label :neighborhood_resident_length_in_months %>
+    <%= f.text_field :neighborhood_resident_length_in_months %>
+  </div>
+
+  <div class="field">
+    <%= f.label :springfield_non_native_distance %>
+    <%= f.text_field :springfield_non_native_distance %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
