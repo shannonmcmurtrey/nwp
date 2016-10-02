@@ -14,7 +14,7 @@ class CreateIndividuals < ActiveRecord::Migration[5.0]
       t.date :DOB
       t.date :start_date
       t.boolean :us_citizen
-      t.string :non_us_citizen
+      t.string :non_us_citizen_country_of_citizenship
       t.integer :ethnicity
       t.string :ethnicity_other
       t.string :lanuage_primary

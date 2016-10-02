@@ -19,7 +19,7 @@
         <td><%= cohort.start_date %></td>
         <td><%= cohort.meeting_night %></td>
         <td><%= cohort.meeting_time %></td>
-        <td><%= cohort.organization %></td>
+        <td><%= cohort.organization.name %></td>
         <td><%= link_to 'Show', cohort %></td>
         <td><%= link_to 'Edit', edit_cohort_path(cohort) %></td>
         <td><%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' } %></td>

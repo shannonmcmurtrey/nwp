@@ -21,11 +21,12 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navcol-1">
                         <ul class="nav navbar-nav">
-                            <li class="dropdown collapsed"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="/families">Households<span class="caret"></span></a>
+                            <li class="dropdown collapsed"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" href="/individuals">Individuals<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="presentation"><a href="/organizations">Organizations</a></li>
-                                    <li role="presentation"><a href="/families">Households </a></li>
-                                    <li role="presentation"><a href="/Individuals">Individuals </a></li>
+                                    <li role="presentation"><a href="/cohorts">Cohorts </a></li>
+                                    <li role="presentation"><a href="/individuals">Individuals </a></li>
+                                    <li role="presentation"><a href="/assessments">Assessments </a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -56,7 +57,9 @@
           <% if alert %>
             <p class="alert alert-danger"><%= alert %></p>
           <% end %>
+          <div class="well">
         <%= yield %>
+      </div>
 
 	    
       </div>
