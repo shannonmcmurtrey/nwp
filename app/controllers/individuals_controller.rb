@@ -1,12 +1,16 @@
 class IndividualsController < ApplicationController
   before_filter :verify_is_admin
-
   before_action :set_individual, only: [:show, :edit, :update, :destroy]
+
 
   # GET /individuals
   # GET /individuals.json
   def index
-    @individuals = Individual.all
+    if params[:search]
+      @individuals = Individual.search(params[:search]).order("created_at DESC")
+    else
+      @individuals = Individual.all.order('created_at DESC')
+    end
   end
 
   # GET /individuals/1

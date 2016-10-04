@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get '/report' => 'users#report'
   end
 
+
   devise_for :users
 
   root 'static_pages#home'
