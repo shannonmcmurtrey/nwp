@@ -1,10 +1,14 @@
 class OrganizationsController < ApplicationController
+  before_filter :verify_is_admin
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
 
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    if current_user.admin?
+      @organizations = Organization.all
+    else
+    end
   end
 
   # GET /organizations/1
@@ -71,4 +75,9 @@ class OrganizationsController < ApplicationController
     def organization_params
       params.require(:organization).permit(:name, :address_line_1, :address_line_2, :city, :state, :zip, :phone_number, :website, :primary_contact)
     end
+
+    def verify_is_admin
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
+    end
+
 end

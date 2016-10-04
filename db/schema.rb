@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003232925) do
+ActiveRecord::Schema.define(version: 20161004001642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -272,6 +272,8 @@ ActiveRecord::Schema.define(version: 20161003232925) do
     t.integer  "springfield_non_native_distance"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "cohort_id"
+    t.index ["cohort_id"], name: "index_individuals_on_cohort_id", using: :btree
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -302,7 +304,9 @@ ActiveRecord::Schema.define(version: 20161003232925) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "admin",                  default: false
+    t.integer  "organization_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["organization_id"], name: "index_users_on_organization_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
@@ -339,4 +343,6 @@ ActiveRecord::Schema.define(version: 20161003232925) do
 
   add_foreign_key "assessments", "individuals"
   add_foreign_key "cohorts", "organizations"
+  add_foreign_key "individuals", "cohorts"
+  add_foreign_key "users", "organizations"
 end
