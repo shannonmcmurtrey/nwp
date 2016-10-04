@@ -1,4 +1,5 @@
 class CohortsController < ApplicationController
+  before_filter :verify_is_admin
   before_action :set_cohort, only: [:show, :edit, :update, :destroy]
 
   # GET /cohorts
@@ -70,5 +71,9 @@ class CohortsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cohort_params
       params.require(:cohort).permit(:start_date, :meeting_night, :meeting_time, :organization_id)
+    end
+
+    def verify_is_admin
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
     end
 end
