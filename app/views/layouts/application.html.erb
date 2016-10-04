@@ -26,16 +26,17 @@
                                     <li role="presentation"><a href="/organizations">Organizations</a></li>
                                     <li role="presentation"><a href="/cohorts">Cohorts </a></li>
                                     <li role="presentation"><a href="/individuals">Individuals </a></li>
-                                    <li role="presentation"><a href="/assessments">Assessments </a></li>
                                 </ul>
                             </li>
                         </ul>
-                        <form class="navbar-form navbar-left" target="_self">
-                            <div class="form-group">
-                                <label class="control-label" for="search-field"><i class="glyphicon glyphicon-search"></i></label>
-                                <input class="form-control search-field" type="search" name="search" id="search-field">
-                            </div>
-                        </form>
+                          <div class="col-sm-5 col-md-5 pull-left">
+
+                            <%= form_tag(individuals_path, :method => "get", id: "search-form", class: "navbar-form ", target: "_self") do %>
+
+                            <label class="control-label pull-left" for="search-field"><i class="glyphicon glyphicon-search"></i></label>
+                              <%= text_field_tag :search, params[:search], placeholder: "Name to find", class: "form-control search-field", id: "search-field", name: "search" %>
+                            <% end %>
+                         </div>
                         <p class="navbar-text navbar-right">
                         	<% if user_signed_in? %>
                         	  <%= link_to edit_user_registration_path, class: "btn btn-default action-button" do %>
