@@ -32,8 +32,10 @@
 <%= f.input :start_date, :value => @cohort.start_date  %>
 <%= f.input :us_citizen %>
 <%= f.input :non_us_citizen_country_of_citizenship, :as => :string %>
-<%= f.input :ethnicity%>
+<%= f.input :ethnicity, id: 'ethnicity'%>
+<%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_ethnicity', 'option-value': 'Other race, ethnicity, or origin'} do %>
 <%= f.input :ethnicity_other %>
+<% end %>
 <%= f.input :lanuage_primary, input_html: {value: 'English'} %>
 <%= f.input :language_other %>
 <%= f.input :springfield_native %>

@@ -15,6 +15,9 @@ gem 'devise'
 
 gem 'simple_form'
 gem 'enum_help'
+gem 'jquery-turbolinks'
+gem 'underscore-rails'
+gem 'dependent-fields-rails'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
