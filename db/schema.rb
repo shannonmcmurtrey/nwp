@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006144622) do
+ActiveRecord::Schema.define(version: 20161006150121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,25 +80,6 @@ ActiveRecord::Schema.define(version: 20161006144622) do
     t.integer  "medical_treatment_location"
     t.integer  "current_health"
     t.integer  "happiness_level"
-    t.integer  "childhood_raisedby_other_than_parents"
-    t.integer  "childhood_raisedby_other_than_parents_length_in_months"
-    t.integer  "childhood_raisedby_other_than_parents_by_who"
-    t.boolean  "childhood_residence_away_from_family"
-    t.integer  "childhood_residence_away_from_family_length_in_months"
-    t.integer  "childhood_swore_at_or_put_down"
-    t.integer  "childhood_made_to_feel_afraid_of_injury"
-    t.integer  "childhood_pushed_shoved_grabbed_slapped"
-    t.integer  "childhood_hit_hard"
-    t.integer  "childhood_lived_with_alcoholic"
-    t.integer  "childhood_lived_with_drug_user"
-    t.integer  "childhood_lived_with_depressed_or_mentally_ill"
-    t.integer  "childhood_lived_with_member_who_attempted_suicide"
-    t.integer  "childhood_lived_with_member_went_to_jail"
-    t.string   "childhood_jailed_family_member_which"
-    t.integer  "childhood_caregiver_was_pushed_shoved_grabbed_slapped"
-    t.integer  "childhood_caregiver_bitten_or_hit"
-    t.integer  "childhood_caregiver_hit_repeatedly"
-    t.integer  "childhood_caregiver_threatened_with_weapon"
     t.boolean  "ever_been_to_jail"
     t.boolean  "in_need_of_current_criminal_resolution"
     t.boolean  "household_member_in_jail"
@@ -273,9 +254,28 @@ ActiveRecord::Schema.define(version: 20161006144622) do
     t.integer  "springfield_non_native_population"
     t.integer  "neighborhood_resident_length_in_months"
     t.integer  "springfield_non_native_distance"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
     t.integer  "cohort_id"
+    t.integer  "childhood_raisedby_other_than_parents"
+    t.integer  "childhood_raisedby_other_than_parents_length_in_months"
+    t.integer  "childhood_raisedby_other_than_parents_by_who"
+    t.integer  "childhood_residence_away_from_family"
+    t.integer  "childhood_residence_away_from_family_length_in_months"
+    t.integer  "childhood_swore_at_or_put_down"
+    t.integer  "childhood_made_to_feel_afraid_of_injury"
+    t.integer  "childhood_pushed_shoved_grabbed_slapped"
+    t.integer  "childhood_hit_hard"
+    t.integer  "childhood_lived_with_alcoholic"
+    t.integer  "childhood_lived_with_drug_user"
+    t.integer  "childhood_lived_with_depressed_or_mentally_ill"
+    t.integer  "childhood_lived_with_member_who_attempted_suicide"
+    t.integer  "childhood_lived_with_member_went_to_jail"
+    t.string   "childhood_jailed_family_member_which"
+    t.integer  "childhood_caregiver_was_pushed_shoved_grabbed_slapped"
+    t.integer  "childhood_caregiver_bitten_or_hit"
+    t.integer  "childhood_caregiver_hit_repeatedly"
+    t.integer  "childhood_caregiver_threatened_with_weapon"
     t.index ["cohort_id"], name: "index_individuals_on_cohort_id", using: :btree
   end
 
