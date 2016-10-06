@@ -1,6 +1,6 @@
 <%= simple_form_for(individual, html: { class: 'form-horizontal left' }, wrapper_mappings: {
     check_boxes: :vertical_radio_and_checkboxes,
-    radio_buttons: :vertical_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
     file: :vertical_file_input,
     boolean: :vertical_boolean
   } ) do |f| %>
@@ -51,6 +51,52 @@
 <%= f.input :springfield_non_native_population %>
 <%= f.input :springfield_non_native_distance %>
 <% end %>
+
+<div class="well">
+<%= f.input :childhood_raisedby_other_than_parents, 
+            :label => "Were you raised by anyone other than your parents?",
+            :collection => [[0, 'Yes'], [1, 'No'], [2, 'Temporarily']], 
+            :label_method => :last,
+            item_wrapper_class: :block_radio_button_collection,
+            :as => :radio_buttons, 
+            :checked => true %>
+
+<%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': 'Temporarily'} do %>
+  <%= f.input :childhood_raisedby_other_than_parents_length_in_months, :label => "If temporarily, for how long?" %>
+<% end %>
+
+<%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': 'Yes'} do %>
+  <%= f.input :childhood_raisedby_other_than_parents_by_who, :label => "If yes, by who?" %>
+<% end %>
+<%= f.input :childhood_residence_away_from_family, 
+            :label => "Did you ever reside in a foster home, group home, or in a home without your family?",
+            :collection => [[0, 'Yes'], [1, 'No']], 
+            :label_method => :last,
+            item_wrapper_class: :block_radio_button_collection,
+            :as => :radio_buttons, 
+            :checked => true %>
+<%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_residence_away_from_family]', 'radio-value': 'Yes'} do %>            
+     <%= f.input :childhood_residence_away_from_family_length_in_months, 
+            :label => "If yes, for how long?" %>
+<% end %>
+
+<%= f.input :childhood_swore_at_or_put_down %>
+<%= f.input :childhood_made_to_feel_afraid_of_injury %>
+<%= f.input :childhood_pushed_shoved_grabbed_slapped %>
+<%= f.input :childhood_hit_hard %>
+<%= f.input :childhood_lived_with_alcoholic %>
+<%= f.input :childhood_lived_with_drug_user %>
+<%= f.input :childhood_lived_with_drug_user %>
+<%= f.input :childhood_lived_with_depressed_or_mentally_ill %>
+<%= f.input :childhood_lived_with_member_who_attempted_suicide %>
+<%= f.input :childhood_lived_with_member_went_to_jail %>
+<%= f.input :childhood_jailed_family_member_which %>
+<%= f.input :childhood_caregiver_was_pushed_shoved_grabbed_slapped %>
+<%= f.input :childhood_caregiver_bitten_or_hit %>
+<%= f.input :childhood_caregiver_hit_repeatedly %>
+<%= f.input :childhood_caregiver_threatened_with_weapon %>
+</div>
+
 <%= f.hidden_field :cohort_id, :value => @cohort.id %>
 <%= f.button :submit %>
 </fieldset>
