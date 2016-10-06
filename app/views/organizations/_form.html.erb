@@ -1,4 +1,4 @@
-<%= form_for(organization) do |f| %>
+<%= simple_form_for(organization, html: { class: 'form-horizontal left' }) do |f| %>
   <% if organization.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
@@ -11,52 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+  <fieldset>
 
-  <div class="field">
-    <%= f.label :address_line_1 %>
-    <%= f.text_field :address_line_1 %>
-  </div>
+    <%= f.input :name %>
+    <%= f.input :address_line_1 %>
+    <%= f.input :address_line_2 %>
+    <%= f.input :city %>
+    <%= f.input :state %>
+    <%= f.input :zip %>
+    <%= f.input :website %>
+    <%= f.input :primary_contact %>
 
-  <div class="field">
-    <%= f.label :address_line_2 %>
-    <%= f.text_field :address_line_2 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :city %>
-    <%= f.text_field :city %>
-  </div>
-
-  <div class="field">
-    <%= f.label :state %>
-    <%= f.text_field :state %>
-  </div>
-
-  <div class="field">
-    <%= f.label :zip %>
-    <%= f.text_field :zip %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone_number %>
-    <%= f.text_field :phone_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :website %>
-    <%= f.text_field :website %>
-  </div>
-
-  <div class="field">
-    <%= f.label :primary_contact %>
-    <%= f.text_field :primary_contact %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.button :submit %>
+</fieldset>
 <% end %>

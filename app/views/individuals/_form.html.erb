@@ -1,4 +1,9 @@
-<%= form_for(individual) do |f| %>
+<%= simple_form_for(individual, html: { class: 'form-horizontal left' }, wrapper_mappings: {
+    check_boxes: :vertical_radio_and_checkboxes,
+    radio_buttons: :vertical_radio_and_checkboxes,
+    file: :vertical_file_input,
+    boolean: :vertical_boolean
+  } ) do |f| %>
   <% if individual.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(individual.errors.count, "error") %> prohibited this individual from being saved:</h2>
@@ -10,128 +15,34 @@
       </ul>
     </div>
   <% end %>
+<fieldset>
+<%= f.input :first_name %>
+<%= f.input :last_name %>
+<%= f.input :address_line_1 %>
+<%= f.input :address_line_2 %>
+<%= f.input :city, input_html: {value: 'Springfield'} %>
+<%= f.input :state, input_html: {value: 'Mo'}%>
+<%= f.input :zip %>
+<%= f.input :phone_number %>
+<%= f.input :mobile_phone_number %>
+<%= f.input :email_address, placeholder: 'user@domain.com' %>
+<%= f.input :DOB, :label => "Birth Date", as: :date, start_year: Date.today.year - 90,
+                              end_year: Date.today.year - 12, discard_day: false,
+                              order: [:month, :day, :year]  %>
+<%= f.input :start_date, :value => @cohort.start_date  %>
+<%= f.input :us_citizen %>
+<%= f.input :non_us_citizen_country_of_citizenship, :as => :string %>
+<%= f.input :ethnicity%>
+<%= f.input :ethnicity_other %>
+<%= f.input :lanuage_primary, input_html: {value: 'English'} %>
+<%= f.input :language_other %>
+<%= f.input :springfield_native %>
+<%= f.input :springfield_native_neighborhood %>
+<%= f.input :springfield_non_native_population %>
+<%= f.input :neighborhood_resident_length_in_months %>
+<%= f.input :springfield_non_native_distance %>
+<%= f.hidden_field :cohort_id, :value => @cohort.id %>
+<%= f.button :submit %>
+</fieldset>
 
-  <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address_line_1 %>
-    <%= f.text_field :address_line_1 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address_line_2 %>
-    <%= f.text_field :address_line_2 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :city %>
-    <%= f.text_field :city %>
-  </div>
-
-  <div class="field">
-    <%= f.label :state %>
-    <%= f.text_field :state %>
-  </div>
-
-  <div class="field">
-    <%= f.label :zip %>
-    <%= f.text_field :zip %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone_number %>
-    <%= f.text_field :phone_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :mobile_phone_number %>
-    <%= f.text_field :mobile_phone_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email_address %>
-    <%= f.text_field :email_address %>
-  </div>
-
-  <div class="field">
-    <%= f.label :DOB %>
-    <%= f.date_select :DOB %>
-  </div>
-
-  <div class="field">
-    <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
-  </div>
-
-  <div class="field">
-    <%= f.label :us_citizen %>
-    <%= f.check_box :us_citizen %>
-  </div>
-
-  <div class="field">
-    <%= f.label :non_us_citizen_country_of_citizenship %>
-    <%= f.text_field :non_us_citizen_country_of_citizenship %>
-  </div>
-
-  <div class="field">
-    <%= f.label :ethnicity %>
-    <%= f.text_field :ethnicity %>
-  </div>
-
-  <div class="field">
-    <%= f.label :ethnicity_other %>
-    <%= f.text_field :ethnicity_other %>
-  </div>
-
-  <div class="field">
-    <%= f.label :lanuage_primary %>
-    <%= f.text_field :lanuage_primary %>
-  </div>
-
-  <div class="field">
-    <%= f.label :language_other %>
-    <%= f.text_field :language_other %>
-  </div>
-
-  <div class="field">
-    <%= f.label :springfield_native %>
-    <%= f.check_box :springfield_native %>
-  </div>
-
-  <div class="field">
-    <%= f.label :springfield_native_neighborhood %>
-    <%= f.text_field :springfield_native_neighborhood %>
-  </div>
-
-  <div class="field">
-    <%= f.label :springfield_non_native_population %>
-    <%= f.number_field :springfield_non_native_population %>
-  </div>
-
-  <div class="field">
-    <%= f.label :neighborhood_resident_length_in_months %>
-    <%= f.number_field :neighborhood_resident_length_in_months %>
-  </div>
-
-  <div class="field">
-    <%= f.label :springfield_non_native_distance %>
-    <%= f.number_field :springfield_non_native_distance %>
-  </div>
-
-  <div class="field">
-    <%= f.label :cohort %>
-    <%= f.text_field :cohort %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

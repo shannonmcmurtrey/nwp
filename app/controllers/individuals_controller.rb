@@ -8,6 +8,7 @@ class IndividualsController < ApplicationController
   def index
     if params[:search]
       @individuals = Individual.search(params[:search]).order("created_at DESC")
+      redirect_to individual_path(@individuals.first) if @individuals.count == 1
     else
       @individuals = Individual.all.order('created_at DESC')
     end
@@ -20,7 +21,8 @@ class IndividualsController < ApplicationController
 
   # GET /individuals/new
   def new
-    @individual = Individual.new
+    @cohort = Cohort.find(params[:cohort_id])
+    @individual = Individual.new(cohort_id: params[:cohort_id])
   end
 
   # GET /individuals/1/edit

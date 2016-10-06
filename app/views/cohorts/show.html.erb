@@ -22,3 +22,4 @@
 
 <%= link_to 'Edit', edit_cohort_path(@cohort) %> |
 <%= link_to 'Back', cohorts_path %>
+<%= link_to "New Individual", new_individual_path(cohort_id: @cohort.id) %>
