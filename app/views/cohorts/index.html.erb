@@ -23,7 +23,7 @@
         <td><%= link_to 'Show', cohort %></td>
         <td><%= link_to 'Edit', edit_cohort_path(cohort) %></td>
         <td><%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Add Individual', new_individual_path(cohort_id: cohort.id) %></td>
+        <td><%= link_to 'Add Individual', new_individual_path(cohort_id: cohort.id), method: :get %></td>
 
       </tr>
     <% end %>

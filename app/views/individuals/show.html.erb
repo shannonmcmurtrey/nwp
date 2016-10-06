@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+  <%= button_to "Enter Assessment", new_assessment_path(individual_id: @individual.id), class: "btn btn-default", method: 'get' %>
 
 <p>
   <strong>First name:</strong>

@@ -23,6 +23,7 @@
 <%= f.input :city, input_html: {value: 'Springfield'} %>
 <%= f.input :state, input_html: {value: 'Mo'}%>
 <%= f.input :zip %>
+<%= f.input :neighborhood_resident_length_in_months %>
 <%= f.input :phone_number %>
 <%= f.input :mobile_phone_number %>
 <%= f.input :email_address, placeholder: 'user@domain.com' %>
@@ -30,19 +31,26 @@
                               end_year: Date.today.year - 12, discard_day: false,
                               order: [:month, :day, :year]  %>
 <%= f.input :start_date, :value => @cohort.start_date  %>
-<%= f.input :us_citizen %>
-<%= f.input :non_us_citizen_country_of_citizenship, :as => :string %>
+<%= f.input :us_citizen, :wrapper => :inline_checkbox %> <p />
+<%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_us_citizen', 'checkbox-value': 'false'} do %>
+  <%= f.input :non_us_citizen_country_of_citizenship, :as => :string %>
+<% end %>
 <%= f.input :ethnicity, id: 'ethnicity'%>
 <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_ethnicity', 'option-value': 'Other race, ethnicity, or origin'} do %>
-<%= f.input :ethnicity_other %>
+  <%= f.input :ethnicity_other %>
 <% end %>
 <%= f.input :lanuage_primary, input_html: {value: 'English'} %>
-<%= f.input :language_other %>
-<%= f.input :springfield_native %>
-<%= f.input :springfield_native_neighborhood %>
+<%= f.input :language_other, :label => "Other fluent languages" %>
+
+<%= f.input :springfield_native, :wrapper => :inline_checkbox  %><p />
+<%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_springfield_native', 'checkbox-value': 'true'} do %>
+  <%= f.input :springfield_native_neighborhood %>
+<% end %>
+
+<%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_springfield_native', 'checkbox-value': 'false'} do %>
 <%= f.input :springfield_non_native_population %>
-<%= f.input :neighborhood_resident_length_in_months %>
 <%= f.input :springfield_non_native_distance %>
+<% end %>
 <%= f.hidden_field :cohort_id, :value => @cohort.id %>
 <%= f.button :submit %>
 </fieldset>

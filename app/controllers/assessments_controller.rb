@@ -16,7 +16,8 @@ class AssessmentsController < ApplicationController
 
   # GET /assessments/new
   def new
-    @assessment = Assessment.new
+    @individual = Individual.find(params[:individual_id])
+    @assessment = Assessment.new(individual_id: params[:individual_id])
   end
 
   # GET /assessments/1/edit
