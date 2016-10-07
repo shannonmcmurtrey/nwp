@@ -17,7 +17,7 @@
 
 <p>
   <strong>Cohort:</strong>
-  <%= @meeting.cohort %>
+  <%= @meeting.cohort.to_label %>
 </p>
 
 <%= link_to 'Edit', edit_meeting_path(@meeting) %> |

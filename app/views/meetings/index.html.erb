@@ -19,7 +19,7 @@
         <td><%= meeting.name %></td>
         <td><%= meeting.topic %></td>
         <td><%= meeting.meeting_date %></td>
-        <td><%= meeting.cohort %></td>
+        <td><%= meeting.cohort.to_label %></td>
         <td><%= link_to 'Show', meeting %></td>
         <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
         <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>

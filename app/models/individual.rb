@@ -7,7 +7,7 @@ class Individual < ApplicationRecord
   enum childhood_raisedby_other_than_parents_by_who: {"Grandparent(s)"=>0, "Aunt/Uncle"=>1, "Other relative"=>2, "Not a relative"=>3}
 
   def self.search(search)
-    where("first_name || last_name LIKE ?", "%#{search}%")
+    where("first_name || last_name  || phone_number LIKE ?", "%#{search}%")
   end
 
 end
