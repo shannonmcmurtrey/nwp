@@ -4,202 +4,205 @@
     file: :vertical_file_input,
     boolean: :vertical_boolean
   } ) do |f| %>
-  <% if individual.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(individual.errors.count, "error") %> prohibited this individual from being saved:</h2>
+     <% if individual.errors.any? %>
+       <div id="error_explanation">
+         <h2><%= pluralize(individual.errors.count, "error") %> prohibited this individual from being saved:</h2>
 
-      <ul>
-      <% individual.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<fieldset>
-<%= f.input :first_name %>
-<%= f.input :last_name %>
-<%= f.input :address_line_1 %>
-<%= f.input :address_line_2 %>
-<%= f.input :city, input_html: {value: 'Springfield'} %>
-<%= f.input :state, input_html: {value: 'Mo'}%>
-<%= f.input :zip %>
-<%= f.input :neighborhood_resident_length_in_months %>
-<%= f.input :phone_number %>
-<%= f.input :mobile_phone_number %>
-<%= f.input :email_address, placeholder: 'user@domain.com' %>
-<%= f.input :DOB, :label => "Birth Date", as: :date, start_year: Date.today.year - 90,
-                              end_year: Date.today.year - 12, discard_day: false,
-                              order: [:month, :day, :year]  %>
-<%= f.input :start_date, :value => @cohort.start_date  %>
-<%= f.input :us_citizen, :wrapper => :inline_checkbox %> <p />
-<%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_us_citizen', 'checkbox-value': 'false'} do %>
-  <%= f.input :non_us_citizen_country_of_citizenship, :as => :string %>
-<% end %>
-<%= f.input :ethnicity, id: 'ethnicity'%>
-<%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_ethnicity', 'option-value': 'Other race, ethnicity, or origin'} do %>
-  <%= f.input :ethnicity_other %>
-<% end %>
-<%= f.input :lanuage_primary, input_html: {value: 'English'} %>
-<%= f.input :language_other, :label => "Other fluent languages" %>
+         <ul>
+         <% individual.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+         <% end %>
+         </ul>
+       </div>
+     <% end %>
+   <fieldset>
+   <%= f.input :first_name %>
+   <%= f.input :last_name %>
+   <%= f.input :address_line_1 %>
+   <%= f.input :address_line_2 %>
+   <%= f.input :city, input_html: {value: 'Springfield'} %>
+   <%= f.input :state, input_html: {value: 'Mo'}%>
+   <%= f.input :zip %>
+   <%= f.input :neighborhood_resident_length_in_months %>
+   <%= f.input :phone_number %>
+   <%= f.input :mobile_phone_number %>
+   <%= f.input :email_address, placeholder: 'user@domain.com' %>
+   <%= f.input :DOB, :label => "Birth Date", as: :date, start_year: Date.today.year - 90,
+                                 end_year: Date.today.year - 12, discard_day: false,
+                                 order: [:month, :day, :year]  %>
+   <%= f.input :start_date, :value => @cohort.start_date  %>
+   <%= f.input :us_citizen, :wrapper => :inline_checkbox %> <p />
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_us_citizen', 'checkbox-value': 'false'} do %>
+     <%= f.input :non_us_citizen_country_of_citizenship, :as => :string %>
+   <% end %>
+   <%= f.input :ethnicity, id: 'ethnicity'%>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_ethnicity', 'option-value': 'Other race, ethnicity, or origin'} do %>
+     <%= f.input :ethnicity_other %>
+   <% end %>
+   <%= f.input :lanuage_primary, input_html: {value: 'English'} %>
+   <%= f.input :language_other, :label => "Other fluent languages" %>
 
-<%= f.input :springfield_native, :wrapper => :inline_checkbox  %><p />
-<%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_springfield_native', 'checkbox-value': 'true'} do %>
-  <%= f.input :springfield_native_neighborhood %>
-<% end %>
+   <%= f.input :springfield_native, :wrapper => :inline_checkbox  %><p />
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_springfield_native', 'checkbox-value': 'true'} do %>
+     <%= f.input :springfield_native_neighborhood %>
+   <% end %>
 
-<%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_springfield_native', 'checkbox-value': 'false'} do %>
-<%= f.input :springfield_non_native_population %>
-<%= f.input :springfield_non_native_distance %>
-<% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_springfield_native', 'checkbox-value': 'false'} do %>
+   <%= f.input :springfield_non_native_population %>
+   <%= f.input :springfield_non_native_distance %>
+   <% end %>
 
-<div class="well">
-<%= f.input :childhood_raisedby_other_than_parents, 
-            :label => "Were you raised by anyone other than your parents?",
-            :collection => [[0, 'Yes'], [1, 'No'], [2, 'Temporarily']], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <div class="well">
+   <%= f.input :childhood_raisedby_other_than_parents, 
+               :label => "Were you raised by anyone other than your parents?",
+               :collection => {"Yes"=>0, "No"=>1, "Temporarily"=>2}, 
+               :label_method => :first,
+               :value_method => :last,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons,
+               wrapper: :vertical_radio_and_checkboxes %>
 
-<%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': 'Temporarily'} do %>
-  <%= f.input :childhood_raisedby_other_than_parents_length_in_months, :label => "If temporarily, for how long?" %>
-<% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': 'Temporarily'} do %>
+     <%= f.input :childhood_raisedby_other_than_parents_length_in_months, :label => "If temporarily, for how long (in months)?" %>
+   <% end %>
 
-<%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': 'Yes'} do %>
-  <%= f.input :childhood_raisedby_other_than_parents_by_who, :label => "If yes, by who?" %>
-<% end %>
-<%= f.input :childhood_residence_away_from_family, 
-            :label => "Did you ever reside in a foster home, group home, or in a home without your family?",
-            :collection => [[0, 'Yes'], [1, 'No']], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
-<%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_residence_away_from_family]', 'radio-value': 'Yes'} do %>            
-     <%= f.input :childhood_residence_away_from_family_length_in_months, 
-            :label => "If yes, for how many months?" %>
-<% end %>
-<div class= "well">
-<h3>How often did your parent or other adult in the household you grew up in...</h3>
-<%= f.input :childhood_swore_at_or_put_down, 
-            :label => "...swear at, insult, or put you down?",
-            :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': 'Yes'} do %>
+     <%= f.input :childhood_raisedby_other_than_parents_by_who, :label => "If yes, by who?" %>
+   <% end %>
 
+   <%= f.input :childhood_residence_away_from_family, 
+               :label => "Did you ever reside in a foster home, group home, or in a home without your family?",
+               :collection => {"Yes"=>0, "No"=>1}, 
+               :label_method => :first,
+               :value_method => :last,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons,
+               wrapper: :vertical_radio_and_checkboxes %>
 
-<%= f.input :childhood_made_to_feel_afraid_of_injury, 
-            :label => "...act in a way that made you afraid you would be physically hurt?",
-            :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_residence_away_from_family]', 'radio-value': 'Yes'} do %>            
+        <%= f.input :childhood_residence_away_from_family_length_in_months, 
+               :label => "If yes, for how many months?" %>
+   <% end %>
+   <div class= "well">
+   <h3>How often did your parent or other adult in the household you grew up in...</h3>
+   <%= f.input :childhood_swore_at_or_put_down, 
+               :label => "...swear at, insult, or put you down?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons%>
 
-<%= f.input :childhood_pushed_shoved_grabbed_slapped, 
-            :label => "...push, grab, shove, or slap you?",
-            :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <%= f.input :childhood_made_to_feel_afraid_of_injury, 
+               :label => "...act in a way that made you afraid you would be physically hurt?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
 
-<%= f.input :childhood_hit_hard, 
-            :label => "...hit you so hard that you had marks or were injured?",
-            :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <%= f.input :childhood_pushed_shoved_grabbed_slapped, 
+               :label => "...push, grab, shove, or slap you?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
 
-<h3>As a child, did you...</h3>
+   <%= f.input :childhood_hit_hard, 
+               :label => "...hit you so hard that you had marks or were injured?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
 
-<%= f.input :childhood_lived_with_alcoholic, 
-            :label => "...live with anyone who was a problem drinker or alcoholic?",
-            :collection => [[0, 'No'], [1, 'Yes']], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <h3>As a child, did you...</h3>
 
-
-<%= f.input :childhood_lived_with_drug_user, 
-            :label => "...live with anyone who used illegal drugs?",
-            :collection => [[0, 'No'], [1, 'Yes']], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
-
-<%= f.input :childhood_lived_with_depressed_or_mentally_ill, 
-            :label => "...live with a household member who was depressed or mentally ill?",
-            :collection => [[0, 'No'], [1, 'Yes']], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <%= f.input :childhood_lived_with_alcoholic, 
+               :label => "...live with anyone who was a problem drinker or alcoholic?",
+               :collection => [[0, 'No'], [1, 'Yes']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
 
 
-<%= f.input :childhood_lived_with_member_who_attempted_suicide, 
-            :label => "...live with a household member who attempted suicide?",
-            :collection => [[0, 'No'], [1, 'Yes']], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <%= f.input :childhood_lived_with_drug_user, 
+               :label => "...live with anyone who used illegal drugs?",
+               :collection => [[0, 'No'], [1, 'Yes']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
 
-<%= f.input :childhood_lived_with_member_went_to_jail, 
-            :label => "...have a member of your household go to jail or prison?",
-            :collection => [[0, 'No'], [1, 'Yes']], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <%= f.input :childhood_lived_with_depressed_or_mentally_ill, 
+               :label => "...live with a household member who was depressed or mentally ill?",
+               :collection => [[0, 'No'], [1, 'Yes']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
 
-<%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_lived_with_member_went_to_jail]', 'radio-value': 'Yes'} do %>            
-     <%= f.input :childhood_jailed_family_member_which, :label => "If yes, which member of the household?" %>
-<% end %>
 
-<h3>As a child, did you ever witness or were aware that your parent/gaurdian/caregiver was...</h3>
+   <%= f.input :childhood_lived_with_member_who_attempted_suicide, 
+               :label => "...live with a household member who attempted suicide?",
+               :collection => [[0, 'No'], [1, 'Yes']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
 
-<%= f.input :childhood_caregiver_was_pushed_shoved_grabbed_slapped, 
-            :label => "...ever pushed, grabbed, slapped, or had something thrown at her/him?",
-            :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <%= f.input :childhood_lived_with_member_went_to_jail, 
+               :label => "...have a member of your household go to jail or prison?",
+               :collection => [[0, 'No'], [1, 'Yes']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
 
-<%= f.input :childhood_caregiver_bitten_or_hit, 
-            :label => "...ever bitten hit with a fist, or hit with something hard?",
-            :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_lived_with_member_went_to_jail]', 'radio-value': 'Yes'} do %>            
+        <%= f.input :childhood_jailed_family_member_which, :label => "If yes, which member of the household?" %>
+   <% end %>
 
-<%= f.input :childhood_caregiver_hit_repeatedly, 
-            :label => "...ever repeatedly hit?",
-            :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <h3>As a child, did you ever witness or were aware that your parent/gaurdian/caregiver was...</h3>
 
-<%= f.input :childhood_caregiver_threatened_with_weapon, 
-            :label => "...ever threatened with, or hurt by a knife or gun?",
-            :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
-            :label_method => :last,
-            item_wrapper_class: :block_radio_button_collection,
-            :as => :radio_buttons, 
-            :checked => true %>
+   <%= f.input :childhood_caregiver_was_pushed_shoved_grabbed_slapped, 
+               :label => "...ever pushed, grabbed, slapped, or had something thrown at her/him?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
 
-</div>
+   <%= f.input :childhood_caregiver_bitten_or_hit, 
+               :label => "...ever bitten hit with a fist, or hit with something hard?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
 
-<%= f.hidden_field :cohort_id, :value => @cohort.id %>
-<%= f.button :submit %>
-</fieldset>
+   <%= f.input :childhood_caregiver_hit_repeatedly, 
+               :label => "...ever repeatedly hit?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   <%= f.input :childhood_caregiver_threatened_with_weapon, 
+               :label => "...ever threatened with, or hurt by a knife or gun?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   </div>
+
+   <%= f.hidden_field :cohort_id, :value => @cohort.id %>
+   <%= f.button :submit %>
+   </fieldset>
 
 <% end %>

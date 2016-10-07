@@ -121,5 +121,5 @@
   <%= @individual.cohort.meeting_night %>
 </p>
 
-<%= link_to 'Edit', edit_individual_path(@individual) %> |
+<%= link_to 'Edit', edit_individual_path(@individual), method: :get  %> |
 <%= link_to 'Back', individuals_path %>
