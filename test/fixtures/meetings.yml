@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  topic: MyString
+  meeting_date: 2016-10-07
+  cohort: one
+
+two:
+  name: MyString
+  topic: MyString
+  meeting_date: 2016-10-07
+  cohort: two
