@@ -1,0 +1,30 @@
+<%= simple_form_for(attendance, html: { class: 'form-horizontal left' }, wrapper_mappings: {
+    check_boxes: :vertical_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :vertical_file_input,
+    boolean: :vertical_boolean
+  } ) do |f| %>
+     <% if attendance.errors.any? %>
+       <div id="error_explanation">
+         <h2><%= pluralize(attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
+
+         <ul>
+         <% attendance.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+         <% end %>
+         </ul>
+       </div>
+     <% end %>
+   <fieldset>
+
+    <% @attendees.each do |attendee|  %>
+      <%= f.input :individual_id, value: attendee.id %>
+      <%= f.input :present %>
+
+      <%= hidden_field_tag 'attendance[meeting_id]', @meeting.id  %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

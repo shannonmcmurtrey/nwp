@@ -1,2 +1,31 @@
-<h1>Attendances#index</h1>
-<p>Find me in app/views/attendances/index.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<h1>Attendance</h1>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Cohort</th>
+      <th>Meeting</th>
+      <th>Organiztion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attendances.each do |attendance| %>
+      <tr>
+        <td><%= attendance.meeting.cohort.to_label %></td>
+        <td><%= attendance.meeting_date %></td>
+        <td><%= attendance.meeting.meeting_time %></td>
+        <td><%= attendance.individual.to_label %></td>
+        <td><%= link_to 'Show', cohort %></td>
+        <td><%= link_to 'Edit', edit_cohort_path(cohort) %></td>
+        <td><%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

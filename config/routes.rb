@@ -2,16 +2,7 @@ require 'Nwpadmin'
 Rails.application.routes.draw do
 
 
-  get 'attendances/index'
-
-  get 'attendances/new'
-
-  get 'attendances/create'
-
-  get 'attendances/show'
-
-  get 'attendances/destroy'
-
+  resources :attendances
   resources :meetings
   resources :individuals
   resources :cohorts

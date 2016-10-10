@@ -10,4 +10,8 @@ class Individual < ApplicationRecord
     where("first_name || last_name  || phone_number LIKE ?", "%#{search}%")
   end
 
+  def to_label
+    "#{first_name} #{last_name}"
+  end
+
 end

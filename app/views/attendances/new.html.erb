@@ -1,2 +1,4 @@
-<h1>Attendances#new</h1>
-<p>Find me in app/views/attendances/new.html.erb</p>
+<h1>Record attendance for <%= @meeting.cohort.to_label %></h1>
+
+<%= render 'form', attendance: @attendance %>
+
