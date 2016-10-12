@@ -1,0 +1,21 @@
+<%= form_for(attendance) do |f| %>
+
+  <div class="field">
+    <%= f.label :meeting %>
+    <%= f.text_field :meeting_id %>
+  </div>
+
+<div class="field">
+    <%= f.label :individual %>
+    <%= f.text_field :individual_id %>
+  </div>
+<div class="field">
+    <%= f.label :present %>
+    <%= f.check_box :present %>
+  </div>
+
+
+  <div class="actions">
+    <%= submit_tag "Update Attendance", :class => "btn action-button-reverse default-button" %>
+  </div>
+<% end %>

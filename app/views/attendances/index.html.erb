@@ -6,9 +6,9 @@
   <thead>
     <tr>
       <th>Cohort</th>
-      <th>Meeting</th>
-      <th>Organiztion</th>
-      <th colspan="3"></th>
+      <th>Meeting Date</th>
+      <th>Individual</th>
+      <th>Present</th>
     </tr>
   </thead>
 
@@ -16,12 +16,11 @@
     <% @attendances.each do |attendance| %>
       <tr>
         <td><%= attendance.meeting.cohort.to_label %></td>
-        <td><%= attendance.meeting_date %></td>
-        <td><%= attendance.meeting.meeting_time %></td>
+        <td><%= attendance.meeting.meeting_date %></td>
         <td><%= attendance.individual.to_label %></td>
-        <td><%= link_to 'Show', cohort %></td>
-        <td><%= link_to 'Edit', edit_cohort_path(cohort) %></td>
-        <td><%= link_to 'Destroy', cohort, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= attendance.present %></td>
+        <td><%= link_to 'Show', attendance %></td>
+        <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
 
       </tr>
     <% end %>

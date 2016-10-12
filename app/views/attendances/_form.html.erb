@@ -1,30 +1,17 @@
-<%= simple_form_for(attendance, html: { class: 'form-horizontal left' }, wrapper_mappings: {
-    check_boxes: :vertical_radio_and_checkboxes,
-    radio_buttons: :horizontal_radio_and_checkboxes,
-    file: :vertical_file_input,
-    boolean: :vertical_boolean
-  } ) do |f| %>
-     <% if attendance.errors.any? %>
-       <div id="error_explanation">
-         <h2><%= pluralize(attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
+<%= form_tag attendances_path do %>
+  <% @attendances.each do |attendance| %>
+    <%= fields_for "attendance[#{attendance}]", attendance do |a| %>
 
-         <ul>
-         <% attendance.errors.full_messages.each do |message| %>
-           <li><%= message %></li>
-         <% end %>
-         </ul>
-       </div>
-     <% end %>
-   <fieldset>
-
-    <% @attendees.each do |attendee|  %>
-      <%= f.input :individual_id, value: attendee.id %>
-      <%= f.input :present %>
-
-      <%= hidden_field_tag 'attendance[meeting_id]', @meeting.id  %>
+      <div class="field">
+        
+        <%= a.hidden_field :meeting_id %>
+        <%= a.hidden_field :individual_id %>
+        <h3><%= Individual.find(a.object.individual_id).to_label %>
+        <%= a.check_box :present %></h3>
+      </div>
+    <% end %>
   <% end %>
-
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag "Save Attendance Sheet", :class => "btn action-button-reverse default-button" %>
   </div>
 <% end %>

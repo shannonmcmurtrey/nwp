@@ -1,2 +1,20 @@
-<h1>Attendances#show</h1>
-<p>Find me in app/views/attendances/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Meeting:</strong>
+  <%= @attendance.meeting.name %>
+</p>
+
+<p>
+  <strong>Individual:</strong>
+  <%= @attendance.individual.to_label %>
+</p>
+
+<p>
+  <strong>Present:</strong>
+  <%= @attendance.present %>
+</p>
+
+
+<%= link_to 'Edit', edit_attendance_path(@attendance) %> |
+<%= link_to 'Back', attendances_path %>
