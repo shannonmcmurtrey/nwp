@@ -14,6 +14,13 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+    @individuals = []
+    @cohorts = @organization.cohorts.all
+    @cohorts.each do |cohort| 
+      cohort.individuals.each do |i|
+        @individuals << i 
+      end
+    end
   end
 
   # GET /organizations/new

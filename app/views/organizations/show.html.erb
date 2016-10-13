@@ -7,42 +7,42 @@
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <strong>Address Line 1:</strong>
   <%= @organization.address_line_1 %>
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <strong>Address Line 2:</strong>
   <%= @organization.address_line_2 %>
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <strong>City:</strong>
   <%= @organization.city %>
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <strong>State:</strong>
   <%= @organization.state %>
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <strong>Zip:</strong>
   <%= @organization.zip %>
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <strong>Phone Number:</strong>
   <%= @organization.phone_number %>
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <strong>Website:</strong>
   <%= @organization.website %>
 </p>
 
 <p>
-  <strong>Text:</strong>
+  <strong>Primary Contact:</strong>
   <%= @organization.primary_contact %>
 </p>
 <%= link_to 'Edit', edit_organization_path(@organization) %> |
@@ -50,3 +50,17 @@
 <%= link_to 'Create Cohort', new_cohort_path %>
 
 </div>
+
+<h3>Individuals singed up through this organziation</h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>Name</th><th>Phone Number</th><th>E-mail Address</th>
+    </th>
+  </tr>
+<% @individuals.each do |i| %>
+  <tr>
+    <td><%= i.to_label %></td><td><%= i.phone_number %></td><td><%= i.email_address %></td>
+  </tr>
+<% end %>
+</table>
