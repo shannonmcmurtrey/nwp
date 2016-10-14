@@ -22,8 +22,8 @@ class IndividualsController < ApplicationController
 
   # GET /individuals/new
   def new
-    @cohort = Cohort.find(params[:cohort_id])
-    @individual = Individual.new(cohort_id: params[:cohort_id])
+    @organization = Organization.find(params[:organization_id])
+    @individual = Individual.new(organization_id: params[:organization_id])
   end
 
   # GET /individuals/1/edit
@@ -68,6 +68,15 @@ class IndividualsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to individuals_url, notice: 'Individual was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def check_code
+    @code = params(:code)
+    Organizations.each do |o|
+      if o.code == @code
+        new_individual_path(organization_id: @organization.id)
+      end
     end
   end
 

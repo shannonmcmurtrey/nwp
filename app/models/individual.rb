@@ -1,5 +1,6 @@
 class Individual < ApplicationRecord
   belongs_to :cohort
+  belongs_to :organization
   has_and_belongs_to_many :meetings
   has_many :attendances
   enum ethnicity: { "White" => 0, "Hispanic/Latino" => 1, "Black or African American" =>  2, "Asian" => 3, "American Native or Alaska Native" => 4, "Middle Eastern or North African" => 5, "Native Hawaiian or Pacific Islander" => 6, "Other race, ethnicity, or origin" => 7 }

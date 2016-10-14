@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014160751) do
+ActiveRecord::Schema.define(version: 20161014164340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -286,7 +286,9 @@ ActiveRecord::Schema.define(version: 20161014160751) do
     t.integer  "childhood_caregiver_bitten_or_hit"
     t.integer  "childhood_caregiver_hit_repeatedly"
     t.integer  "childhood_caregiver_threatened_with_weapon"
+    t.integer  "organization_id"
     t.index ["cohort_id"], name: "index_individuals_on_cohort_id", using: :btree
+    t.index ["organization_id"], name: "index_individuals_on_organization_id", using: :btree
   end
 
   create_table "individuals_meetings", id: false, force: :cascade do |t|
@@ -375,6 +377,7 @@ ActiveRecord::Schema.define(version: 20161014160751) do
   add_foreign_key "attendances", "meetings"
   add_foreign_key "cohorts", "organizations"
   add_foreign_key "individuals", "cohorts"
+  add_foreign_key "individuals", "organizations"
   add_foreign_key "meetings", "cohorts"
   add_foreign_key "users", "organizations"
 end

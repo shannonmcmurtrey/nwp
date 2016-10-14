@@ -2,7 +2,13 @@
 <% if user_signed_in? %>
 <div class="container hero">
 	<div class="well">
-Welcome <%= current_user.email %>.  Send an e-mail to <a href="mailto:smcmurtrey@drury.edu">smcmurtrey@drury.edu</a> to be given permissions to view and enter data (if needed).
+      <h2>Welcome <%= current_user.email %>.</h2> 
+      <%= form_tag({controller: "individuals", action: "check_code"}, method: "post") do %>
+        <%= label_tag(:code, "If you have been given a code for The Northwest Project, please enter it here:") %>
+        <%= text_field_tag(:code) %>
+        <%= submit_tag("Check Code") %>
+      <% end %>
+       
 	</div>
 	    
 </div>

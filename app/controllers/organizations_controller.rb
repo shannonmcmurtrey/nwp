@@ -80,7 +80,7 @@ class OrganizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:name, :address_line_1, :address_line_2, :city, :state, :zip, :phone_number, :website, :primary_contact)
+      params.require(:organization).permit(:name, :address_line_1, :address_line_2, :city, :state, :zip, :phone_number, :website, :primary_contact, :code)
     end
 
     def verify_is_admin

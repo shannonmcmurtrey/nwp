@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get '/report' => 'users#report'
   end
 
+  match '/check_code',      to: 'individuals#check_code',        via: 'post'
 
   devise_for :users
 
