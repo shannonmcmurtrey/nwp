@@ -30,7 +30,6 @@
    <%= f.input :DOB, :label => "Birth Date", as: :date, start_year: Date.today.year - 90,
                                  end_year: Date.today.year - 12, discard_day: false,
                                  order: [:month, :day, :year]  %>
-   <%= f.input :start_date, :value => @cohort.start_date  %>
    <%= f.input :us_citizen, :wrapper => :inline_checkbox %> <p />
    <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_us_citizen', 'checkbox-value': 'false'} do %>
      <%= f.input :non_us_citizen_country_of_citizenship, :as => :string %>
@@ -201,7 +200,7 @@
 
    </div>
 
-   <%= f.hidden_field :cohort_id, :value => @cohort.id %>
+   <%= f.hidden_field :organization_id, :value => @organization.id %>
    <%= f.button :submit %>
    </fieldset>
 

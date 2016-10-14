@@ -1,5 +1,5 @@
 class IndividualsController < ApplicationController
-  before_filter :verify_is_admin
+  before_filter :verify_is_admin, :except => ["check_code", "new"]
   before_action :set_individual, only: [:show, :edit, :update, :destroy]
 
 
@@ -72,11 +72,12 @@ class IndividualsController < ApplicationController
   end
 
   def check_code
-    @code = params(:code)
-    Organizations.each do |o|
-      if o.code == @code
-        new_individual_path(organization_id: @organization.id)
-      end
+    @organization = Organization.find_by_code(params[:code])
+    if @organization != nil
+        redirect_to new_individual_path(organization_id: @organization.id)
+    else
+      flash[:alert] = "Sorry, I can't find that code."
+      redirect_to "/"
     end
   end
 
@@ -91,6 +92,7 @@ class IndividualsController < ApplicationController
       params.require(:individual).permit(:first_name, :last_name, :address_line_1, :address_line_2, :city, :state, :zip, :phone_number, :mobile_phone_number, :email_address, :DOB, :start_date, :us_citizen, :non_us_citizen, :ethnicity, :ethnicity_other, :lanuage_primary, :language_other, :springfield_native, :springfield_native_neighborhood, :springfield_non_native_population, :neighborhood_resident_length_in_months, :springfield_non_native_distance, :childhood_raisedby_other_than_parents, :childhood_raisedby_other_than_parents_length_in_months, :childhood_raisedby_other_than_parents_by_who, :childhood_residence_away_from_family, :childhood_residence_away_from_family_length_in_months, :childhood_swore_at_or_put_down, :childhood_made_to_feel_afraid_of_injury, :childhood_pushed_shoved_grabbed_slapped, :childhood_hit_hard, :childhood_lived_with_alcoholic, :childhood_lived_with_drug_user, :childhood_lived_with_depressed_or_mentally_ill, :childhood_lived_with_member_who_attempted_suicide, :childhood_lived_with_member_went_to_jail, :childhood_jailed_family_member_which, :childhood_caregiver_was_pushed_shoved_grabbed_slapped, :childhood_caregiver_bitten_or_hit, :childhood_caregiver_hit_repeatedly, :childhood_caregiver_threatened_with_weapon, :cohort_id)
     end
     def verify_is_admin
+
       (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
     end
 end
