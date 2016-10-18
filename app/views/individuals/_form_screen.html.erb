@@ -1,0 +1,124 @@
+<%= simple_form_for(individual, html: { class: 'form-horizontal left' }, wrapper_mappings: {
+    check_boxes: :vertical_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :vertical_file_input,
+    boolean: :vertical_boolean
+  } ) do |f| %>
+     <% if individual.errors.any? %>
+       <div id="error_explanation">
+         <h2><%= pluralize(individual.errors.count, "error") %> prohibited this individual from being saved:</h2>
+
+         <ul>
+         <% individual.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+         <% end %>
+         </ul>
+       </div>
+     <% end %>
+   <fieldset>
+   <%= f.input :first_name %>
+   <%= f.input :last_name %>
+
+    <%= f.input :date_of_application, :label => "Date of Application", as: :date, start_year: Date.today.year,
+                                 end_year: Date.today.year - 12, discard_day: false,
+                                 order: [:month, :day, :year]  %>
+
+   <%= f.input :DOB, :label => "Date of Birth", as: :date, start_year: Date.today.year - 90,
+                                 end_year: Date.today.year - 12, discard_day: false,
+                                 order: [:month, :day, :year]  %>
+   <%= f.input :address_line_1 %>
+   <%= f.input :address_line_2 %>
+   <%= f.input :city, input_html: {value: 'Springfield'} %>
+   <%= f.input :state, input_html: {value: 'Mo'}%>
+   <%= f.input :zip %>
+   <%= f.input :mobile_phone_number %>
+   <%= f.input :phone_number, :label => "Home phone" %>
+   <%= f.input :alternate_phone %>
+
+   <%= f.input :email_address, placeholder: 'user@domain.com' %>
+
+   <%= f.input :preferred_method_of_contact, 
+               :label => "Preferred Method of Contact", 
+               :collection => {"Mobile"=>0, "Home Phone"=>1, "Email"=>2, "Text"=>3}, 
+               :label_method => :first,
+               :value_method => :last %>
+
+   
+   <div class="well">
+      <h3>Accountability:</h3>
+      <%= f.input :willing_and_able_to_commit_to_program, 
+                  :label=>"Are you able and willing to commit to a one-year program with a two-year research follow-up, and to attend weekly classes an weely meetings?",
+                  :collection => {"Yes"=>0, "No"=>1}, 
+                  :label_method => :first,
+                  :value_method => :last%>
+
+<%= f.input :specific_days_that_do_not_work, 
+                  :label=>"Are there specific days or times that do not work for you?",
+                  :collection => {"Yes"=>0, "No"=>1}, 
+                  :label_method => :first,
+                  :value_method => :last%>
+<%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_specific_days_that_do_not_work', 'option-value': '0'} do %>            
+        <%= f.input :days_and_times_not_available, 
+               :label => "Please list days and times that you are not available?" %>
+   <% end %>
+
+   <%= f.input :currently_employed,
+               :label => "Are you currently employed?",
+               :collection => {"Yes"=>0, "No"=>1, "Disabled"=>3, "Retired"=>4, "Temporary/Seasonal"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_currently_employed', 'option-value': '0'} do %>            
+        <%= f.input :employed_full_or_part_time, 
+                    :label => "Full-Time or Part Time?",
+                    :collection => {"Full-Time"=>0, "Part-Time"=>1},
+                    :label_method => :first,
+                    :value_method => :last %>
+        <%= f.input :employer %>
+        <%= f.input :position %>
+        <%= f.input :avg_hours_worked_per_week, :label => "Hours worked per week (Average number of hours per week for the last 30 days)" %>
+        <%= f.input :hourly_wage, :label => "If hourly, what is your hourly wage?" %>
+        <%= f.input :salary, :label => "If salaried, what is your salary?" %>
+        <%= f.input :employer_benefits, :label => "List any benefits from your employer (sick leave, etc:" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_currently_employed', 'option-value': '1'} do %> 
+   <%= f.input :not_employed_but_eligible,
+               :label => "If you are not currently employed, are you eligible to work?",
+               :collection => {"Yes"=>0, "No"=>1},
+               :label_method => :first,
+               :value_method => :last  %>
+   <% end %> 
+
+   <%= f.input :how_many_jobs_in_last_six_months, :label => "How many jobs have you had in the last six months?" %>
+   <%= f.input :total_family_income_from_all_sources, :label => "Total Monthly Family Income/Assistance (from all sources):" %>
+
+<%= f.input :child_support, 
+               :label => "Child Support", 
+               :collection => {"eligible, no income benefit"=>0, "eligible, partial or irregular income"=>1, "eligible, receives full amount of income ordered"=>2, "not eligible / not applicable"=>3}, 
+               :label_method => :first,
+               :value_method => :last %> 
+<%= f.input :other_sources_of_income, :label => "List other sources of income (friends, family, assistance/support):" %>
+
+<%= f.input :currently_file_taxes, :label => "Do you currently file taxes?", :id => "currently_file_taxes"%>
+<%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_currently_file_taxes', 'checkbox-value': 'true'} do %>
+<%= f.input :receive_earned_income_tax_credit, :label => "Do you currently receive earned income tax credit?" %>
+<% end %>
+<%= f.input :highest_education_attained, 
+            :label => "**Educational Attainment: (Highest Degree Earned)",
+            :collection => {"Less than high school"=>0, "High School Diploma (or equivalent, HiSET)"=>1, "Attended, but did not complete college or technical training"=>2, "Completed technical training (CNA, cosmetology, auto mechanic, etc)"=>3, "Technical/Professional/Vocational Trainig"=>4, "Associate's Degree (2-year degree)"=>5, "Bachelor's Degree (4-year degree)"=>6, "Master's Degree"=>7}, 
+               :label_method => :first,
+               :value_method => :last %>
+
+  <%= f.input :highest_education_attained_by_parent_or_caretaker, :label => "What is the highest level of education completed by your parent or caretaker" %>
+
+  <%= f.input :marital_status,
+              :label => "Marital Status",
+            :collection => {"Married"=>0, "Divorced"=>1, "Widowed"=>2, "Single (never married)"=>3, "Separated"=>4}, 
+               :label_method => :first,
+               :value_method => :last %>
+
+   </div>
+   <%= f.hidden_field :organization_id, :value => @organization.id %>
+   <%= f.button :submit, :value => "Apply to The Northwest Project" %>
+   </fieldset>
+
+<% end %>
