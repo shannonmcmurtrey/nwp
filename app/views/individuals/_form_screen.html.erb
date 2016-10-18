@@ -35,7 +35,7 @@
    <%= f.input :phone_number, :label => "Home phone" %>
    <%= f.input :alternate_phone %>
 
-   <%= f.input :email_address, placeholder: 'user@domain.com' %>
+   <%= f.input :email_address, input_html: {value: current_user.email} %>
 
    <%= f.input :preferred_method_of_contact, 
                :label => "Preferred Method of Contact", 
