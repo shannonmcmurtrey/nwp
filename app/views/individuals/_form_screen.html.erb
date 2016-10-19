@@ -61,7 +61,10 @@
         <%= f.input :days_and_times_not_available, 
                :label => "Please list days and times that you are not available?" %>
    <% end %>
+</div>
 
+<div class="well">
+  <h3>Employment:</h3>
    <%= f.input :currently_employed,
                :label => "Are you currently employed?",
                :collection => {"Yes"=>0, "No"=>1, "Disabled"=>3, "Retired"=>4, "Temporary/Seasonal"=>5},
@@ -90,7 +93,9 @@
 
    <%= f.input :how_many_jobs_in_last_six_months, :label => "How many jobs have you had in the last six months?" %>
    <%= f.input :total_family_income_from_all_sources, :label => "Total Monthly Family Income/Assistance (from all sources):" %>
-
+</div>
+<div class="well">
+  <h3>Income:</h3>
 <%= f.input :child_support, 
                :label => "Child Support", 
                :collection => {"eligible, no income benefit"=>0, "eligible, partial or irregular income"=>1, "eligible, receives full amount of income ordered"=>2, "not eligible / not applicable"=>3}, 
@@ -102,6 +107,10 @@
 <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_currently_file_taxes', 'checkbox-value': 'true'} do %>
 <%= f.input :receive_earned_income_tax_credit, :label => "Do you currently receive earned income tax credit?" %>
 <% end %>
+</div>
+
+<div class="well">
+  <h3>Education:</h3>
 <%= f.input :highest_education_attained, 
             :label => "**Educational Attainment: (Highest Degree Earned)",
             :collection => {"Less than high school"=>0, "High School Diploma (or equivalent, HiSET)"=>1, "Attended, but did not complete college or technical training"=>2, "Completed technical training (CNA, cosmetology, auto mechanic, etc)"=>3, "Technical/Professional/Vocational Trainig"=>4, "Associate's Degree (2-year degree)"=>5, "Bachelor's Degree (4-year degree)"=>6, "Master's Degree"=>7}, 
@@ -109,6 +118,7 @@
                :value_method => :last %>
 
   <%= f.input :highest_education_attained_by_parent_or_caretaker, :label => "What is the highest level of education completed by your parent or caretaker" %>
+</div>
 
   <%= f.input :marital_status,
               :label => "Marital Status",
@@ -116,7 +126,13 @@
                :label_method => :first,
                :value_method => :last %>
 
-   </div>
+<div class="well">
+  <h3>Parenting</h3>
+  
+
+
+</div>
+   <%= f.hidden_field :code, :value => @organization.code %>
    <%= f.hidden_field :organization_id, :value => @organization.id %>
    <%= f.button :submit, :value => "Apply to The Northwest Project" %>
    </fieldset>
