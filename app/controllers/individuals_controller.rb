@@ -34,7 +34,7 @@ class IndividualsController < ApplicationController
   # POST /individuals
   # POST /individuals.json
   def create
-    @organization = Organization.find_by_code(params[:code])
+    @organization = Organization.find_by_code(params[:individual][:code])
     @individual = Individual.new(individual_params)
 
     respond_to do |format|
