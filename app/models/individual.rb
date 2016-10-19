@@ -8,13 +8,11 @@ class Individual < ApplicationRecord
   validates :first_name, :presence => true, on: :create
   validates :last_name, :presence => true, on: :create
   validates :address_line_1, :presence => true, on: :create
-  validates :address_line_2, :presence => true, on: :create
   validates :city, :presence => true, on: :create
   validates :state, :presence => true, on: :create
   validates :zip, :presence => true, on: :create
   validates :phone_number, :presence => true, on: :create
   validates :mobile_phone_number,  :presence => true, on: :create
-  validates :alternate_phone,  :presence => true, on: :create
   validates :email_address, :presence => true, on: :create
   validates :preferred_method_of_contact, :presence => true, on: :create
   validates :DOB, :presence => true, on: :create
@@ -26,7 +24,6 @@ class Individual < ApplicationRecord
   validates :how_many_jobs_in_last_six_months,  :presence => true, on: :create
   validates :total_family_income_from_all_sources, :presence => true, on: :create
   validates :child_support, :presence => true, on: :create
-  validates :other_sources_of_income,  :presence => true, on: :create
   validates :currently_file_taxes, :presence => true, on: :create
   validates :highest_education_attained, :presence => true, on: :create
   validates :highest_education_attained_by_parent_or_caretaker,  :presence => true, on: :create
@@ -39,17 +36,9 @@ class Individual < ApplicationRecord
   validates :children_have_health_care_in_some_form,  :presence => true, on: :create
   validates :currently_have_stable_housing, :presence => true, on: :create
   validates :rent_or_own,  :presence => true, on: :create
-  validates :receive_rent_rebate,  :presence => true, on: :create
-  validates :currently_receive_public_housing_assistance,  :presence => true, on: :create
-  validates :currently_receive_private_subsidized_housing_assistance,  :presence => true, on: :create
-  validates :use_section_eight_voucher, :presence => true, on: :create
   validates :currently_have_reliable_transportation,  :presence => true, on: :create
   validates :have_required_auto_insurance, :presence => true, on: :create
   validates :have_valid_id_or_drivers_license,  :presence => true, on: :create
-  validates :ever_convicted_of_felony, :presence => true, on: :create
-  validates :ever_convicted_of_misdemeanor,  :presence => true, on: :create
-  validates :current_pending_court_cases, :presence => true, on: :create
-  validates :any_legal_matters_needing_resolution,  :presence => true, on: :create
 
   enum ethnicity: { "White" => 0, "Hispanic/Latino" => 1, "Black or African American" =>  2, "Asian" => 3, "American Native or Alaska Native" => 4, "Middle Eastern or North African" => 5, "Native Hawaiian or Pacific Islander" => 6, "Other race, ethnicity, or origin" => 7 }
   enum springfield_non_native_population: {"Less than 2,000" => 0, "2,000-9,999" => 1, "10,000-49,000"=>2, "50,000-99,000"=>3, "100,000-249,000"=>4, "250,000 to 1 million"=>5, "Over 1 million"=>6}
