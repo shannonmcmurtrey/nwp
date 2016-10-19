@@ -113,9 +113,24 @@
   <h3>Education:</h3>
 <%= f.input :highest_education_attained, 
             :label => "**Educational Attainment: (Highest Degree Earned)",
-            :collection => {"Less than high school"=>0, "High School Diploma (or equivalent, HiSET)"=>1, "Attended, but did not complete college or technical training"=>2, "Completed technical training (CNA, cosmetology, auto mechanic, etc)"=>3, "Technical/Professional/Vocational Trainig"=>4, "Associate's Degree (2-year degree)"=>5, "Bachelor's Degree (4-year degree)"=>6, "Master's Degree"=>7}, 
+            :collection => {"Less than high school"=>0, "High School Diploma (or equivalent, HiSET)"=>1, "Attended, but did not complete college or technical training"=>2, "Completed technical training (CNA, cosmetology, auto mechanic, etc)"=>3, "Associate's Degree (2-year degree)"=>4, "Bachelor's Degree (4-year degree)"=>5, "Master's Degree"=>6}, 
                :label_method => :first,
                :value_method => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '0'} do %> 
+      <%= f.input :last_grade_completed, :label => "What was the last grade you completed?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '3'} do %> 
+      <%= f.input :technical_training_degree, :label => "What type of technical degree did you get?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '4'} do %> 
+      <%= f.input :associates_degree_type, :label => "What was your Associates degree in?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '5'} do %> 
+      <%= f.input :bachelors_degree_type, :label => "What was your Bachelor's degree in?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '6'} do %> 
+      <%= f.input :associates_degree_type, :label => "What was your Masters degree in?" %>
+   <% end %>
 
   <%= f.input :highest_education_attained_by_parent_or_caretaker, :label => "What is the highest level of education completed by your parent or caretaker" %>
 </div>
@@ -128,10 +143,48 @@
 
 <div class="well">
   <h3>Parenting</h3>
-  
+    <%= f.input :children_living_outside_home, 
+                :label => "Do you have any children living outside the home?",
+                :collection => {"Yes"=>0, "No"=>1},
+                :label_method => :first,
+                :value_method => :last %>  
+    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_children_living_outside_home', 'option-value': '0'} do %> 
+      <%= f.input :parenting_class_which, :label => "How many?" %>
+   <% end %> 
 
-
+    <%= f.input :parenting_class, 
+                :label => "In the last three years, have you ever completed a parenting program? (Pregnancy ABC's; 1-2-3 Magic; Love & Logic; Triple P -- Positive Parenting Program; etc.)",
+                :collection => {"Yes"=>0, "No"=>1},
+                :label_method => :first,
+                :value_method => :last %>  
+    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_parenting_class', 'option-value': '0'} do %> 
+      <%= f.input :parenting_class_which, :label => "Which program?" %>
+   <% end %> 
 </div>
+<div class="well">
+  <h3>Quality Childcare</h3>
+  <%= f.input :quality_childcare, 
+              :label => "Please select which of the following best describes your family's current situation:",
+              :collection => {"Child care is needed for education or employment goal but is unavailable"=>0,
+                              "Child care and subsidy are available but child care provider will not / cannot accept subsidy, or cost is unaffordable"=>1,
+                              "Child care is available and affordable (may use subsidy) but of poor quality.  There is no emergency backup caregiver or plan"=>2,
+                              "Child care is available, and affordable (may use subsidy), and good quality.  There is no emergency backup caregiver or plan"=>3,
+                              "Child care is available, affordable, good quality and there is at least one emergency backup caregiver or plan."=>4, 
+                              "There are no children in the home"=>5},
+              :label_method => :first,
+              :value_method => :last %>
+
+   <%= f.input :children_currently_in_quality_care,
+               :label => "Are you children (2+ years old) currently in accredited child care / after school care?",
+               :collection => {"Yes"=>0, "No"=>1},
+               :label_method => :first,
+               :value_method => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_children_currently_in_quality_care', 'option-value': '0'} do %> 
+     <%= f.input :children_in_quality_care_explain, :label => "Please explain:" %>
+   <% end %> 
+</div>
+
+
    <%= f.hidden_field :code, :value => @organization.code %>
    <%= f.hidden_field :organization_id, :value => @organization.id %>
    <%= f.button :submit, :value => "Apply to The Northwest Project" %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019153347) do
+ActiveRecord::Schema.define(version: 20161019192850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -356,6 +356,11 @@ ActiveRecord::Schema.define(version: 20161019153347) do
     t.float    "square_footage_of_house"
     t.text     "notes"
     t.string   "code"
+    t.string   "last_grade_completed"
+    t.string   "technical_training_degree"
+    t.string   "associates_degree_type"
+    t.string   "bachelors_degree_type"
+    t.string   "masters_degree_type"
     t.index ["cohort_id"], name: "index_individuals_on_cohort_id", using: :btree
     t.index ["organization_id"], name: "index_individuals_on_organization_id", using: :btree
   end

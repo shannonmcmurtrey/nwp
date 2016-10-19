@@ -150,7 +150,9 @@ class IndividualsController < ApplicationController
                                          :nwp_assets_resolved_criminal_background_na, 
                                          :nwp_assets_monthly_budget_management, 
                                          :nwp_assets_health_care_insurance, :nwp_currently_eligible, 
-                                         :square_footage_of_house, :notes, :code)
+                                         :square_footage_of_house, :notes, :code, :last_grade_completed,
+                                         :technical_training_degree, :associates_degree_type,
+                                         :bachelors_degree_type, :masters_degree_type)
     end
     def verify_is_admin
       (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
