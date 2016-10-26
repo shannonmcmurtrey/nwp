@@ -47,7 +47,7 @@
    <div class="well">
       <h3>Accountability:</h3>
       <%= f.input :willing_and_able_to_commit_to_program, 
-                  :label=>"Are you able and willing to commit to a one-year program with a two-year research follow-up, and to attend weekly classes an weely meetings?",
+                  :label=>"Are you able and willing to commit to a one-year program with a two-year research follow-up, and to attend weekly classes an weekly meetings?",
                   :collection => {"Yes"=>true, "No"=>false}, 
                   :label_method => :first,
                   :value_method => :last%>
@@ -103,9 +103,18 @@
                :value_method => :last %> 
 <%= f.input :other_sources_of_income, :label => "List other sources of income (friends, family, assistance/support):" %>
 
-<%= f.input :currently_file_taxes, :label => "Check this box if you currently file taxes.", :id => "currently_file_taxes"%>
-<%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_currently_file_taxes', 'checkbox-value': 'true'} do %>
-<%= f.input :receive_earned_income_tax_credit, :label => "Check this box if you currently receive earned income tax credit." %>
+<%= f.input :currently_file_taxes, 
+            :label => "Do you currently file taxes?", 
+            :id => "currently_file_taxes",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+<%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_currently_file_taxes', 'option-value': 'true'} do %>
+<%= f.input :receive_earned_income_tax_credit, 
+            :label => "Do you currently receive earned income tax credit?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
 <% end %>
 </div>
 
@@ -132,7 +141,12 @@
       <%= f.input :associates_degree_type, :label => "What was your Masters degree in?" %>
    <% end %>
 
-  <%= f.input :highest_education_attained_by_parent_or_caretaker, :label => "What is the highest level of education completed by your parent or caretaker" %>
+  
+  <%= f.input :highest_education_attained_by_parent_or_caretaker, 
+            :label => "**Educational Attainment by parent or caretaker: (Highest Degree Earned)",
+            :collection => {"Less than high school"=>"Less than high school", "High School Diploma (or equivalent, HiSET)"=>"High School Diploma (or equivalent, HiSET)", "Attended, but did not complete college or technical training"=>"Attended, but did not complete college or technical training", "Completed technical training (CNA, cosmetology, auto mechanic, etc)"=>"Completed technical training (CNA, cosmetology, auto mechanic, etc)", "Associate's Degree (2-year degree)"=>"Associate's Degree (2-year degree)", "Bachelor's Degree (4-year degree)"=>"Bachelor's Degree (4-year degree)", "Master's Degree"=>"Master's Degree"}, 
+               :label_method => :first,
+               :value_method => :last %>
 </div>
 
   <%= f.input :marital_status,
@@ -144,8 +158,11 @@
 <div class="well">
   <h3>Parenting</h3>
     <%= f.input :children_living_outside_home, 
-                :label => "Check this box if you have any children living outside the home." %>  
-    <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_children_living_outside_home', 'checkbox-value': 'true'} do %> 
+                :label => "Do you have any children living outside the home?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %> 
+    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_children_living_outside_home', 'option-value': 'true'} do %> 
       <%= f.input :parenting_class_which, :label => "How many?" %>
    <% end %> 
 
@@ -184,23 +201,32 @@
 <div class="well">
   <h3>Health / Wellbeing</h3>
    <%= f.input :have_health_care_in_some_form,
-               :label => "Check this box if you have any form of health care."%>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_have_health_care_in_some_form', 'checkbox-value': 'true'} do %> 
-     <%= f.input :have_health_care_in_some_form_explain, :label => "Who is the provider?" %>
+               :label => "Do you have any form of health care?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_have_health_care_in_some_form', 'option-value': 'true'} do %> 
+     <%= f.input :have_health_care_in_some_form_explain, :label => "Who is the provider? (ex. MO Healthnet, Employer Provided, Affordable Care Act, etc.)" %>
    <% end %> 
 
    <%= f.input :children_have_health_care_in_some_form,
-               :label => "Check this box if your children have any form of health care." %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_children_have_health_care_in_some_form', 'checkbox-value': 'true'} do %> 
-     <%= f.input :children_have_health_care_in_some_form_explain, :label => "Who is the provider?" %>
+               :label => "Do your children have any form of health care?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_children_have_health_care_in_some_form', 'option-value': 'true'} do %> 
+     <%= f.input :children_have_health_care_in_some_form_explain, :label => "Who is the provider? (ex. MO Healthnet, Employer Provided, Affordable Care Act, etc.)" %>
    <% end %> 
 </div>
 
 <div class="well">
   <h3>Affordable / Stable Housing</h3>
   <%= f.input :currently_have_stable_housing, 
-              :label => "Check this box if you currently have stable housing." %> 
-  <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_currently_have_stable_housing', 'checkbox-value': 'true'} do %> 
+              :label => "Do you currently have stable housing?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %> 
+  <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_currently_have_stable_housing', 'option-value': 'true'} do %> 
      <%= f.input :rent_or_own, :label => "Do you rent or own?",
                  :collection => {"Rent"=>0, "Own"=>1},
                  :label_method => :first, 
@@ -232,13 +258,18 @@
 <div class="well">
   <h3>Transportation</h3>
   <%= f.input :currently_have_reliable_transportation,
-              :label => "Do you have reliable transportation?" %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_currently_have_reliable_transportation', 'checkbox-value': 'true'} do %> 
+              :label => "Do you have reliable transportation?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_currently_have_reliable_transportation', 'option-value': 'true'} do %> 
      <%= f.input :reliable_transportation_method, 
                  :label => "What are your methods of transportation?",
                  :collection => {"Bus"=>0, "Car/Personal Vehicle"=>1, "Other"=>2},
                  :label_method => :first,
                  :value_method => :last %>
+
+
       <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_reliable_transportation_method', 'option-value': '2'} do %> 
         <%= f.input :reliable_transportation_method_other, :label => "What is your method of transportation?" %>
       <% end %> 
@@ -275,13 +306,25 @@
 <div class="well">
   <h3>Legal Resolution</h3>
   <%= f.input :ever_convicted_of_felony, 
-              :label => "Check this box if you have you ever been convicted of a felony." %>
+              :label => "Have you ever been convicted of a felony.",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
   <%= f.input :ever_convicted_of_misdemeanor, 
-              :label => "Check this box if you have you ever been convicted of a misdemeanor." %>  
+              :label => "Have you ever been convicted of a misdemeanor.",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>  
   <%= f.input :current_pending_court_cases, 
-              :label => "Check this box if you currently have any pending court cases." %>  
+              :label => "Do you currently have any pending court cases.",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>  
   <%= f.input :any_legal_matters_needing_resolution, 
-              :label => "Check this box if you have any legal matters? (adoption, divorce, etc.)" %>
+              :label => "Do you have any legal matters needing resolution? (adoption, divorce, etc.)",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
 
 </div>
 
