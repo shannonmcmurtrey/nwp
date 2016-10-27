@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  individual: one
+  name: MyString
+  relationship: MyString
+  age: 1.5
+  school: MyString
+  care_provider: MyString
+
+two:
+  individual: two
+  name: MyString
+  relationship: MyString
+  age: 1.5
+  school: MyString
+  care_provider: MyString
