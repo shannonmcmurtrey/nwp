@@ -24,6 +24,8 @@ class IndividualsController < ApplicationController
   def new
     @organization = Organization.find(params[:organization_id])
     @individual = Individual.new(organization_id: params[:organization_id])
+    @individual.household_members.build
+
   end
 
   # GET /individuals/1/edit
@@ -152,7 +154,8 @@ class IndividualsController < ApplicationController
                                          :nwp_assets_health_care_insurance, :nwp_currently_eligible, 
                                          :square_footage_of_house, :notes, :code, :last_grade_completed,
                                          :technical_training_degree, :associates_degree_type,
-                                         :bachelors_degree_type, :masters_degree_type)
+                                         :bachelors_degree_type, :masters_degree_type,
+                                         household_members_attributes: [:id, :name, :relationship, :age, :school, :care_provider, :_destroy])
     end
     def verify_is_admin
       (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)

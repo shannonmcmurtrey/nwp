@@ -3,6 +3,8 @@ class Individual < ApplicationRecord
   belongs_to :organization
   has_and_belongs_to_many :meetings
   has_many :attendances
+  has_many :household_members
+  accepts_nested_attributes_for :household_members, reject_if: proc { |attributes| attributes[:name].blank? }, allow_destroy: true
 
   #validates :attribute_name, :presence => {:message => "Customized error message for user."}
   validates :first_name, :presence => true, on: :create

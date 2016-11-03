@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :attendances
   resources :meetings
-  resources :individuals
+  resources :individuals, :has_many => :household_members
   resources :cohorts
   resources :assessments
   resources :organizations

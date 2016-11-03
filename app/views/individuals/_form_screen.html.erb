@@ -174,6 +174,25 @@
     <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_parenting_class', 'option-value': '0'} do %> 
       <%= f.input :parenting_class_which, :label => "Which program?" %>
    <% end %> 
+   <div class="well">
+    <% if individual.household_members.count == 0 %>
+        <h3>Add Household Members</h3>
+
+    <% else %>
+        <h3>Current Members of Household</h3>
+    <% end %>
+      <% for household_member in individual.household_members %>
+    <%= household_member.name %>
+  <% end %>
+  <%= f.simple_fields_for :household_member do |h| %>
+    <%= h.input :name %>
+    <%= h.input :relationship %>
+    <%= h.input :age %>
+    <%= h.input :school %>
+    <%= h.input :care_provider %>
+    <%= h.submit :remote=>true, :value => "Add Household Member" %>
+  <% end %>
+   </div>
 </div>
 <div class="well">
   <h3>Quality Childcare</h3>

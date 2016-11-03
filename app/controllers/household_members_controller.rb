@@ -1,0 +1,4 @@
+class HouseholdMembersController < ApplicationController
+
+	
+end
