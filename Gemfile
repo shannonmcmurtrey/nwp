@@ -19,6 +19,7 @@ gem 'jquery-turbolinks'
 gem 'underscore-rails'
 gem 'dependent-fields-rails'
 gem 'cocoon'
+gem 'paper_trail'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'

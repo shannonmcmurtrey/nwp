@@ -1,4 +1,5 @@
 class Individual < ApplicationRecord
+  has_paper_trail
   belongs_to :cohort
   belongs_to :organization
   has_and_belongs_to_many :meetings
