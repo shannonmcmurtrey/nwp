@@ -68,6 +68,7 @@ class AddScreeningFieldsToIndividual < ActiveRecord::Migration[5.0]
     add_column :individuals, :nwp_currently_eligible, :boolean
     add_column :individuals, :square_footage_of_house, :float
     add_column :individuals, :notes, :text
+    add_column :individuals, :preferred_method_of_contact, :text
 
   end
 end
