@@ -5,6 +5,7 @@ source 'http://rubygems.org'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'bootstrap-sass', '3.3.6'
 gem 'rails_admin'
+gem 'rails_admin_history_rollback'
 gem 'bootstrap_form'
 
 gem 'sendgrid'
