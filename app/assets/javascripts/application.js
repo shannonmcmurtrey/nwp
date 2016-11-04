@@ -18,6 +18,7 @@
 //= require underscore
 //= require dependent-fields
 //= require ahoy
+//= require cocoon
 //= require_tree .
 $(document).ready(function(){
 	DependentFields.bind()

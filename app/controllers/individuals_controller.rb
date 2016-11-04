@@ -1,5 +1,5 @@
 class IndividualsController < ApplicationController
-  before_filter :verify_is_admin, :except => [:check_code, :new, :create]
+  before_filter :verify_is_admin, :except => [:check_code, :new, :create, :show, :edit, :update]
   before_action :set_individual, only: [:show, :edit, :update, :destroy]
 
 
@@ -17,7 +17,12 @@ class IndividualsController < ApplicationController
   # GET /individuals/1
   # GET /individuals/1.json
   def show
-    @cohort = Cohort.find(@individual.cohort_id)
+    if !current_user.admin? && current_user.individual != @individual
+      redirect_to "/"
+    end
+    unless @individual.cohort_id.nil?
+      @cohort = Cohort.find(@individual.cohort_id)
+    end
   end
 
   # GET /individuals/new
@@ -25,12 +30,14 @@ class IndividualsController < ApplicationController
     @organization = Organization.find(params[:organization_id])
     @individual = Individual.new(organization_id: params[:organization_id])
     @individual.household_members.build
-
   end
 
   # GET /individuals/1/edit
   def edit
-    @cohort = Cohort.find(@individual.cohort_id)
+    @organization = Organization.find(@individual.organization_id)
+    unless @individual.cohort_id.nil?
+      @cohort = Cohort.find(@individual.cohort_id)
+    end
   end
 
   # POST /individuals
@@ -154,7 +161,7 @@ class IndividualsController < ApplicationController
                                          :nwp_assets_health_care_insurance, :nwp_currently_eligible, 
                                          :square_footage_of_house, :notes, :code, :last_grade_completed,
                                          :technical_training_degree, :associates_degree_type,
-                                         :bachelors_degree_type, :masters_degree_type,
+                                         :bachelors_degree_type, :masters_degree_type, :user_id,
                                          household_members_attributes: [:id, :name, :relationship, :age, :school, :care_provider, :_destroy])
     end
     def verify_is_admin

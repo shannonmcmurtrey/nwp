@@ -18,6 +18,8 @@ gem 'enum_help'
 gem 'jquery-turbolinks'
 gem 'underscore-rails'
 gem 'dependent-fields-rails'
+gem 'cocoon'
+gem 'puma'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'

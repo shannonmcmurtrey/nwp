@@ -2,9 +2,9 @@ class Individual < ApplicationRecord
   belongs_to :cohort
   belongs_to :organization
   has_and_belongs_to_many :meetings
-  has_many :attendances
-  has_many :household_members
-  accepts_nested_attributes_for :household_members, reject_if: proc { |attributes| attributes[:name].blank? }, allow_destroy: true
+  has_many :attendances, dependent: :destroy
+  has_many :household_members, dependent: :destroy
+  accepts_nested_attributes_for :household_members, allow_destroy: true
 
   #validates :attribute_name, :presence => {:message => "Customized error message for user."}
   validates :first_name, :presence => true, on: :create
@@ -37,8 +37,8 @@ class Individual < ApplicationRecord
   validates :children_have_health_care_in_some_form,  inclusion: { in: [ true, false ] }, on: :create
   validates :currently_have_stable_housing,  inclusion: { in: [ true, false ] }, on: :create
   validates :currently_have_reliable_transportation,  inclusion: { in: [ true, false ] }, on: :create
-  validates :have_required_auto_insurance, :presence => true, on: :create
-  validates :have_valid_id_or_drivers_license,  :presence => true, on: :create
+  validates :have_required_auto_insurance, inclusion: { in: [ true, false ] }, on: :create
+  validates :have_valid_id_or_drivers_license,  inclusion: { in: [ true, false ] }, on: :create
   validates :ever_convicted_of_felony, inclusion: { in: [ true, false ] }, on: :create
   validates :ever_convicted_of_misdemeanor, inclusion: { in: [ true, false ] }, on: :create
   validates :current_pending_court_cases, inclusion: { in: [ true, false ] }, on: :create
@@ -54,7 +54,7 @@ class Individual < ApplicationRecord
   enum childhood_raisedby_other_than_parents_by_who: {"Grandparent(s)"=>0, "Aunt/Uncle"=>1, "Other relative"=>2, "Not a relative"=>3}
 
   def self.search(search)
-    where("first_name || last_name  || phone_number LIKE ?", "%#{search}%")
+    where("lower(first_name) || lower(last_name)  || phone_number LIKE ?", "%#{search.downcase}%")
   end
 
   def to_label

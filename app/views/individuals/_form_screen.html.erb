@@ -177,21 +177,28 @@
    <div class="well">
     <% if individual.household_members.count == 0 %>
         <h3>Add Household Members</h3>
-
     <% else %>
         <h3>Current Members of Household</h3>
     <% end %>
-      <% for household_member in individual.household_members %>
-    <%= household_member.name %>
-  <% end %>
-  <%= f.simple_fields_for :household_member do |h| %>
-    <%= h.input :name %>
-    <%= h.input :relationship %>
-    <%= h.input :age %>
-    <%= h.input :school %>
-    <%= h.input :care_provider %>
-    <%= h.submit :remote=>true, :value => "Add Household Member" %>
-  <% end %>
+  <div class="nested-fields">
+  <table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Relationship</th>
+        <th>Age</th>
+        <th>School</th>
+        <th>Care Provider</th>
+        <th></th>
+    </tr>
+    <%= f.simple_fields_for :household_members do |household_member| %>
+      <%= render 'household_member_fields', f: household_member %>
+        <% end %>
+
+</table>
+</div>
+    <div class="links">
+        <%= link_to_add_association 'add household member', f, :household_members %>
+    </div>  
    </div>
 </div>
 <div class="well">
@@ -310,7 +317,7 @@
               :collection => {"Yes"=>true, "No"=>false},
               :label_method => :first,
               :value_method => :last %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_have_valid_id_or_drivers_license', 'option-value': '1'} do %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_have_valid_id_or_drivers_license', 'option-value': 'false'} do %>
      <%= f.input :no_valid_id_or_license_reason,
               :label => "Has your license been:",
               :collection => {"Revoked"=>0, "Lost"=>1, "Suspended"=>2},
@@ -351,7 +358,8 @@
 
    <%= f.hidden_field :code, :value => @organization.code %>
    <%= f.hidden_field :organization_id, :value => @organization.id %>
-   <%= f.button :submit, :value => "Apply to The Northwest Project" %>
+   <%= f.hidden_field :user_id, :value => current_user.id %>
+   <%= f.button :submit, :value => "#{(@individual.persisted? ? 'Update my information' : 'Apply to the Northwest Project')}" %>
    </fieldset>
 
 <% end %>
