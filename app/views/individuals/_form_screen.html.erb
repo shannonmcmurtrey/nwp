@@ -176,9 +176,9 @@
    <% end %> 
    <div class="well">
     <% if individual.household_members.count == 0 %>
-        <h3>Add Household Members</h3>
+        <h3>Add Household Members (Other than yourself)</h3>
     <% else %>
-        <h3>Current Members of Household</h3>
+        <h3>Current Members of Household (Other than yourself)</h3>
     <% end %>
   <div class="nested-fields">
   <table class="table">
@@ -210,7 +210,7 @@
                               "Child care is available and affordable (may use subsidy) but of poor quality.  There is no emergency backup caregiver or plan"=>2,
                               "Child care is available, and affordable (may use subsidy), and good quality.  There is no emergency backup caregiver or plan"=>3,
                               "Child care is available, affordable, good quality and there is at least one emergency backup caregiver or plan."=>4, 
-                              "There are no children in the home"=>5},
+                              "Childcare not needed"=>5},
               :label_method => :first,
               :value_method => :last %>
 
