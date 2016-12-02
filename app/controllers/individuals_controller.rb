@@ -99,7 +99,7 @@ class IndividualsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def individual_params
-      params.require(:individual).permit(:first_name, :last_name, :address_line_1, :address_line_2, 
+      params.require(:individual).permit(:first_name, :last_name, :suffix, :address_line_1, :address_line_2, 
                                          :city, :state, :zip, :phone_number, :mobile_phone_number, 
                                          :email_address, :DOB, :start_date, :us_citizen, 
                                          :ethnicity, :ethnicity_other, :lanuage_primary, :language_other, 

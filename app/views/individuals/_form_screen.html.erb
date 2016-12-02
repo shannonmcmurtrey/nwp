@@ -18,6 +18,11 @@
    <fieldset>
    <%= f.input :first_name %>
    <%= f.input :last_name %>
+   <%= f.input :suffix, 
+               :label => "Suffix", 
+               :collection => {"Jr."=>"Jr.", "Sr."=>"Sr.", "II"=>"II", "III"=>"III", "IV"=>"individual_have_valid_id_or_drivers_license"}, 
+               :label_method => :first,
+               :value_method => :last %>
 
     <%= f.input :date_of_application, :label => "Date of Application", as: :date, start_year: Date.today.year,
                                  end_year: Date.today.year - 12, discard_day: false,
@@ -181,7 +186,7 @@
         <h3>Current Members of Household (Other than yourself)</h3>
     <% end %>
   <div class="nested-fields">
-  <table class="table">
+  <table class="table" id="members">
     <tr>
         <th>Name</th>
         <th>Relationship</th>
@@ -190,16 +195,19 @@
         <th>Care Provider</th>
         <th></th>
     </tr>
-    <%= f.simple_fields_for :household_members do |household_member| %>
+    <%= f.simple_fields_for :household_members, :wrapper => false do |household_member| %>
       <%= render 'household_member_fields', f: household_member %>
         <% end %>
-
-</table>
-</div>
-    <div class="links">
+<tr>
+  <td colspan="6">
+<div class="nested-fields">
         <%= link_to_add_association 'add household member', f, :household_members %>
-    </div>  
-   </div>
+    </div>
+  </td>
+  </table>
+</div>
+</div>
+      
 </div>
 <div class="well">
   <h3>Quality Childcare</h3>
@@ -300,7 +308,7 @@
         <%= f.input :reliable_transportation_method_other, :label => "What is your method of transportation?" %>
       <% end %> 
    <% end %> 
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_currently_have_reliable_transportation', 'checkbox-value': false} do %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_currently_have_reliable_transportation', 'option-value': false} do %>
      <%= f.input :possible_to_obtain_reliable_transportation_in_sixty_days,
               :label => "Is it possible to obtain reliable transportation in 60 days?",
               :collection => {"Yes"=>true, "No"=>false},

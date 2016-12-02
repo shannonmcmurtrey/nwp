@@ -10,6 +10,16 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
       </script>
     <![endif]-->
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#members a.add_fields").
+        data("association-insertion-method", 'append').
+        data("association-insertion-traversal", 'closest').
+        data("association-insertion-node", '#members');
+});
+
+
+    </script>
   </head>
   <body>
     <div>
