@@ -68,13 +68,17 @@
                     </div>
                 </div>
             </nav>
-         <% if notice %>
-            <p class="alert alert-success"><%= notice %></p>
+            <div id="flash">
+  
+</div>
+          <% if notice.present? %>
+            <%= render partial: "shared/notice_banner" %>
           <% end %>
           <% if alert %>
             <p class="alert alert-danger"><%= alert %></p>
           <% end %>
           <div class="well">
+
         <%= yield %>
       </div>
 

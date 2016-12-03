@@ -13,7 +13,7 @@
       <th>Dob</th>
       <th>Start date</th>
       <th>Cohort</th>
-      <th colspan="4"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -32,6 +32,7 @@
         <td><%= link_to 'Edit', edit_individual_path(individual) %></td>
         <td><%= link_to 'Destroy', individual, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Add Assessment', new_assessment_path(individual_id: individual.id), method: :get %></td>
+        <td><%= link_to 'New Individual', new_individual_path(organization_id: current_user.organization), method: :get %></td>
 
       </tr>
     <% end %>

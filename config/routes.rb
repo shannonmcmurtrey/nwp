@@ -22,6 +22,11 @@ Rails.application.routes.draw do
 
   get 'static_pages/help'
 
+  get 'individual/assign' => 'individuals#assign_cohort', :as => 'assign_cohort'
+  get 'individual/assign_to_cohort' => 'individuals#assign_individual_to_cohort', :as => 'assign_individual_to_cohort'
+  get 'individual/remove_from_cohort' => 'individuals#remove_individual_from_cohort', :as => 'remove_individual_from_cohort'
+
+
   #constraints(Nwpadmin) do
 #    get '/report' => 'users#report'
  # end

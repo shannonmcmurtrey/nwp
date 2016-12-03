@@ -1,0 +1,28 @@
+<h2>Assign individuals to <%= @cohort.meeting_night %> night cohort, that began on <%= @cohort.start_date %></h2>
+<table class="table">
+	<tr>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Phone</th>
+		<th>Cell Phone</th>
+		<th>Email</th>
+		<th>Date of Birth</th>
+		<th></th>
+	</tr>
+	<% @individuals.each do |individual| %>
+	<tr id="<%= individual.id %>">
+		<td><%=  individual.first_name %></td>
+		<td><%=  individual.last_name %></td>
+		<td><%=  individual.phone_number %></td>
+		<td><%=  individual.mobile_phone_number	 %></td>
+		<td><%=  individual.email_address %></td>
+		<td><%=  individual.DOB %></td>
+		<td><%= link_to "Assign to cohort", assign_individual_to_cohort_path(cohort_id: @cohort.id, individual_id: individual.id), remote: true %>
+</td>
+
+	</tr>
+	<% end %>
+</table>
+
+  
+

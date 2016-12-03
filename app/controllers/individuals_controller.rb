@@ -14,6 +14,31 @@ class IndividualsController < ApplicationController
     end
   end
 
+  def assign_cohort
+    @cohort = Cohort.find(params[:cohort_id])
+    @individuals = Individual.where(:cohort_id => nil)
+  end
+
+  def assign_individual_to_cohort
+    @cohort = Cohort.find(params[:cohort_id])
+    @Individual = Individual.find(params[:individual_id])
+    @Individual.cohort_id = @cohort.id
+    @Individual.save
+    respond_to do |format|
+      format.js { flash.now[:notice] = "#{@Individual.first_name} #{@Individual.last_name} has been added to the cohort" }
+    end
+  end
+
+def remove_individual_from_cohort
+    @Individual = Individual.find(params[:individual_id])
+    @Individual.cohort_id = nil
+    @Individual.save
+    respond_to do |format|
+      format.js { flash.now[:notice] = "#{@Individual.first_name} #{@Individual.last_name} has been removed from the cohort" }
+    end
+  end
+
+
   # GET /individuals/1
   # GET /individuals/1.json
   def show
