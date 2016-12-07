@@ -226,19 +226,6 @@ ActiveRecord::Schema.define(version: 20161202212728) do
     t.index ["organization_id"], name: "index_cohorts_on_organization_id", using: :btree
   end
 
-  create_table "families", force: :cascade do |t|
-    t.string   "name"
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "neighborhood"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "household_members", force: :cascade do |t|
     t.integer  "individual_id"
     t.string   "name"
@@ -262,7 +249,6 @@ ActiveRecord::Schema.define(version: 20161202212728) do
     t.string   "phone_number"
     t.string   "mobile_phone_number"
     t.string   "email_address"
-    t.string   "preferred_method_of_contact"
     t.date     "DOB"
     t.date     "start_date"
     t.boolean  "us_citizen"
@@ -276,9 +262,9 @@ ActiveRecord::Schema.define(version: 20161202212728) do
     t.integer  "springfield_non_native_population"
     t.integer  "neighborhood_resident_length_in_months"
     t.integer  "springfield_non_native_distance"
+    t.integer  "cohort_id"
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
-    t.integer  "cohort_id"
     t.integer  "childhood_raisedby_other_than_parents"
     t.integer  "childhood_raisedby_other_than_parents_length_in_months"
     t.integer  "childhood_raisedby_other_than_parents_by_who"
@@ -367,6 +353,7 @@ ActiveRecord::Schema.define(version: 20161202212728) do
     t.boolean  "nwp_currently_eligible"
     t.float    "square_footage_of_house"
     t.text     "notes"
+    t.text     "preferred_method_of_contact"
     t.string   "code"
     t.string   "last_grade_completed"
     t.string   "technical_training_degree"
