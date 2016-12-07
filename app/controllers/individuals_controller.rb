@@ -19,6 +19,9 @@ class IndividualsController < ApplicationController
     @individuals = Individual.where(:cohort_id => nil)
   end
 
+  def demographics
+  end
+
   def assign_individual_to_cohort
     @cohort = Cohort.find(params[:cohort_id])
     @Individual = Individual.find(params[:individual_id])
