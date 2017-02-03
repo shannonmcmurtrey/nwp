@@ -32,7 +32,7 @@
 		</th>
 	</tr>
 <% @individuals.each do |i| %>
-	<tr>
+	<tr id="<%= i.id %>">
 		<td><%= i.to_label %></td><td><%= i.phone_number %></td><td><%= i.email_address %></td><td><%= link_to "Remove from cohort", remove_individual_from_cohort_path(individual_id: i.id), remote: true %></td>
 	</tr>
 <% end %>

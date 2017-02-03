@@ -54,6 +54,7 @@ development:
 
 
 #  To backup DB from AWS:
+#  first log into AWS and make the instance public and update the host URL below.
 #  pg_dump -h aasurhxbifewnk.cdf0xthgtafx.us-west-2.rds.amazonaws.com -U nwp -d ebdb -F c -b -v -f prod.dump
 
 #  To restore DB into local:
