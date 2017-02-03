@@ -20,6 +20,8 @@ class IndividualsController < ApplicationController
   end
 
   def demographics
+    @cohorts = Cohort.all
+
   end
 
   def assign_individual_to_cohort
@@ -41,6 +43,12 @@ def remove_individual_from_cohort
     end
   end
 
+def update_demographics
+    @cohort = Cohort.where("id = ?", params[:cohort_id])
+    respond_to do |format|
+      format.js
+    end
+end
 
   # GET /individuals/1
   # GET /individuals/1.json

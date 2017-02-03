@@ -1,1 +1,49 @@
-Demographics report here...
+<h2>Demographics Report</h2>
+<%= select_tag 'cohort_id', options_for_select(@cohorts.map{|cohort| ["#{cohort.meeting_night} #{cohort.meeting_night}", cohort.id] }), {:include_blank => true, :class => 'form-control col-md-3', :id => 'cohort_select'} %>
+
+<div id="demographics_report" class="well">
+  <h1 class="text-center">Baseline Report: <%= I18n.t("date.month_names")[Date.today.month] %> <%= Date.today.year  %></h1>
+  <div id="report_data">
+  <h2>
+	<%= Individual.where('id IN (SELECT DISTINCT(cohort_id) FROM individuals)').count %> cohorts serving <%= Individual.where("cohort_id IS NOT NULL").count %>  individuals.
+  </h2>
+  <% @cohorts.each  do | cohort | %>
+	  <div><h3>Affortable Housing</h3>
+        <div>
+        	<%= cohort.individuals.where("cohort_id IS NOT NULL").count %>
+
+        </div>
+	  </div>
+
+	  <div><h3>Quality Childcare</h3>
+
+	  </div>
+	  
+	  <div><h3>Transportation</h3>
+
+	  </div>
+
+
+	  <div><h3>Monthly Budget</h3></div>	
+
+
+	  <div><h3>Earned Income Tax Credit</h3></div>
+
+
+	  <div><h3>Resolved Criminal Issues</h3></div>
+
+
+	  <div><h3>Parenting Class</h3></div>
+
+
+	  <div><h3>Job Training</h3></div>
+
+
+	  <div><h3>Accountability</h3></div>
+
+
+	  <div><h3>Health & Well Being</h3></div>
+
+<% end %>
+  </div>
+</div>

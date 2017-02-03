@@ -1,4 +1,5 @@
-<%= form_for(assessment) do |f| %>
+
+<%= form_for assessment, :html => {:role => "form", :class => "form"} do |f| %>
   <% if assessment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(assessment.errors.count, "error") %> prohibited this assessment from being saved:</h2>
@@ -13,279 +14,279 @@
 
   <div class="field">
     <%= f.label :self_sufficency_goal %>
-    <%= f.text_area :self_sufficency_goal %>
+    <%= f.text_area :self_sufficency_goal, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :self_sufficiency_goal_other %>
-    <%= f.text_area :self_sufficiency_goal_other %>
+    <%= f.text_area :self_sufficiency_goal_other, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :currently_registered_to_vote %>
-    <%= f.text_field :currently_registered_to_vote %>
+    <%= f.text_field :currently_registered_to_vote, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :vote_local %>
-    <%= f.text_field :vote_local %>
+    <%= f.text_field :vote_local, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :boolean %>
-    <%= f.text_field :boolean %>
+    <%= f.text_field :boolean, :class => "form-control"%>
   </div>
 
   <div class="field">
     <%= f.label :vote_state %>
-    <%= f.text_field :vote_state %>
+    <%= f.text_field :vote_state, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :boolean %>
-    <%= f.text_field :boolean %>
+    <%= f.text_field :boolean, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :vote_federal %>
-    <%= f.text_field :vote_federal %>
+    <%= f.text_field :vote_federal, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :boolean %>
-    <%= f.text_field :boolean %>
+    <%= f.text_field :boolean, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :vote_frequency %>
-    <%= f.text_field :vote_frequency %>
+    <%= f.text_field :vote_frequency, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :educational_training_last_six_months %>
-    <%= f.check_box :educational_training_last_six_months %>
+    <%= f.check_box :educational_training_last_six_months, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :education_currently_enrolled %>
-    <%= f.check_box :education_currently_enrolled %>
+    <%= f.check_box :education_currently_enrolled, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :education_institution_name %>
-    <%= f.text_area :education_institution_name %>
+    <%= f.text_area :education_institution_name, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :education_studying %>
-    <%= f.text_area :education_studying %>
+    <%= f.text_area :education_studying, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :education_program_length_in_months %>
-    <%= f.text_field :education_program_length_in_months %>
+    <%= f.text_field :education_program_length_in_months, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :education_progress %>
-    <%= f.text_field :education_progress %>
+    <%= f.text_field :education_progress, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :education_degree_type %>
-    <%= f.text_area :education_degree_type %>
+    <%= f.text_area :education_degree_type, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_high_blood_sugar %>
-    <%= f.check_box :medical_high_blood_sugar %>
+    <%= f.check_box :medical_high_blood_sugar, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_diabetes %>
-    <%= f.check_box :medical_diabetes %>
+    <%= f.check_box :medical_diabetes, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_diabetes_type %>
-    <%= f.text_area :medical_diabetes_type %>
+    <%= f.text_area :medical_diabetes_type, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_pulmonary_disease %>
-    <%= f.check_box :medical_pulmonary_disease %>
+    <%= f.check_box :medical_pulmonary_disease, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_elevated_blood_pressure %>
-    <%= f.check_box :medical_elevated_blood_pressure %>
+    <%= f.check_box :medical_elevated_blood_pressure, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_elevated_blood_pressure_gestational %>
-    <%= f.text_area :medical_elevated_blood_pressure_gestational %>
+    <%= f.text_area :medical_elevated_blood_pressure_gestational, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_mental_health_diagnosis %>
-    <%= f.check_box :medical_mental_health_diagnosis %>
+    <%= f.check_box :medical_mental_health_diagnosis, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_tobacco_products %>
-    <%= f.check_box :medical_tobacco_products %>
+    <%= f.check_box :medical_tobacco_products, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_alcohol %>
-    <%= f.check_box :medical_alcohol %>
+    <%= f.check_box :medical_alcohol, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_alcohol_avg_drinks_per_week %>
-    <%= f.text_field :medical_alcohol_avg_drinks_per_week %>
+    <%= f.text_field :medical_alcohol_avg_drinks_per_week, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_height %>
-    <%= f.text_field :medical_height %>
+    <%= f.text_field :medical_height, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_weight %>
-    <%= f.text_field :medical_weight %>
+    <%= f.text_field :medical_weight, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_physical_family_member_impact %>
-    <%= f.text_field :medical_physical_family_member_impact %>
+    <%= f.text_field :medical_physical_family_member_impact, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :health_insurance %>
-    <%= f.text_field :health_insurance %>
+    <%= f.text_field :health_insurance, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :health_insurance_primary %>
-    <%= f.check_box :health_insurance_primary %>
+    <%= f.check_box :health_insurance_primary, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :health_insurance_primary_other %>
-    <%= f.text_area :health_insurance_primary_other %>
+    <%= f.text_area :health_insurance_primary_other, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :health_insurance_children %>
-    <%= f.check_box :health_insurance_children %>
+    <%= f.check_box :health_insurance_children, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :health_insurance_children_other %>
-    <%= f.text_area :health_insurance_children_other %>
+    <%= f.text_area :health_insurance_children_other, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :health_insurance_spouse_or_significant_other %>
-    <%= f.check_box :health_insurance_spouse_or_significant_other %>
+    <%= f.check_box :health_insurance_spouse_or_significant_other, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :health_insurance_spouse_or_significant_other_other %>
-    <%= f.text_area :health_insurance_spouse_or_significant_other_other %>
+    <%= f.text_area :health_insurance_spouse_or_significant_other_other, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :primary_care_physician_primary %>
-    <%= f.check_box :primary_care_physician_primary %>
+    <%= f.check_box :primary_care_physician_primary, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :primary_care_physician_children %>
-    <%= f.check_box :primary_care_physician_children %>
+    <%= f.check_box :primary_care_physician_children, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :medical_treatment_location %>
-    <%= f.text_field :medical_treatment_location %>
+    <%= f.text_field :medical_treatment_location, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :current_health %>
-    <%= f.text_field :current_health %>
+    <%= f.text_field :current_health, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :happiness_level %>
-    <%= f.text_field :happiness_level %>
+    <%= f.text_field :happiness_level, :class => "form-control" %>
   </div>
 
   
 
   <div class="field">
     <%= f.label :ever_been_to_jail %>
-    <%= f.check_box :ever_been_to_jail %>
+    <%= f.check_box :ever_been_to_jail, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :household_member_in_jail %>
-    <%= f.check_box :household_member_in_jail %>
+    <%= f.check_box :household_member_in_jail, :class => "form-control" %>
   </div>
 
   <div class="field">
-    <%= f.label :household_member_in_jail_resoution_need %>
-    <%= f.check_box :household_member_in_jail_resoution_need %>
+    <%= f.label :household_member_in_jail_current_criminal_resoution_need %>
+    <%= f.check_box :household_member_in_jail_current_criminal_resoution_need, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :adult_household_member_gone_to_jail %>
-    <%= f.check_box :adult_household_member_gone_to_jail %>
+    <%= f.check_box :adult_household_member_gone_to_jail, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :adult_criminal_resolution_needed %>
-    <%= f.check_box :adult_criminal_resolution_needed %>
+    <%= f.check_box :adult_criminal_resolution_needed, :class => "form-control" %>
   </div>
 
   <div class="field">
-    <%= f.label :legal_matters_need_resolved %>
-    <%= f.check_box :legal_matters_need_resolved %>
+    <%= f.label :other_legal_matters_need_resolved %>
+    <%= f.check_box :other_legal_matters_need_resolved, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :cocaine_crack_speed %>
-    <%= f.check_box :cocaine_crack_speed %>
+    <%= f.check_box :cocaine_crack_speed, :class => "form-control"%>
   </div>
 
   <div class="field">
     <%= f.label :meth %>
-    <%= f.check_box :meth %>
+    <%= f.check_box :meth, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :marijuana %>
-    <%= f.check_box :marijuana %>
+    <%= f.check_box :marijuana, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :heroin_opiates %>
-    <%= f.check_box :heroin_opiates %>
+    <%= f.check_box :heroin_opiates, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :other_boolean %>
-    <%= f.text_field :other_boolean %>
+    <%= f.text_field :other_boolean, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :drug_date_of_last_use %>
-    <%= f.date_select :drug_date_of_last_use %>
+    <%= f.date_select :drug_date_of_last_use, :class => "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :individual_id %>
-    <%= f.text_field :individual_id %>
+    <%= f.text_field :individual_id, :class => "form-control" %>
   </div>
 
   <div class="actions">
