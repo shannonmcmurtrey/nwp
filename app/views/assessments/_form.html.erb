@@ -1,5 +1,9 @@
-
-<%= form_for assessment, :html => {:role => "form", :class => "form"} do |f| %>
+<%= simple_form_for(assessment, html: {class: 'form-horizontal left' }, wrapper_mappings: {
+    check_boxes: :vertical_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :vertical_file_input,
+    boolean: :vertical_boolean
+  } ) do |f| %>
   <% if assessment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(assessment.errors.count, "error") %> prohibited this assessment from being saved:</h2>
@@ -12,140 +16,130 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :self_sufficency_goal %>
-    <%= f.text_area :self_sufficency_goal, :class => "form-control" %>
-  </div>
+  <%= f.input :self_sufficency_goal,
+               :label => "What is your major goal for becoming self-sufficient?",
+               :collection => {"Employment"=>0, "Education"=>1, "Other"=>2},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+  <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_self_sufficency_goal', 'option-value': '2'} do %>            
+        <%= f.input :self_sufficiency_goal_other, 
+                    :label => "Please describe your goal for becoming self-sufficient:"%>
 
-  <div class="field">
-    <%= f.label :self_sufficiency_goal_other %>
-    <%= f.text_area :self_sufficiency_goal_other, :class => "form-control" %>
-  </div>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :currently_registered_to_vote %>
-    <%= f.text_field :currently_registered_to_vote, :class => "form-control" %>
-  </div>
+  <%= f.input :currently_registered_to_vote,
+               :label => "Are you currently registered to vote?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+  <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_registered_to_vote', 'option-value': '1'} do %>            
+        <%= f.input :vote_local, :label => "Do you vote for local elections? (i.e. taxes, mayor, city council)",
+               :collection => {"Yes"=>"yes", "No"=>"no"},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= f.input :vote_state, :label => "Do you vote for state elections? (i.e. taxes, governor, senate)",
+               :collection => {"Yes"=>"yes", "No"=>"no"},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= f.input :vote_federal, :label => "Do you vote for federal elections? (i.e. president, congress)",
+               :collection => {"Yes"=>"yes", "No"=>"no"},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= f.input :vote_frequency,
+               :label => "How often do you vote?",
+               :collection => {"Never"=>0, "Not very often"=>1, "Pretty regularly"=>2, "Very regularly"=>3},
+                  :label_method => :first,
+                  :value_mathod => :last %>
 
-  <div class="field">
-    <%= f.label :vote_local %>
-    <%= f.text_field :vote_local, :class => "form-control" %>
-  </div>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :boolean %>
-    <%= f.text_field :boolean, :class => "form-control"%>
-  </div>
+  
+ 
+ <%= f.input :educational_training_last_six_months,
+               :label => "Have you completed an educational or training program in the last 6 months?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+<%= f.input :education_currently_enrolled,
+               :label => "Are you currently enrolled in education?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+  <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_education_currently_enrolled', 'option-value': '1'} do %>            
+        <%= f.label :education_institution_name %>
+        <%= f.text_field :education_institution_name, :class => "form-control" %>
+        <%= f.label "What are you studying?" %>
+        <%= f.text_field :education_studying, :class => "form-control" %>
+         <%= f.label "How many months will it take to complete the program?" %>
+        <%= f.input :education_program_length_in_months, input_html: {value: '48', step:'1'}, label: false%>
+        <%= f.input :education_progress,
+               :label => "How much have you completed?",
+               :collection => {"Up to 25%"=>25, "26 - 50%"=>5, "51-75%"=>75, "76-99%"=>99},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= f.label "What diploma, degree, or certificate will you receive whne you complete the program?" %>
+        <%= f.text_field :education_degree_type, :class => "form-control" %>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :vote_state %>
-    <%= f.text_field :vote_state, :class => "form-control" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :boolean %>
-    <%= f.text_field :boolean, :class => "form-control" %>
-  </div>
+  <div class="well">
+      <h3>Have you ever been told by a medical clinician that you have...</h3>
+      <%= f.input :medical_high_blood_sugar,
+               :label => "...high blood sugar?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= f.input :medical_diabetes,
+               :label => "..diabetes?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_diabetes', 'option-value': '1'} do %>            
+         <%= f.input :medical_diabetes_type,
+               :label => "Which type?",
+               :collection => {"Type 1"=>"type 1", "Type 2"=>"type 2", "Gestational"=>"gestational"},
+                  :label_method => :first,
+                  :value_mathod => :last %>
 
-  <div class="field">
-    <%= f.label :vote_federal %>
-    <%= f.text_field :vote_federal, :class => "form-control" %>
+       <% end %>
+       <%= f.input :medical_pulmonary_disease,
+               :label => "...pulmonary disease (COPD/asthma)?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+       <%= f.input :medical_elevated_blood_pressure,
+               :label => "..elevated blood pressure?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_elevated_blood_pressure', 'option-value': '1'} do %>            
+         <%= f.input :medical_diabetes_type,
+               :label => "Gestational?",
+               :collection => {"Yes"=>"yes", "No"=>"no"},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <% end %>
+      <%= f.input :medical_mental_health_diagnosis,
+               :label => "...mental health diagnosis?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= f.input :medical_tobacco_products,
+               :label => "Do you use tobacco products?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= f.input :medical_alcohol,
+               :label => "Do you drink alcohol?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_alcohol', 'option-value': '1'} do %>            
+         <%= f.input :medical_alcohol_avg_drinks_per_week, input_html: {value: '3', step:'1'}, label: "On average, how many drinks do you consume per week?"%>
+      <% end %>
   </div>
+  
 
-  <div class="field">
-    <%= f.label :boolean %>
-    <%= f.text_field :boolean, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :vote_frequency %>
-    <%= f.text_field :vote_frequency, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :educational_training_last_six_months %>
-    <%= f.check_box :educational_training_last_six_months, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :education_currently_enrolled %>
-    <%= f.check_box :education_currently_enrolled, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :education_institution_name %>
-    <%= f.text_area :education_institution_name, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :education_studying %>
-    <%= f.text_area :education_studying, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :education_program_length_in_months %>
-    <%= f.text_field :education_program_length_in_months, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :education_progress %>
-    <%= f.text_field :education_progress, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :education_degree_type %>
-    <%= f.text_area :education_degree_type, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_high_blood_sugar %>
-    <%= f.check_box :medical_high_blood_sugar, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_diabetes %>
-    <%= f.check_box :medical_diabetes, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_diabetes_type %>
-    <%= f.text_area :medical_diabetes_type, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_pulmonary_disease %>
-    <%= f.check_box :medical_pulmonary_disease, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_elevated_blood_pressure %>
-    <%= f.check_box :medical_elevated_blood_pressure, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_elevated_blood_pressure_gestational %>
-    <%= f.text_area :medical_elevated_blood_pressure_gestational, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_mental_health_diagnosis %>
-    <%= f.check_box :medical_mental_health_diagnosis, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_tobacco_products %>
-    <%= f.check_box :medical_tobacco_products, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_alcohol %>
-    <%= f.check_box :medical_alcohol, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_alcohol_avg_drinks_per_week %>
-    <%= f.text_field :medical_alcohol_avg_drinks_per_week, :class => "form-control" %>
-  </div>
 
   <div class="field">
     <%= f.label :medical_height %>

@@ -2,7 +2,12 @@
   <p id="notice"><%= notice %></p>
   
   <h2>Hello <%= @individual.first_name %>. Thank you for participating in the Northwest Project!</h2>
-  <%= button_to "Enter Assessment", new_assessment_path(individual_id: @individual.id), class: "btn btn-default", method: 'get' %>
+  <%= link_to "Enter Assessment", new_assessment_path(individual_id: @individual), class: "btn btn-default", method: 'get' %>
+
 
 <p>
-<%= link_to 'Edit My Information', edit_individual_path(@individual), method: :get  %> 
+<%= link_to 'Initial Client Data Intake', edit_individual_path(@individual), method: :get  %> <p>
+<%= "#{@individual.first_name} has #{@individual.assessments.count} #{"assessment".pluralize(@individual.assessments.count)} entered so far." %><p>
+<% @individual.assessments.each do |assessment| %>
+Assessment entered on <%= assessment.created_at %><p>
+<% end %>

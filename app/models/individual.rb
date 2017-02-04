@@ -5,6 +5,7 @@ class Individual < ApplicationRecord
   has_and_belongs_to_many :meetings
   has_many :attendances, dependent: :destroy
   has_many :household_members, dependent: :destroy
+  has_many :assessments
   accepts_nested_attributes_for :household_members, allow_destroy: true
 
   #validates :attribute_name, :presence => {:message => "Customized error message for user."}
