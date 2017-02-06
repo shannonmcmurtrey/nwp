@@ -137,84 +137,93 @@
       <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_alcohol', 'option-value': '1'} do %>            
          <%= f.input :medical_alcohol_avg_drinks_per_week, input_html: {value: '3', step:'1'}, label: "On average, how many drinks do you consume per week?"%>
       <% end %>
-  </div>
+</div>
+
+
+      <%= f.input :medical_height, input_html: {value: '60', step:'1'}, label: "Height (in inches, i.e. 60 inches is 5 feet):"%>
+      <%= f.input :medical_weight, input_html: {value: '125', step:'1'}, label: "Weight (lb):"%>
+      <%= f.input :medical_physical_family_member_impact,
+               :label => "**PHYSICAL HEALTH: Please select which of the following best describes your family's current situation:",
+               :collection => {"A family member's health problems prohibit employment or other goal options.  Or, family member is in need of 24 hour care."=>1, 
+                               "A family member's health problem regularly interferes with employment or other goals"=>2,
+                               "A family member's health problems occasionally interferes with employment or other goal options"=>3,
+                               "A family member's physical health problem does not interfere with emploument or other goal options"=>4,
+                               "There are no physical health problems for any family member at this time"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= f.input :health_insurance,
+               :label => "**HEALTH INSURANCE: Select which of the following best describes your family's current situation:",
+               :collection => {"No health insurance for any family member"=>1, 
+                               "Not all family members are insured"=>2,
+                               "All family members are covered by government insurance"=>3,
+                               "All family members are insured, but the premiums and/or co-pays are unaffordable"=>4,
+                               "All family members are covered by insurance and the premiums and co-pays are affordable"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_health_insurance', 'option-value': '2|3|4|5'} do %> 
+
+          <%= f.input :health_insurance_primary,
+                   :label => "What type of health coverage do YOU have?",
+                   :collection => {"No coverage"=>0,"Employer-provided coverate"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5},
+                      :label_method => :first,
+                      :value_mathod => :last %>
+          <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_health_insurance_primary', 'option-value': '5'} do %> 
+          <%= f.label "If other, please describe." %>
+            <%= f.text_field :health_insurance_primary_other, :class => "form-control" %>        
+
+          <% end %>
+          <%= f.input :health_insurance_children,
+                   :label => "What type of health coverage do your CHILDREN have?",
+                   :collection => {"No coverage"=>0,"Employer-provided coverate"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5},
+                      :label_method => :first,
+                      :value_mathod => :last %>
+          <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_health_insurance_children', 'option-value': '5'} do %> 
+          <%= f.label "If other, please describe." %>
+            <%= f.text_field :health_insurance_children_other, :class => "form-control" %>        
+
+          <% end %>
+
+           <%= f.input :health_insurance_spouse_or_significant_other,
+                   :label => "What type of health coverage does your SPOUSE OR SIGNIFICANT OTHER have?",
+                   :collection => {"No coverage"=>0,"Employer-provided coverate"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5},
+                      :label_method => :first,
+                      :value_mathod => :last %>
+          <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_health_insurance_spouse_or_significant_other', 'option-value': '5'} do %> 
+          <%= f.label "If other, please describe." %>
+            <%= f.text_field :health_insurance_spouse_or_significant_other_other, :class => "form-control" %>        
+
+          <% end %>
+      <% end %>
+
+      <%= f.input :primary_care_physician_primary,
+               :label => "Do you have a primary care physician?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+
+      <%= f.input :primary_care_physician_children,
+               :label => "Do your children have a primary care physician?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+
+      <%= f.input :medical_treatment_location,
+                   :label => "Where do you seek medical treatment?",
+                   :collection => {"ER"=>0,"Urgent Care"=>1, "Priamry Care"=>2, "Free Clinics)"=>3},
+                      :label_method => :first,
+                      :value_mathod => :last %>
+        <%= f.input :current_health,
+                   :label => "How would you describe your current health?",
+                   :collection => {"Excellent"=>4,"Very Good"=>3, "Good"=>2, "Fair"=>1, "Poor"=>0},
+                      :label_method => :first,
+                      :value_mathod => :last %>
+        <%= f.input :happiness_level,
+                   :label => "How happy are you?",
+                   :collection => {"Very Happy"=>4,"Happy"=>3, "Neutral"=>2, "Unhappy"=>1, "Very unhappy"=>0},
+                      :label_method => :first,
+                      :value_mathod => :last %>
   
 
-
-  <div class="field">
-    <%= f.label :medical_height %>
-    <%= f.text_field :medical_height, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_weight %>
-    <%= f.text_field :medical_weight, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_physical_family_member_impact %>
-    <%= f.text_field :medical_physical_family_member_impact, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :health_insurance %>
-    <%= f.text_field :health_insurance, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :health_insurance_primary %>
-    <%= f.check_box :health_insurance_primary, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :health_insurance_primary_other %>
-    <%= f.text_area :health_insurance_primary_other, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :health_insurance_children %>
-    <%= f.check_box :health_insurance_children, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :health_insurance_children_other %>
-    <%= f.text_area :health_insurance_children_other, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :health_insurance_spouse_or_significant_other %>
-    <%= f.check_box :health_insurance_spouse_or_significant_other, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :health_insurance_spouse_or_significant_other_other %>
-    <%= f.text_area :health_insurance_spouse_or_significant_other_other, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :primary_care_physician_primary %>
-    <%= f.check_box :primary_care_physician_primary, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :primary_care_physician_children %>
-    <%= f.check_box :primary_care_physician_children, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :medical_treatment_location %>
-    <%= f.text_field :medical_treatment_location, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_health %>
-    <%= f.text_field :current_health, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :happiness_level %>
-    <%= f.text_field :happiness_level, :class => "form-control" %>
-  </div>
 
   
 
