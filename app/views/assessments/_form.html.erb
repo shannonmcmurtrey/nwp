@@ -222,75 +222,220 @@
                    :collection => {"Very Happy"=>4,"Happy"=>3, "Neutral"=>2, "Unhappy"=>1, "Very unhappy"=>0},
                       :label_method => :first,
                       :value_mathod => :last %>
-  
+        <%= f.input :ever_been_to_jail,
+               :label => "Have you personally ever gone to jail, juvenile detention, treatment facility, or prison?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_ever_been_to_jail', 'option-value': '1'} do %>            
+          <%= f.input :in_need_of_current_criminal_resolution,
+               :label => "Is there a current need for resolution of criminal background?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <% end %>
 
+        <%= f.input :household_member_in_jail,
+               :label => "Is a household member currently in jail?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_household_member_in_jail', 'option-value': '1'} do %>            
+          <%= f.input :household_member_in_jail_current_criminal_resoution_need,
+               :label => "Is there a current need for resolution of criminal background?",
+               :collection => {"Yes"=>"yes", "No"=>"no"},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <% end %>
 
-  
+        <%= f.input :adult_household_member_gone_to_jail,
+               :label => "As an adult, has a household member ever gone to jail or prison?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_adult_household_member_gone_to_jail', 'option-value': '1'} do %>            
+          <%= f.input :adult_criminal_resolution_needed,
+               :label => "Is there a current need for resolution of criminal background?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <% end %>
 
-  <div class="field">
-    <%= f.label :ever_been_to_jail %>
-    <%= f.check_box :ever_been_to_jail, :class => "form-control" %>
+        <%= f.input :other_legal_matters_need_resolved,
+               :label => "Any other legal matters that need resolved?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+
+  <div class="well">
+    <%= f.input :cocaine_crack_speed,
+               :label => "Have you ever used cocaine, crack, or speed?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_cocaine_crack_speed', 'option-value': '1'} do %>   
+          <%= f.label "When was the last time you used?" %>
+          <%= f.date_select :drug_date_of_last_use_ccs,
+               :label => "When was the last time you used?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %><p>
+        <% end %>
+    <%= f.input :meth,
+               :label => "Have you ever used meth?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_meth', 'option-value': '1'} do %>   
+          <%= f.label "When was the last time you used?" %>
+          <%= f.date_select :drug_date_of_last_use_meth,
+               :label => "When was the last time you used?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %><p>
+        <% end %>
+      <%= f.input :marijuana,
+               :label => "Have you ever used marijuana?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_marijuana', 'option-value': '1'} do %>   
+          <%= f.label "When was the last time you used?" %>
+          <%= f.date_select :drug_date_of_last_use_marijuana,
+               :label => "When was the last time you used?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %><p>
+        <% end %>
+        <%= f.input :heroin_opiates,
+               :label => "Have you ever used Heroin/Opiates?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_heroin_opiates', 'option-value': '1'} do %>   
+          <%= f.label "When was the last time you used?" %>
+          <%= f.date_select :drug_date_of_last_use_heroin,
+               :label => "When was the last time you used?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %><p>
+        <% end %>
+        <%= f.input :other_boolean,
+               :label => "Have you ever used any other drug not listed previously?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_other_boolean', 'option-value': '1'} do %>   
+          <%= f.label "When was the last time you used?" %>
+          <%= f.date_select :drug_date_of_last_use_other,
+               :label => "When was the last time you used?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %><p>
+        <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :household_member_in_jail %>
-    <%= f.check_box :household_member_in_jail, :class => "form-control" %>
+
+  <div class="well">
+    <h3>Social Capital and Civic Engagement Questionnaire</h3>
+     <%= f.input :written_plan_to_become_self_sufficient,
+               :label => "As of today, I have a written plan for how I am going to reach my goals and become self-sufficient.",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+     <%= f.input :current_budget_and_savings_plan,
+               :label => "As of today, I have a budget and savings plan to help build my assets.",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+     <%= f.input :safe_and_stable_place_to_live,
+               :label => "As of today, I have a safe and stable place to live.",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+     <%= f.input :people_in_my_life_i_can_trust_for_support,
+               :label => "Are there pople in your life whom you trust and can count on for emotional or moral support?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+     <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_people_in_my_life_i_can_trust_for_support', 'option-value': '1'} do %>   
+          <%= f.input :number_of_people_trusted_for_emotional_or_moral_support,
+               :label => "How many?" %><p>
+        <% end %>
+     <%= f.input :people_in_my_life_serving_as_mentors,
+               :label => "Are there pople in your life who have served as mentors or have guided you to resources such as job opportunities, clubs, and legal services?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+     <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_people_in_my_life_serving_as_mentors', 'option-value': '1'} do %>   
+     <%= f.input :number_of_people_trusted_for_mentorship,
+               :label => "How many of these people do you currently know and can reach out to?" %><p>
+     <% end %>
+     <%= f.input :most_people_can_be_trusted,
+               :label => "Generally speaking, would you say that most people can be trusted or that you need to be very careful in dealing with people",
+               :collection => {"Most people can be trusted"=>1, "You can't be too careful"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+  </div>
+   <div class="well">
+    <h2>I trust the following people:</h2>
+
+     <%= f.input :i_trust_people_in_my_neighborhood,
+               :label => "...people in your neighborhood",
+               :collection => {"Strongly Agree"=>0, 
+                               "Somewhat Agree"=>1,
+                               "Neutral"=>2,
+                               "Somewhat Disagree"=>3,
+                               "Disagree"=>4},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+     <%= f.input :i_trust_police_in_my_community,
+               :label => "...police in your neighborhood",
+               :collection => {"Strongly Agree"=>0, 
+                               "Somewhat Agree"=>1,
+                               "Neutral"=>2,
+                               "Somewhat Disagree"=>3,
+                               "Disagree"=>4},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+     <%= f.input :i_trust_police_in_my_community,
+               :label => "...police in your community",
+               :collection => {"Strongly Agree"=>0, 
+                               "Somewhat Agree"=>1,
+                               "Neutral"=>2,
+                               "Somewhat Disagree"=>3,
+                               "Disagree"=>4},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= f.input :i_trust_local_govt,
+               :label => "...local government",
+               :collection => {"Strongly Agree"=>0, 
+                               "Somewhat Agree"=>1,
+                               "Neutral"=>2,
+                               "Somewhat Disagree"=>3,
+                               "Disagree"=>4},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+  </div>
+  <div class="well">
+    <h2>In the past 6 months, how many times have you...</h2>
+      <%= f.input :last_six_months_worked_on_neighborhood_project, input_html: {value: '0', step:'1'}, label: "Worked on a neighborhood project?"%>
+      <%= f.input :last_six_months_worked_with_neighborhood_partners, input_html: {value: '0', step:'1'}, label: "Worked with neighbord in your neighborhood to improve or fix something?"%>
+      <%= f.input :last_six_months_volunteered, input_html: {value: '0', step:'1'}, label: "Volunteered? (0 for no, if yes, average number of hours per month)"%>
+      <%= f.input :last_six_months_attended_public_meetings_for_neighborhood, input_html: {value: '0', step:'1'}, label: "Attended any public meeting in which there was a discussion of your neighborhood concerns and/or development"%>
+      <%= f.input :last_six_months_attended_public_meetings_for_schools, input_html: {value: '0', step:'1'}, label: "Attended a public meeting in which there was a discussion about schools or education"%>
+      <%= f.input :last_six_months_attended_politial_rally, input_html: {value: '0', step:'1'}, label: "Attended a political meeting or rally?"%>
+      <%= f.input :last_six_months_had_friends_in_home, input_html: {value: '0', step:'1'}, label: "Had friends over to your home?"%>
+      <%= f.input :last_six_months_been_at_friends_home, input_html: {value: '0', step:'1'}, label: "Been at friend's home"%>
+      <%= f.input :last_six_months_been_in_home_of_friend_of_different_race, input_html: {value: '0', step:'1'}, label: "Been in the home of a friend from a different race"%>
+      <%= f.input :last_six_months_been_in_home_of_someone_from_different_neighborhood, input_html: {value: '0', step:'1'}, label: "Been in the home of someone from a different neighborhood"%>
+      <%= f.input :last_six_months_had_friend_from_different_neighborhood_in_my_home, input_html: {value: '0', step:'1'}, label: "Had someone from a different neighborhood in your home?"%>
+
+
+
+
   </div>
 
-  <div class="field">
-    <%= f.label :household_member_in_jail_current_criminal_resoution_need %>
-    <%= f.check_box :household_member_in_jail_current_criminal_resoution_need, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :adult_household_member_gone_to_jail %>
-    <%= f.check_box :adult_household_member_gone_to_jail, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :adult_criminal_resolution_needed %>
-    <%= f.check_box :adult_criminal_resolution_needed, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :other_legal_matters_need_resolved %>
-    <%= f.check_box :other_legal_matters_need_resolved, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :cocaine_crack_speed %>
-    <%= f.check_box :cocaine_crack_speed, :class => "form-control"%>
-  </div>
-
-  <div class="field">
-    <%= f.label :meth %>
-    <%= f.check_box :meth, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :marijuana %>
-    <%= f.check_box :marijuana, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :heroin_opiates %>
-    <%= f.check_box :heroin_opiates, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :other_boolean %>
-    <%= f.text_field :other_boolean, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :drug_date_of_last_use %>
-    <%= f.date_select :drug_date_of_last_use, :class => "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :individual_id %>
-    <%= f.text_field :individual_id, :class => "form-control" %>
-  </div>
 
   <div class="actions">
     <%= f.submit %>

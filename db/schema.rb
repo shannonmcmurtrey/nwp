@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202212728) do
+ActiveRecord::Schema.define(version: 20170209231758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -203,6 +203,12 @@ ActiveRecord::Schema.define(version: 20161202212728) do
     t.string   "health_insurance_primary_other"
     t.string   "health_insurance_children_other"
     t.string   "health_insurance_spouse_or_significant_other_other"
+    t.date     "drug_date_of_last_use_ccs"
+    t.date     "drug_date_of_last_use_meth"
+    t.date     "drug_date_of_last_use_marijuana"
+    t.date     "drug_date_of_last_use_heroin"
+    t.date     "drug_date_of_last_use_other"
+    t.integer  "last_six_months_had_friends_in_home"
     t.index ["individual_id"], name: "index_assessments_on_individual_id", using: :btree
   end
 
@@ -224,6 +230,19 @@ ActiveRecord::Schema.define(version: 20161202212728) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["organization_id"], name: "index_cohorts_on_organization_id", using: :btree
+  end
+
+  create_table "families", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "neighborhood"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "household_members", force: :cascade do |t|
@@ -249,6 +268,7 @@ ActiveRecord::Schema.define(version: 20161202212728) do
     t.string   "phone_number"
     t.string   "mobile_phone_number"
     t.string   "email_address"
+    t.string   "preferred_method_of_contact"
     t.date     "DOB"
     t.date     "start_date"
     t.boolean  "us_citizen"
@@ -262,9 +282,9 @@ ActiveRecord::Schema.define(version: 20161202212728) do
     t.integer  "springfield_non_native_population"
     t.integer  "neighborhood_resident_length_in_months"
     t.integer  "springfield_non_native_distance"
-    t.integer  "cohort_id"
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
+    t.integer  "cohort_id"
     t.integer  "childhood_raisedby_other_than_parents"
     t.integer  "childhood_raisedby_other_than_parents_length_in_months"
     t.integer  "childhood_raisedby_other_than_parents_by_who"
@@ -353,7 +373,6 @@ ActiveRecord::Schema.define(version: 20161202212728) do
     t.boolean  "nwp_currently_eligible"
     t.float    "square_footage_of_house"
     t.text     "notes"
-    t.text     "preferred_method_of_contact"
     t.string   "code"
     t.string   "last_grade_completed"
     t.string   "technical_training_degree"
