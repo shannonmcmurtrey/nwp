@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209231758) do
+ActiveRecord::Schema.define(version: 20170210194029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -209,6 +209,7 @@ ActiveRecord::Schema.define(version: 20170209231758) do
     t.date     "drug_date_of_last_use_heroin"
     t.date     "drug_date_of_last_use_other"
     t.integer  "last_six_months_had_friends_in_home"
+    t.boolean  "member_of_religious_group"
     t.index ["individual_id"], name: "index_assessments_on_individual_id", using: :btree
   end
 

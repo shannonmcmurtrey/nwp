@@ -15,7 +15,36 @@
       </ul>
     </div>
   <% end %>
+     <%= f.input :still_resident_of_neighborhood_years, :label=>"How many years have you been a resident of your neighborhood?" %>
+     <%= f.input :still_resident_of_neighborhood_months, :label=>"...and how many months (past the years in the previous field) have you been a resident of your neighborhood?" %>
+<div class="well">
+  <h3>Employment:</h3>
+   <%= f.input :currently_employed,
+               :label => "Are you currently employed?",
+               :collection => {"Yes"=>0, "No"=>1, "Disabled"=>3, "Retired"=>4, "Temporary/Seasonal"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_employed', 'option-value': '0'} do %>            
+        <%= f.input :employment_type, 
+                    :label => "Full-Time or Part Time?",
+                    :collection => {"Full-Time"=>0, "Part-Time"=>1},
+                    :label_method => :first,
+                    :value_method => :last %>
+        <%= f.input :employer %>
+        <%= f.input :position %>
+        <%= f.input :hours_worked_per_week, :label => "Hours worked per week (Average number of hours per week for the last 30 days)" %>
+        <%= f.input :monthly_wage, :label => "Circle leader only - Earned income before taxes and withholdings?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_employed', 'option-value': '1'} do %> 
+   <%= f.input :if_unemployed_eligible_to_work,
+               :label => "If you are not currently employed, are you eligible to work?",
+               :collection => {"Yes"=>0, "No"=>1},
+               :label_method => :first,
+               :value_method => :last  %>
+   <% end %> 
 
+   <%= f.input :number_of_jobs_in_last_six_months, :label => "How many jobs have you had in the last six months?" %>
+</div>
   <%= f.input :self_sufficency_goal,
                :label => "What is your major goal for becoming self-sufficient?",
                :collection => {"Employment"=>0, "Education"=>1, "Other"=>2},
@@ -430,12 +459,218 @@
       <%= f.input :last_six_months_been_in_home_of_friend_of_different_race, input_html: {value: '0', step:'1'}, label: "Been in the home of a friend from a different race"%>
       <%= f.input :last_six_months_been_in_home_of_someone_from_different_neighborhood, input_html: {value: '0', step:'1'}, label: "Been in the home of someone from a different neighborhood"%>
       <%= f.input :last_six_months_had_friend_from_different_neighborhood_in_my_home, input_html: {value: '0', step:'1'}, label: "Had someone from a different neighborhood in your home?"%>
-
-
-
-
   </div>
+    <div class="well">
+    <h2>In the past 6 months have you...</h2>
+      <%= f.input :last_six_months_donated_food_or_other_goods,
+               :label => "Donated food, clothing, or other goods to an individual or organization?",
+               :collection => {"No"=>0, 
+                               "Yes"=>1,
+                               "N/A"=>3},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :last_six_months_received_food_clothing_or_other_donated_goods,
+               :label => "Received food, clothing, or other donated goods?",
+               :collection => {"No"=>0, 
+                               "Yes"=>1,
+                               "N/A"=>3},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :last_six_months_obtained_a_car,
+               :label => "Obtained a car?",
+               :collection => {"No"=>0, 
+                               "Yes"=>1,
+                               "N/A"=>3},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :last_six_months_obtained_a_better_paying_job,
+               :label => "Obtained a better paying job?",
+               :collection => {"No"=>0, 
+                               "Yes"=>1,
+                               "N/A"=>3},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :last_six_months_paid_off_credit_card_bill_or_title_loan,
+               :label => "Paid off credit card bill or pay day or title loan?",
+               :collection => {"No"=>0, 
+                               "Yes"=>1,
+                               "N/A"=>3},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :last_six_months_opened_or_added_money_to_savings_account,
+               :label => "Opened or added money to a savings account?",
+               :collection => {"No"=>0, 
+                               "Yes"=>1,
+                               "N/A"=>3},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :examined_credit_score_in_last_six_months,
+               :label => "Examined your credit score?",
+               :collection => {"No"=>0, 
+                               "Yes"=>1,
+                               "N/A"=>3},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_examined_credit_score_in_last_six_months', 'option-value': '1'} do %>   
+              <%= f.input :credit_score,
+               :label => "What is your credit score?" %><p>
+            <% end %>
+  </div>
+   <%= f.input :belong_to_neighborhood_association,
+               :label => "Do you belong to any group or organization in your neighborhood (i.e. neighborhood association, PTA/PTSA, etc.)?",
+               :collection => {"No"=>0, 
+                               "Yes"=>1},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_belong_to_neighborhood_association', 'option-value': '1'} do %>   
+              <%= f.input :neighborhood_association_name,
+               :label => "What is the organization/group name?" %><p>
+            <% end %>
+           <%= f.input :currently_serve_as_officer_or_on_committee,
+               :label => "Do you currently serve as an officer or serve on a committee for a local club or organization?",
+               :collection => {"No"=>0, 
+                               "Yes"=>1},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_serve_as_officer_or_on_committee', 'option-value': '1'} do %>   
+              <%= f.input :officer_or_committee_organization_name,
+               :label => "What is the organization/group name?" %><p>
+            <% end %>
 
+    <div class="well">
+      <h3>IMMEDIATE NEIGHBORS:  These are the 10 or 20 households closest to you.</h3>
+         <%= f.input :how_often_do_you_talk_to_immediate_neighbors,
+               :label => "About how often do you talk to or visit with your immediate neighbors?",
+               :collection => {"Daily"=>4,
+                               "Weekly"=>3, 
+                               "Monthly"=>2,
+                               "Yearly"=>1,
+                               "Never"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= f.input :neighborhood_safe_place_to_live_rating,
+               :label => "Overall, how would you rate your neighborhood as a place to live?",
+               :collection => {"Excellent"=>4,
+                               "Good"=>3, 
+                               "Fair"=>2,
+                               "Poor"=>1},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= f.input :my_impact_on_neighborhood_safety,
+               :label => "How much impact do you think you can have in making your neighborhood a better place to live?",
+               :collection => {"No impact"=>0,
+                               "A small impact"=>1, 
+                               "A moderate impact"=>2,
+                               "A big impact"=>3},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+
+    </div>
+    <div class="well">
+         <%= f.input :people_running_my_community_care_about_me,
+               :label => "The people running my community care about what happens to me",
+               :collection => {"Strongly Agree"=>4,
+                               "Somewhat Agree"=>3, 
+                               "Neutral"=>2,
+                               "Somewhat Disagree"=>1,
+                               "Disagree"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        <%= f.input :religious_or_spiritual_preference,
+               :label => "What is your religious/spiritual preference?" %>
+        <%= f.input :member_of_religious_group,
+               :label => "Are you a member of a local church, synagogue, mosque or other religious congregation?",
+               :collection => {"No"=>0, 
+                               "Yes"=>1},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_member_of_religious_group', 'option-value': '1'} do %>   
+              <%= f.input :name_of_place_of_worship,
+               :label => "What is the name of the church/place of worship that you attend?" %><p>
+            <% end %>
+            <%= f.input :how_often_attend_religious_services,
+               :label => "Not including weddings and funerals, how often do you attend religious services?",
+               :collection => {"Every week"=>4,
+                               "Almost every week"=>3, 
+                               "Once or twice a month"=>2,
+                               "A few times per year"=>1,
+                               "Not at all"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :primary_adult_enrolled_best_description_academic,
+               :label => "**Academic Skills: Select which of the following best describes the situation for the primary adult enrolled in the program:",
+               :collection => {"Lack of academic skills is currently a barrier to employment or other goal attainment"=>1,
+                               "Lack of academic skills severely limits employment or other goal attainment.  Able to read with pictures and perform basic addition and/or subtraction."=>2, 
+                               "Lack of academic skills limits employment or other goal attainment.  Able to read and complete basic job applications and can perform basic calculations"=>3,
+                               "Academic skills occasionally limit employment or other goal attainment.  Can read and perform math calculations at a high school level"=>4,
+                               "Academic skills are not a barrier to employment or other goal attainment"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :family_best_description_current_situation_income,
+               :label => "**Income: Please select which of the following best describes your families current situation:",
+               :collection => {"No regular or consistent income"=>1,
+                               "Income does not meet basic needs."=>2, 
+                               "Income meets basic needs but is insufficient for emergencies"=>3,
+                               "Income meets basic needs and allows for minor emergencies"=>4,
+                               "Income meets basic needs, emergencies, and allows for extras and savings"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :family_best_description_current_situation_income,
+               :label => "**Employment: Please select which of the following best describes your situation:",
+               :collection => {"Unemployed or never worked"=>1,
+                               "Unemployed for less than 3 months."=>2, 
+                               "Part-time employment"=>3,
+                               "Full-time employment without fringe benefits"=>4,
+                               "Full-time employment with a living wage and benefits"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :family_best_description_current_situation_food,
+               :label => "**Food: Please help me select which of the following best describes your family's current situation:",
+               :collection => {"Family has no food and reports they are hungry"=>1,
+                               "Family has no way to cook or refridgerate food and eats most meals at soup kitchens, free community meals, or with friends and relatives."=>2, 
+                               "Family has adequate food for less than one week available"=>3,
+                               "Family has more than one week's food available and has access to supplemental food resources"=>4,
+                               "Family obtains adequate meals without the use of supplemental resources"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :family_best_description_current_situation_housing,
+               :label => "**Housing: Please select which of the following best describes your family's current situation:",
+               :collection => {"Family is currently homeless (i.e. homeless shelter, on the streets, out of vehicle, residing in treatment facility or are staying with friends"=>1,
+                               "Family is in transitional housing (i.e. temporary housing, hotel, motel, short term lease (less than six months) or current residence is in need of major repairs"=>2, 
+                               "Family is currently living in permanent housing and there is a threat of eviction"=>3,
+                               "Family is currently living in permanent housing but the cost exceeds 50% of family income"=>4,
+                               "Family is currently living in permanent non-subsidized housing"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :family_best_description_current_situation_transportation,
+               :label => "**Transportation: Please help me select which of the following best describes your family's current situation:",
+               :collection => {"No transportation"=>1,
+                               "No transportation; but are able to borrow car, access public transportation but have limited resources for fare, no license"=>2, 
+                               "Have a vehicle but needs major repairs, not licensed, etc."=>3,
+                               "Own vehicle but needs minor repairs, limited resources for gas"=>4,
+                               "Own vehicle and does not need repair and has resources for gas"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :family_best_description_current_situation_mental_health,
+               :label => "**Mental Health and Substance Abuse: Please select which of the following best describes your family's current situation:",
+               :collection => {"A family member's mental health and/or substance abuse prohibit employment or other goal atttainment"=>1,
+                               "A family member's mental health and/or substance abuse regularly interferes with employment/other goals"=>2, 
+                               "A family member's mental health and/or substance abuse occasionally interfere with employment/other goals"=>3,
+                               "A family member's mental health and/or substance abuse does not interfere with employment/other goals"=>4,
+                               "There are no mental health or substance abuse problems for any family member at this time"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+            <%= f.input :primary_adult_enrolled_best_description_stressors,
+               :label => "**Psychosocial and Environmental Stressors: Please select which of the following describes the situation for the primary adult enrolled in the program:",
+               :collection => {"Current stressors are so great that participant is unable to focus on employment or other goal attainment"=>1,
+                               "Current stressors considerably affect participant's ability to focus on employment or other goal attainment"=>2, 
+                               "Current stressors moderately affect participant's ability to focus on employment or other goal attainment"=>3,
+                               "Current stressors only minimally affect participant's ability to focus on employment or other goal attainment"=>4,
+                               "Stressors do not currently interfere with employment or other goal attainment"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+
+    </div>
 
   <div class="actions">
     <%= f.submit %>

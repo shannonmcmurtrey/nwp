@@ -63,11 +63,13 @@
                :label_method => :first,
                :value_method => :last %>
 </div>
+<div class="well">
+<h3>Status on Intake</h3>
 <div class="btn-group" data-toggle="buttons-checkbox">
       <a class="btn collapse-data-btn" data-toggle="collapse" href="#initial-details">Initial Assessment</a>
 </div>
 <div id="initial-details" class="well collapse">
-   <%= f.input :neighborhood_resident_length_in_months %>
+   <%= f.input :still_resident_of_neighborhood_years %>
    <%= f.input :us_citizen, :wrapper => :inline_checkbox %> <p />
    <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_us_citizen', 'checkbox-value': 'false'} do %>
      <%= f.input :non_us_citizen_country_of_citizenship, :as => :string %>
@@ -578,6 +580,7 @@
    </fieldset>
 
 <% end %>
+
 <div class="btn-group" data-toggle="buttons-checkbox">
       <a class="btn collapse-data-btn" data-toggle="collapse" href="#assessment-details">Assessments</a>
 </div>
@@ -587,5 +590,5 @@
 <% @individual.assessments.each do |assessment| %>
 <%= link_to "Assessment entered on #{assessment.created_at}", edit_assessment_path(assessment) %><br>
 <% end %>
-
+  </div>
 </div>
