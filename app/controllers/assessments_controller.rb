@@ -43,10 +43,11 @@ class AssessmentsController < ApplicationController
   # PATCH/PUT /assessments/1
   # PATCH/PUT /assessments/1.json
   def update
+    @individual = @assessment.individual
     respond_to do |format|
       if @assessment.update(assessment_params)
-        format.html { redirect_to @assessment, notice: 'Assessment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @assessment }
+        format.html { redirect_to @individual, notice: 'Assessment was successfully updated.' }
+        format.json { render :show, status: :ok, location: @individual }
       else
         format.html { render :edit }
         format.json { render json: @assessment.errors, status: :unprocessable_entity }

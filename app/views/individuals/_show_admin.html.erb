@@ -1,0 +1,591 @@
+ <p id="notice"><%= notice %></p>
+  
+  <h2>Circle Leader: <%= @individual.first_name %> <%= @individual.last_name %></h2>
+ 
+
+<%= simple_form_for(@individual, html: { class: 'form-horizontal left' }, wrapper_mappings: {
+    check_boxes: :vertical_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :vertical_file_input,
+    boolean: :vertical_boolean
+  } ) do |f| %>
+     <% if @individual.errors.any? %>
+       <div id="error_explanation">
+         <h2><%= pluralize(@individual.errors.count, "error") %> prohibited this individual from being saved:</h2>
+
+         <ul>
+         <% @individual.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+         <% end %>
+         </ul>
+       </div>
+     <% end %>
+   <fieldset>
+   	<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#contact-details">Contact Details</a>
+    </div>
+   <div id="contact-details" class="well collapse">
+   <%= f.input :first_name %>
+   <%= f.input :last_name %>
+   <%= f.input :suffix, 
+               :label => "Suffix", 
+               :collection => {"Jr."=>"Jr.", "Sr."=>"Sr.", "II"=>"II", "III"=>"III", "IV"=>"individual_have_valid_id_or_drivers_license"}, 
+               :label_method => :first,
+               :value_method => :last %>
+
+    <%= f.input :date_of_application, :label => "Date of Application", as: :date, start_year: Date.today.year,
+                                 end_year: Date.today.year - 12, discard_day: false,
+                                 order: [:month, :day, :year]  %>
+
+   <%= f.input :DOB, :label => "Date of Birth", as: :date, start_year: Date.today.year - 90,
+                                 end_year: Date.today.year - 12, discard_day: false,
+                                 order: [:month, :day, :year]  %>
+   <%= f.input :address_line_1 %>
+   <%= f.input :address_line_2 %>
+   <%= f.input :city, input_html: {value: 'Springfield'} %>
+   <%= f.input :state, input_html: {value: 'Mo'}%>
+   <%= f.input :zip %>
+   <%= f.input :mobile_phone_number %>
+   <%= f.input :phone_number, :label => "Home phone" %>
+   <%= f.input :alternate_phone %>
+
+   <%= f.input :email_address, input_html: {value: current_user.email} %>
+
+   <%= f.input :preferred_method_of_contact, 
+               :label => "Preferred Method of Contact", 
+               :collection => {"Mobile"=>0, "Home Phone"=>1, "Email"=>2, "Text"=>3}, 
+               :label_method => :first,
+               :value_method => :last %>
+
+   <%= f.input :marital_status,
+              :label => "Marital Status",
+            :collection => {"Married"=>0, "Divorced"=>1, "Widowed"=>2, "Single (never married)"=>3, "Separated"=>4}, 
+               :label_method => :first,
+               :value_method => :last %>
+</div>
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#initial-details">Initial Assessment</a>
+</div>
+<div id="initial-details" class="well collapse">
+   <%= f.input :neighborhood_resident_length_in_months %>
+   <%= f.input :us_citizen, :wrapper => :inline_checkbox %> <p />
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_us_citizen', 'checkbox-value': 'false'} do %>
+     <%= f.input :non_us_citizen_country_of_citizenship, :as => :string %>
+   <% end %>
+   <%= f.input :ethnicity, id: 'ethnicity'%>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_ethnicity', 'option-value': 'Other race, ethnicity, or origin'} do %>
+     <%= f.input :ethnicity_other %>
+   <% end %>
+   <%= f.input :lanuage_primary, input_html: {value: 'English'} %>
+   <%= f.input :language_other, :label => "Other fluent languages" %>
+
+   <%= f.input :springfield_native, :wrapper => :inline_checkbox  %><p />
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_springfield_native', 'checkbox-value': 'true'} do %>
+     <%= f.input :springfield_native_neighborhood %>
+   <% end %>
+
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_springfield_native', 'checkbox-value': 'false'} do %>
+   <%= f.input :springfield_non_native_population %>
+   <%= f.input :springfield_non_native_distance %>
+   <% end %>
+    <div class="well">
+   <%= f.input :childhood_raisedby_other_than_parents, 
+               :label => "Were you raised by anyone other than your parents?",
+               :collection => {"Yes"=>0, "No"=>1, "Temporarily"=>2}, 
+               :label_method => :first,
+               :value_method => :last,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons,
+               wrapper: :vertical_radio_and_checkboxes %>
+
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': 'Temporarily'} do %>
+     <%= f.input :childhood_raisedby_other_than_parents_length_in_months, :label => "If temporarily, for how long (in months)?" %>
+   <% end %>
+
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': 'Yes'} do %>
+     <%= f.input :childhood_raisedby_other_than_parents_by_who, :label => "If yes, by who?" %>
+   <% end %>
+
+   <%= f.input :childhood_residence_away_from_family, 
+               :label => "Did you ever reside in a foster home, group home, or in a home without your family?",
+               :collection => {"Yes"=>0, "No"=>1}, 
+               :label_method => :first,
+               :value_method => :last,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons,
+               wrapper: :vertical_radio_and_checkboxes %>
+
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_residence_away_from_family]', 'radio-value': 'Yes'} do %>            
+        <%= f.input :childhood_residence_away_from_family_length_in_months, 
+               :label => "If yes, for how many months?" %>
+   <% end %>
+   <div class= "well">
+   <h3>How often did your parent or other adult in the household you grew up in...</h3>
+   <%= f.input :childhood_swore_at_or_put_down, 
+               :label => "...swear at, insult, or put you down?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons%>
+
+   <%= f.input :childhood_made_to_feel_afraid_of_injury, 
+               :label => "...act in a way that made you afraid you would be physically hurt?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   <%= f.input :childhood_pushed_shoved_grabbed_slapped, 
+               :label => "...push, grab, shove, or slap you?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   <%= f.input :childhood_hit_hard, 
+               :label => "...hit you so hard that you had marks or were injured?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   <h3>As a child, did you...</h3>
+
+   <%= f.input :childhood_lived_with_alcoholic, 
+               :label => "...live with anyone who was a problem drinker or alcoholic?",
+               :collection => [[0, 'No'], [1, 'Yes']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+
+   <%= f.input :childhood_lived_with_drug_user, 
+               :label => "...live with anyone who used illegal drugs?",
+               :collection => [[0, 'No'], [1, 'Yes']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   <%= f.input :childhood_lived_with_depressed_or_mentally_ill, 
+               :label => "...live with a household member who was depressed or mentally ill?",
+               :collection => [[0, 'No'], [1, 'Yes']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+
+   <%= f.input :childhood_lived_with_member_who_attempted_suicide, 
+               :label => "...live with a household member who attempted suicide?",
+               :collection => [[0, 'No'], [1, 'Yes']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   <%= f.input :childhood_lived_with_member_went_to_jail, 
+               :label => "...have a member of your household go to jail or prison?",
+               :collection => [[0, 'No'], [1, 'Yes']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_lived_with_member_went_to_jail]', 'radio-value': 'Yes'} do %>            
+        <%= f.input :childhood_jailed_family_member_which, :label => "If yes, which member of the household?" %>
+   <% end %>
+
+   <h3>As a child, did you ever witness or were aware that your parent/gaurdian/caregiver was...</h3>
+
+   <%= f.input :childhood_caregiver_was_pushed_shoved_grabbed_slapped, 
+               :label => "...ever pushed, grabbed, slapped, or had something thrown at her/him?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   <%= f.input :childhood_caregiver_bitten_or_hit, 
+               :label => "...ever bitten hit with a fist, or hit with something hard?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   <%= f.input :childhood_caregiver_hit_repeatedly, 
+               :label => "...ever repeatedly hit?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   <%= f.input :childhood_caregiver_threatened_with_weapon, 
+               :label => "...ever threatened with, or hurt by a knife or gun?",
+               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   </div></div>
+</div>
+
+   <div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#accountability-details">Accountability</a>
+    </div>
+   <div id="accountability-details" class="well collapse">
+   	
+      <h3>Accountability:</h3>
+      <%= f.input :willing_and_able_to_commit_to_program, 
+                  :label=>"Are you able and willing to commit to a one-year program with a two-year research follow-up, and to attend weekly classes an weekly meetings?",
+                  :collection => {"Yes"=>true, "No"=>false}, 
+                  :label_method => :first,
+                  :value_method => :last%>
+
+<%= f.input :specific_days_that_do_not_work, 
+                  :label=>"Are there specific days or times that do not work for you?",
+                  :collection => {"Yes"=>0, "No"=>1}, 
+                  :label_method => :first,
+                  :value_method => :last%>
+<%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_specific_days_that_do_not_work', 'option-value': '0'} do %>            
+        <%= f.input :days_and_times_not_available, 
+               :label => "Please list days and times that you are not available?" %>
+   <% end %>
+</div>
+
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#employment-details">Employment</a>
+</div>
+ <div id="employment-details" class="well collapse">
+  <h3>Employment:</h3>
+   <%= f.input :currently_employed,
+               :label => "Are you currently employed?",
+               :collection => {"Yes"=>0, "No"=>1, "Disabled"=>3, "Retired"=>4, "Temporary/Seasonal"=>5},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_currently_employed', 'option-value': '0'} do %>            
+        <%= f.input :employed_full_or_part_time, 
+                    :label => "Full-Time or Part Time?",
+                    :collection => {"Full-Time"=>0, "Part-Time"=>1},
+                    :label_method => :first,
+                    :value_method => :last %>
+        <%= f.input :employer %>
+        <%= f.input :position %>
+        <%= f.input :avg_hours_worked_per_week, :label => "Hours worked per week (Average number of hours per week for the last 30 days)" %>
+        <%= f.input :hourly_wage, :label => "If hourly, what is your hourly wage?" %>
+        <%= f.input :salary, :label => "If salaried, what is your salary?" %>
+        <%= f.input :employer_benefits, :label => "List any benefits from your employer (sick leave, etc:" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_currently_employed', 'option-value': '1'} do %> 
+   <%= f.input :not_employed_but_eligible,
+               :label => "If you are not currently employed, are you eligible to work?",
+               :collection => {"Yes"=>0, "No"=>1},
+               :label_method => :first,
+               :value_method => :last  %>
+   <% end %> 
+
+   <%= f.input :how_many_jobs_in_last_six_months, :label => "How many jobs have you had in the last six months?" %>
+   <%= f.input :total_family_income_from_all_sources, :label => "Total Monthly Family Income/Assistance (from all sources):" %>
+</div>
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#income-details">Income</a>
+</div>
+ <div id="income-details" class="well collapse">  <h3>Income:</h3>
+<%= f.input :child_support, 
+               :label => "Child Support", 
+               :collection => {"eligible, no income benefit"=>0, "eligible, partial or irregular income"=>1, "eligible, receives full amount of income ordered"=>2, "not eligible / not applicable"=>3}, 
+               :label_method => :first,
+               :value_method => :last %> 
+<%= f.input :other_sources_of_income, :label => "List other sources of income (friends, family, assistance/support):" %>
+
+<%= f.input :currently_file_taxes, 
+            :label => "Do you currently file taxes?", 
+            :id => "currently_file_taxes",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+<%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_currently_file_taxes', 'option-value': 'true'} do %>
+<%= f.input :receive_earned_income_tax_credit, 
+            :label => "Do you currently receive earned income tax credit?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+<% end %>
+</div>
+
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#education-details">Education</a>
+</div>
+ <div id="education-details" class="well collapse">  <h3>Education:</h3>
+<%= f.input :highest_education_attained, 
+            :label => "**Educational Attainment: (Highest Degree Earned)",
+            :collection => {"Less than high school"=>0, "High School Diploma (or equivalent, HiSET)"=>1, "Attended, but did not complete college or technical training"=>2, "Completed technical training (CNA, cosmetology, auto mechanic, etc)"=>3, "Associate's Degree (2-year degree)"=>4, "Bachelor's Degree (4-year degree)"=>5, "Master's Degree"=>6}, 
+               :label_method => :first,
+               :value_method => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '0'} do %> 
+      <%= f.input :last_grade_completed, :label => "What was the last grade you completed?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '3'} do %> 
+      <%= f.input :technical_training_degree, :label => "What type of technical degree did you get?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '4'} do %> 
+      <%= f.input :associates_degree_type, :label => "What was your Associates degree in?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '5'} do %> 
+      <%= f.input :bachelors_degree_type, :label => "What was your Bachelor's degree in?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '6'} do %> 
+      <%= f.input :associates_degree_type, :label => "What was your Masters degree in?" %>
+   <% end %>
+
+  
+  <%= f.input :highest_education_attained_by_parent_or_caretaker, 
+            :label => "**Educational Attainment by parent or caretaker: (Highest Degree Earned)",
+            :collection => {"Less than high school"=>"Less than high school", "High School Diploma (or equivalent, HiSET)"=>"High School Diploma (or equivalent, HiSET)", "Attended, but did not complete college or technical training"=>"Attended, but did not complete college or technical training", "Completed technical training (CNA, cosmetology, auto mechanic, etc)"=>"Completed technical training (CNA, cosmetology, auto mechanic, etc)", "Associate's Degree (2-year degree)"=>"Associate's Degree (2-year degree)", "Bachelor's Degree (4-year degree)"=>"Bachelor's Degree (4-year degree)", "Master's Degree"=>"Master's Degree"}, 
+               :label_method => :first,
+               :value_method => :last %>
+</div>
+
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#parenting-details">Parenting</a>
+</div>
+ <div id="parenting-details" class="well collapse">  <h3>Parenting</h3>
+    <%= f.input :children_living_outside_home, 
+                :label => "Do you have any children living outside the home?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %> 
+    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_children_living_outside_home', 'option-value': 'true'} do %> 
+      <%= f.input :parenting_class_which, :label => "How many?" %>
+   <% end %> 
+
+    <%= f.input :parenting_class, 
+                :label => "In the last three years, have you ever completed a parenting program? (Pregnancy ABC's; 1-2-3 Magic; Love & Logic; Triple P -- Positive Parenting Program; etc.)",
+                :collection => {"Yes"=>0, "No"=>1},
+                :label_method => :first,
+                :value_method => :last %>  
+    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_parenting_class', 'option-value': '0'} do %> 
+      <%= f.input :parenting_class_which, :label => "Which program?" %>
+   <% end %> 
+</div>
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#household-details">Household</a>
+</div>
+ <div id="household-details" class="well collapse">    
+ 	    <% if @individual.household_members.count == 0 %>
+          <h3>Add Household Members (Other than yourself)</h3>
+        <% else %>
+          <h3>Current Members of Household (Other than yourself)</h3>
+        <% end %>
+        <div class="nested-fields">
+            <table class="table" id="members">
+               <tr>
+                  <th>Name</th>
+                  <th>Relationship</th>
+                  <th>Age</th>
+                  <th>School</th>
+                  <th>Care Provider</th>
+                  <th></th>
+                </tr>
+                <%= f.simple_fields_for :household_members, :wrapper => false do |household_member| %>
+                  <%= render 'household_member_fields', f: household_member %>
+                <% end %>
+               <tr>
+                 <td colspan="6">
+                   <div class="nested-fields">
+                     <%= link_to_add_association 'add household member', f, :household_members %>
+                   </div>
+                 </td>
+            </table>
+        </div>
+</div>
+      
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#childcare-details">Childcare</a>
+</div>
+ <div id="childcare-details" class="well collapse">   <h3>Quality Childcare</h3>
+  <%= f.input :quality_childcare, 
+              :label => "Please select which of the following best describes your family's current situation:",
+              :collection => {"Child care is needed for education or employment goal but is unavailable"=>0,
+                              "Child care and subsidy are available but child care provider will not / cannot accept subsidy, or cost is unaffordable"=>1,
+                              "Child care is available and affordable (may use subsidy) but of poor quality.  There is no emergency backup caregiver or plan"=>2,
+                              "Child care is available, and affordable (may use subsidy), and good quality.  There is no emergency backup caregiver or plan"=>3,
+                              "Child care is available, affordable, good quality and there is at least one emergency backup caregiver or plan."=>4, 
+                              "Childcare not needed"=>5},
+              :label_method => :first,
+              :value_method => :last %>
+
+   <%= f.input :children_currently_in_quality_care,
+               :label => "Are you children (2+ years old) currently in accredited child care / after school care?",
+               :collection => {"Yes"=>0, "No"=>1, "N/A"=>2},
+               :label_method => :first,
+               :value_method => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_children_currently_in_quality_care', 'option-value': '0'} do %> 
+     <%= f.input :children_in_quality_care_explain, :label => "Please explain:" %>
+   <% end %> 
+</div>
+
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#health-details">Health / Wellbeing</a>
+</div>
+ <div id="health-details" class="well collapse"> 
+  <h3>Health / Wellbeing</h3>
+   <%= f.input :have_health_care_in_some_form,
+               :label => "Do you have any form of health care?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_have_health_care_in_some_form', 'option-value': 'true'} do %> 
+     <%= f.input :have_health_care_in_some_form_explain, :label => "Who is the provider? (ex. MO Healthnet, Employer Provided, Affordable Care Act, etc.)" %>
+   <% end %> 
+
+   <%= f.input :children_have_health_care_in_some_form,
+               :label => "Do your children have any form of health care?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_children_have_health_care_in_some_form', 'option-value': 'true'} do %> 
+     <%= f.input :children_have_health_care_in_some_form_explain, :label => "Who is the provider? (ex. MO Healthnet, Employer Provided, Affordable Care Act, etc.)" %>
+   <% end %> 
+</div>
+
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#housing-details">Affordable / Stable Housing</a>
+</div>
+ <div id="housing-details" class="well collapse">   <h3>Affordable / Stable Housing</h3>
+  <%= f.input :currently_have_stable_housing, 
+              :label => "Do you currently have stable housing?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %> 
+  <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_currently_have_stable_housing', 'option-value': 'true'} do %> 
+     <%= f.input :rent_or_own, :label => "Do you rent or own?",
+                 :collection => {"Rent"=>0, "Own"=>1},
+                 :label_method => :first, 
+                 :value_method => :last  %>
+     <%= f.input :monthly_rent_or_mortgage_payment, :label => "What is your monthly mortgage/rent payment?" %>
+     <%= f.input :receive_rent_rebate, 
+              :label => "Do you receive Rent Rebate?",
+              :collection => {"Yes"=>0, "No"=>1},
+              :label_method => :first, 
+              :value_method => :last %>
+      <%= f.input :currently_receive_public_housing_assistance, 
+              :label => "Do you currently receive public housing assistance (HUD or other)?",
+              :collection => {"Yes"=>0, "No"=>1},
+              :label_method => :first, 
+              :value_method => :last %> 
+      <%= f.input :currently_receive_private_subsidized_housing_assistance, 
+              :label => "Do you currently receive private housing assistance?",
+              :collection => {"Yes"=>0, "No"=>1},
+              :label_method => :first, 
+              :value_method => :last %>
+      <%= f.input :use_section_eight_voucher, 
+              :label => "Do you currently use section 8 voucher?",
+              :collection => {"Yes"=>0, "No"=>1},
+              :label_method => :first, 
+              :value_method => :last %>        
+   <% end %> 
+</div>
+
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#transportation-details">Transportation</a>
+</div>
+ <div id="transportation-details" class="well collapse">   <h3>Transportation</h3>
+  <%= f.input :currently_have_reliable_transportation,
+              :label => "Do you have reliable transportation?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_currently_have_reliable_transportation', 'option-value': 'true'} do %> 
+     <%= f.input :reliable_transportation_method, 
+                 :label => "What are your methods of transportation?",
+                 :collection => {"Bus"=>0, "Car/Personal Vehicle"=>1, "Other"=>2},
+                 :label_method => :first,
+                 :value_method => :last %>
+
+
+      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_reliable_transportation_method', 'option-value': '2'} do %> 
+        <%= f.input :reliable_transportation_method_other, :label => "What is your method of transportation?" %>
+      <% end %> 
+   <% end %> 
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_currently_have_reliable_transportation', 'option-value': false} do %>
+     <%= f.input :possible_to_obtain_reliable_transportation_in_sixty_days,
+              :label => "Is it possible to obtain reliable transportation in 60 days?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+   <% end %>
+   <%= f.input :have_required_auto_insurance,
+              :label => "Do you have auto insurance coverage required by the state of Missouri?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+   <%= f.input :have_valid_id_or_drivers_license,
+              :label => "Do you have a valid ID or driver's license?",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_have_valid_id_or_drivers_license', 'option-value': 'false'} do %>
+     <%= f.input :no_valid_id_or_license_reason,
+              :label => "Has your license been:",
+              :collection => {"Revoked"=>0, "Lost"=>1, "Suspended"=>2},
+              :label_method => :first,
+              :value_method => :last %>
+     <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_no_valid_id_or_license_reason', 'option-value': '0'} do %>
+       <%= f.input :revoked_or_suspended_license_explanation, :label => "Please explain why your license was revoked:" %>
+     <% end %>
+   <% end %>
+</div>
+
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#legal-details">Legal</a>
+</div>
+ <div id="legal-details" class="well collapse">   <h3>Legal Resolution</h3>
+  <%= f.input :ever_convicted_of_felony, 
+              :label => "Have you ever been convicted of a felony.",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+  <%= f.input :ever_convicted_of_misdemeanor, 
+              :label => "Have you ever been convicted of a misdemeanor.",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>  
+  <%= f.input :current_pending_court_cases, 
+              :label => "Do you currently have any pending court cases.",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>  
+  <%= f.input :any_legal_matters_needing_resolution, 
+              :label => "Do you have any legal matters needing resolution? (adoption, divorce, etc.)",
+              :collection => {"Yes"=>true, "No"=>false},
+              :label_method => :first,
+              :value_method => :last %>
+
+  </div>
+
+<div class="col-md-10 text-center">
+	   <%= f.button :submit, :value => "#{(@individual.persisted? ? 'Update information' : 'Apply to the Northwest Project')}" %>
+</div>
+   </fieldset>
+
+<% end %>
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#assessment-details">Assessments</a>
+</div>
+ <div id="assessment-details" class="well collapse"> <%= link_to "Enter Follow Up Client Intake", new_assessment_path(individual_id: @individual), class: "btn btn-default", method: 'get' %>
+<p>
+<%= "#{@individual.first_name} has #{@individual.assessments.count} #{"assessment".pluralize(@individual.assessments.count)} entered so far." %><p>
+<% @individual.assessments.each do |assessment| %>
+<%= link_to "Assessment entered on #{assessment.created_at}", edit_assessment_path(assessment) %><br>
+<% end %>
+
+</div>
