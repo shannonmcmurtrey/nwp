@@ -17,7 +17,22 @@
   <% end %>
      <%= f.input :still_resident_of_neighborhood_years, :label=>"How many years have you been a resident of your neighborhood?" %>
      <%= f.input :still_resident_of_neighborhood_months, :label=>"...and how many months (past the years in the previous field) have you been a resident of your neighborhood?" %>
-<div class="well">
+
+  <%= f.input :self_sufficency_goal,
+               :label => "What is your major goal for becoming self-sufficient?",
+               :collection => {"Employment"=>0, "Education"=>1, "Other"=>2},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+  <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_self_sufficency_goal', 'option-value': '2'} do %>            
+        <%= f.input :self_sufficiency_goal_other, 
+                    :label => "Please describe your goal for becoming self-sufficient:"%>
+
+  <% end %>
+
+  <div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#employment-details">Employment</a>
+</div>
+ <div id="employment-details" class="well">
   <h3>Employment:</h3>
    <%= f.input :currently_employed,
                :label => "Are you currently employed?",
@@ -45,17 +60,26 @@
 
    <%= f.input :number_of_jobs_in_last_six_months, :label => "How many jobs have you had in the last six months?" %>
 </div>
-  <%= f.input :self_sufficency_goal,
-               :label => "What is your major goal for becoming self-sufficient?",
-               :collection => {"Employment"=>0, "Education"=>1, "Other"=>2},
+   <%= f.input :filed_1040_in_last_year,
+               :label => "Did you file 1040 tax return for last calendar year?",
+               :collection => {"Yes"=>1, "No"=>0},
                   :label_method => :first,
                   :value_mathod => :last %>
-  <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_self_sufficency_goal', 'option-value': '2'} do %>            
-        <%= f.input :self_sufficiency_goal_other, 
-                    :label => "Please describe your goal for becoming self-sufficient:"%>
-
+   <%= f.input :last_calendar_years_income, :label => "Last calendar year's adjusted gross income (from 1040 tax return)?" %>
+   <%= f.input :currently_receive_earned_income_tax_credit,
+               :label => "Do you currently receive earned income tax credit?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_receive_earned_income_tax_credit', 'option-value': '1'} do %>            
+        <%= f.input :earned_income_tax_credit_amount, :label => "Amount?"%>
   <% end %>
-
+  <%= f.input :child_support, 
+               :label => "Child Support:", 
+               :collection => {"eligible, no income benefit"=>0, "eligible, partial or irregular income"=>1, "eligible, receives full amount of income ordered"=>2, "not eligible / not applicable"=>3}, 
+               :label_method => :first,
+               :value_method => :last %> 
+  
   <%= f.input :currently_registered_to_vote,
                :label => "Are you currently registered to vote?",
                :collection => {"Yes"=>1, "No"=>0},
@@ -251,19 +275,7 @@
                    :collection => {"Very Happy"=>4,"Happy"=>3, "Neutral"=>2, "Unhappy"=>1, "Very unhappy"=>0},
                       :label_method => :first,
                       :value_mathod => :last %>
-        <%= f.input :ever_been_to_jail,
-               :label => "Have you personally ever gone to jail, juvenile detention, treatment facility, or prison?",
-               :collection => {"Yes"=>1, "No"=>0},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_ever_been_to_jail', 'option-value': '1'} do %>            
-          <%= f.input :in_need_of_current_criminal_resolution,
-               :label => "Is there a current need for resolution of criminal background?",
-               :collection => {"Yes"=>1, "No"=>0},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <% end %>
-
+      
         <%= f.input :household_member_in_jail,
                :label => "Is a household member currently in jail?",
                :collection => {"Yes"=>1, "No"=>0},
@@ -276,19 +288,19 @@
                   :label_method => :first,
                   :value_mathod => :last %>
         <% end %>
-
-        <%= f.input :adult_household_member_gone_to_jail,
-               :label => "As an adult, has a household member ever gone to jail or prison?",
+        <%= f.input :convicted_of_crime_last_six_months,
+               :label => "Have you been convicted of a crime in the last six months?",
                :collection => {"Yes"=>1, "No"=>0},
                   :label_method => :first,
                   :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_adult_household_member_gone_to_jail', 'option-value': '1'} do %>            
-          <%= f.input :adult_criminal_resolution_needed,
+       <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_convicted_of_crime_last_six_months', 'option-value': '1'} do %>            
+          <%= f.input :in_need_of_current_criminal_resolution,
                :label => "Is there a current need for resolution of criminal background?",
                :collection => {"Yes"=>1, "No"=>0},
                   :label_method => :first,
                   :value_mathod => :last %>
         <% end %>
+       
 
         <%= f.input :other_legal_matters_need_resolved,
                :label => "Any other legal matters that need resolved?",
@@ -390,6 +402,8 @@
      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_people_in_my_life_i_can_trust_for_support', 'option-value': '1'} do %>   
           <%= f.input :number_of_people_trusted_for_emotional_or_moral_support,
                :label => "How many?" %><p>
+          <%= f.input :number_of_people_help_financially,
+               :label => "How many of these people would be able to help you in times of financial trouble?" %><p>
         <% end %>
      <%= f.input :people_in_my_life_serving_as_mentors,
                :label => "Are there pople in your life who have served as mentors or have guided you to resources such as job opportunities, clubs, and legal services?",
@@ -671,6 +685,39 @@
                   :value_mathod => :last %>
 
     </div>
+
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#education-details">Education</a>
+</div>
+ <div id="education-details" class="well collapse in">  <h3>Education:</h3>
+<%= f.input :highest_education_attained, 
+            :label => "**Educational Attainment: (Highest Degree Earned)",
+            :collection => {"Less than high school"=>0, "High School Diploma (or equivalent, HiSET)"=>1, "Attended, but did not complete college or technical training"=>2, "Completed technical training (CNA, cosmetology, auto mechanic, etc)"=>3, "Associate's Degree (2-year degree)"=>4, "Bachelor's Degree (4-year degree)"=>5, "Master's Degree"=>6}, 
+               :label_method => :first,
+               :value_method => :last %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '0'} do %> 
+      <%= f.input :last_grade_completed, :label => "What was the last grade you completed?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '3'} do %> 
+      <%= f.input :technical_training_degree, :label => "What type of technical degree did you get?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '4'} do %> 
+      <%= f.input :associates_degree_type, :label => "What was your Associates degree in?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '5'} do %> 
+      <%= f.input :bachelors_degree_type, :label => "What was your Bachelor's degree in?" %>
+   <% end %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '6'} do %> 
+      <%= f.input :associates_degree_type, :label => "What was your Masters degree in?" %>
+   <% end %>
+
+
+</div>
+ <%= f.input :marital_status,
+              :label => "Marital Status",
+            :collection => {"Married"=>0, "Divorced"=>1, "Widowed"=>2, "Single (never married)"=>3, "Separated"=>4}, 
+               :label_method => :first,
+               :value_method => :last %>
 
   <div class="actions">
     <%= f.submit %>

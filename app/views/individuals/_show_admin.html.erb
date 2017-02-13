@@ -69,7 +69,8 @@
       <a class="btn collapse-data-btn" data-toggle="collapse" href="#initial-details">Initial Assessment</a>
 </div>
 <div id="initial-details" class="well collapse">
-   <%= f.input :still_resident_of_neighborhood_years %>
+
+
    <%= f.input :us_citizen, :wrapper => :inline_checkbox %> <p />
    <%= content_tag :div, class: 'js-dependent-fields', data: {'checkbox-id': 'individual_us_citizen', 'checkbox-value': 'false'} do %>
      <%= f.input :non_us_citizen_country_of_citizenship, :as => :string %>
@@ -100,11 +101,11 @@
                :as => :radio_buttons,
                wrapper: :vertical_radio_and_checkboxes %>
 
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': 'Temporarily'} do %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': '2'} do %>
      <%= f.input :childhood_raisedby_other_than_parents_length_in_months, :label => "If temporarily, for how long (in months)?" %>
    <% end %>
 
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': 'Yes'} do %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': '2'} do %>
      <%= f.input :childhood_raisedby_other_than_parents_by_who, :label => "If yes, by who?" %>
    <% end %>
 
@@ -591,4 +592,14 @@
 <%= link_to "Assessment entered on #{assessment.created_at}", edit_assessment_path(assessment) %><br>
 <% end %>
   </div>
+
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#notes-details">Client Notes</a>
+</div>
+ <div id="notes-details" class="well collapse"> 
+<p>
+Notes here...
+  </div>
+
+
 </div>
