@@ -200,7 +200,7 @@
                :collection => {"A family member's health problems prohibit employment or other goal options.  Or, family member is in need of 24 hour care."=>1, 
                                "A family member's health problem regularly interferes with employment or other goals"=>2,
                                "A family member's health problems occasionally interferes with employment or other goal options"=>3,
-                               "A family member's physical health problem does not interfere with emploument or other goal options"=>4,
+                               "A family member's physical health problem does not interfere with employment or other goal options"=>4,
                                "There are no physical health problems for any family member at this time"=>5},
                   :label_method => :first,
                   :value_mathod => :last %>
@@ -320,7 +320,9 @@
                :label => "When was the last time you used?",
                :collection => {"Yes"=>1, "No"=>0},
                   :label_method => :first,
-                  :value_mathod => :last %><p>
+                  :value_mathod => :last,
+                  :start_year => 1950, 
+                  :end_year => Time.now.year %><p>
         <% end %>
     <%= f.input :meth,
                :label => "Have you ever used meth?",
@@ -333,7 +335,9 @@
                :label => "When was the last time you used?",
                :collection => {"Yes"=>1, "No"=>0},
                   :label_method => :first,
-                  :value_mathod => :last %><p>
+                  :value_mathod => :last,
+                  :start_year => 1950, 
+                  :end_year => Time.now.year %><p>
         <% end %>
       <%= f.input :marijuana,
                :label => "Have you ever used marijuana?",
@@ -346,7 +350,9 @@
                :label => "When was the last time you used?",
                :collection => {"Yes"=>1, "No"=>0},
                   :label_method => :first,
-                  :value_mathod => :last %><p>
+                  :value_mathod => :last,
+                  :start_year => 1950, 
+                  :end_year => Time.now.year %><p>
         <% end %>
         <%= f.input :heroin_opiates,
                :label => "Have you ever used Heroin/Opiates?",
@@ -359,7 +365,9 @@
                :label => "When was the last time you used?",
                :collection => {"Yes"=>1, "No"=>0},
                   :label_method => :first,
-                  :value_mathod => :last %><p>
+                  :value_mathod => :last,
+                  :start_year => 1950, 
+                  :end_year => Time.now.year %><p>
         <% end %>
         <%= f.input :other_boolean,
                :label => "Have you ever used any other drug not listed previously?",
@@ -372,7 +380,9 @@
                :label => "When was the last time you used?",
                :collection => {"Yes"=>1, "No"=>0},
                   :label_method => :first,
-                  :value_mathod => :last %><p>
+                  :value_mathod => :last,
+                  :start_year => 1950, 
+                  :end_year => Time.now.year %><p>
         <% end %>
   </div>
 

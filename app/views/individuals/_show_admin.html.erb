@@ -101,11 +101,11 @@
                :as => :radio_buttons,
                wrapper: :vertical_radio_and_checkboxes %>
 
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': '2'} do %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': '0'} do %>
      <%= f.input :childhood_raisedby_other_than_parents_length_in_months, :label => "If temporarily, for how long (in months)?" %>
    <% end %>
 
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': '2'} do %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': '0'} do %>
      <%= f.input :childhood_raisedby_other_than_parents_by_who, :label => "If yes, by who?" %>
    <% end %>
 
