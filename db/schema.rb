@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217161154) do
+ActiveRecord::Schema.define(version: 20170217200411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -422,6 +422,17 @@ ActiveRecord::Schema.define(version: 20170217161154) do
     t.index ["cohort_id"], name: "index_meetings_on_cohort_id", using: :btree
   end
 
+  create_table "next_steps", force: :cascade do |t|
+    t.integer  "goal_id"
+    t.string   "next_step"
+    t.string   "responsible_party"
+    t.date     "due_date"
+    t.boolean  "completed"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["goal_id"], name: "index_next_steps_on_goal_id", using: :btree
+  end
+
   create_table "notes", force: :cascade do |t|
     t.integer  "individual_id"
     t.integer  "user_id"
@@ -535,6 +546,7 @@ ActiveRecord::Schema.define(version: 20170217161154) do
   add_foreign_key "individuals", "organizations"
   add_foreign_key "individuals", "users"
   add_foreign_key "meetings", "cohorts"
+  add_foreign_key "next_steps", "goals"
   add_foreign_key "notes", "individuals"
   add_foreign_key "notes", "users"
   add_foreign_key "users", "organizations"
