@@ -2,6 +2,7 @@ require 'Nwpadmin'
 Rails.application.routes.draw do
 
 
+  resources :next_steps
   resources :notes
   resources :goals
   resources :attendances

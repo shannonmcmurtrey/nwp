@@ -1,0 +1,1 @@
+json.array! @next_steps, partial: 'next_steps/next_step', as: :next_step

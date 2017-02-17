@@ -1,0 +1,15 @@
+<%= simple_form_for(@next_step) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :goal %>
+    <%= f.input :next_step %>
+    <%= f.input :responsible_party %>
+    <%= f.input :due_date %>
+    <%= f.input :completed %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

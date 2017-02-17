@@ -1,0 +1,1 @@
+json.partial! "next_steps/next_step", next_step: @next_step

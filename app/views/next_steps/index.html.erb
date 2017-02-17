@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Next Steps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Next step</th>
+      <th>Responsible party</th>
+      <th>Due date</th>
+      <th>Completed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @next_steps.each do |next_step| %>
+      <tr>
+        <td><%= next_step.goal %></td>
+        <td><%= next_step.next_step %></td>
+        <td><%= next_step.responsible_party %></td>
+        <td><%= next_step.due_date %></td>
+        <td><%= next_step.completed %></td>
+        <td><%= link_to 'Show', next_step %></td>
+        <td><%= link_to 'Edit', edit_next_step_path(next_step) %></td>
+        <td><%= link_to 'Destroy', next_step, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Next Step', new_next_step_path %>

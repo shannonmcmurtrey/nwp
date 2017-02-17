@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  goal: one
+  next_step: MyString
+  responsible_party: MyString
+  due_date: 2017-02-17
+  completed: false
+
+two:
+  goal: two
+  next_step: MyString
+  responsible_party: MyString
+  due_date: 2017-02-17
+  completed: false

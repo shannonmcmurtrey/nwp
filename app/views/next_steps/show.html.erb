@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Goal:</strong>
+  <%= @next_step.goal %>
+</p>
+
+<p>
+  <strong>Next step:</strong>
+  <%= @next_step.next_step %>
+</p>
+
+<p>
+  <strong>Responsible party:</strong>
+  <%= @next_step.responsible_party %>
+</p>
+
+<p>
+  <strong>Due date:</strong>
+  <%= @next_step.due_date %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @next_step.completed %>
+</p>
+
+<%= link_to 'Edit', edit_next_step_path(@next_step) %> |
+<%= link_to 'Back', next_steps_path %>
