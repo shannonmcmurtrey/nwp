@@ -2,15 +2,20 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :individual %>
-    <%= f.association :user %>
     <%= f.input :note_date %>
     <%= f.input :method_of_contact %>
     <%= f.input :contact_length %>
-    <%= f.input :update_on_last_action %>
-    <%= f.input :needs_addressed %>
-    <%= f.input :other_notes %>
+    <%= f.label "Update on Last Action" %><br>
+    <%= f.text_area(:update_on_last_action, size: '50x10') %><br>
+    <%= f.label "Needs Addressed" %><br>
+    <%= f.text_area(:needs_addressed, size: '50x10') %><br>
+    <%= f.label "Other Notes" %><br>
+    <%= f.text_area(:other_notes, size: '50x10') %><br>
     <%= f.input :next_appointment %>
+    <%= f.hidden_field :individual_id, :value => @individual.id %>
+    <%= f.hidden_field :user_id, :value => @user.id %>
+
+
   </div>
 
   <div class="form-actions">

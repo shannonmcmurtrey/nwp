@@ -1,5 +1,6 @@
 class GoalsController < ApplicationController
-  before_action :verify_is_admin, :set_goal, only: [:show, :edit, :update, :destroy]
+  before_filter :verify_is_admin
+  before_action :set_goal, only: [:show, :edit, :update, :destroy]
 
   # GET /goals
   # GET /goals.json
@@ -70,5 +71,8 @@ class GoalsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def goal_params
       params.require(:goal).permit(:individual_id, :goal, :goal_start, :goal_finish, :completion_percentage)
+    end
+     def verify_is_admin
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
     end
 end

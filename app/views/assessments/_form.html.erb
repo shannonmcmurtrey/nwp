@@ -15,6 +15,8 @@
       </ul>
     </div>
   <% end %>
+    <%= f.hidden_field :individual_id, :value => @individual.id %>
+
      <%= f.input :still_resident_of_neighborhood_years, :label=>"How many years have you been a resident of your neighborhood?" %>
      <%= f.input :still_resident_of_neighborhood_months, :label=>"...and how many months (past the years in the previous field) have you been a resident of your neighborhood?" %>
 

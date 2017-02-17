@@ -1,4 +1,5 @@
 class MeetingsController < ApplicationController
+  before_filter :verify_is_admin
   before_action :set_meeting, only: [:show, :edit, :update, :destroy]
 
   # GET /meetings

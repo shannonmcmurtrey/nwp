@@ -28,10 +28,11 @@ class AssessmentsController < ApplicationController
   # POST /assessments.json
   def create
     @assessment = Assessment.new(assessment_params)
+    @individual = @assessment.individual
 
     respond_to do |format|
       if @assessment.save
-        format.html { redirect_to @assessment, notice: 'Assessment was successfully created.' }
+        format.html { redirect_to @individual, notice: 'Assessment was successfully created.' }
         format.json { render :show, status: :created, location: @assessment }
       else
         format.html { render :new }
@@ -69,6 +70,7 @@ class AssessmentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_assessment
       @assessment = Assessment.find(params[:id])
+      @individual = @assessment.individual
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

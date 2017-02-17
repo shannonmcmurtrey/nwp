@@ -597,8 +597,12 @@
       <a class="btn collapse-data-btn" data-toggle="collapse" href="#notes-details">Client Notes</a>
 </div>
  <div id="notes-details" class="well collapse"> 
+ <%= link_to "Enter Client Note", new_note_path(individual_id: @individual, user_id: current_user), class: "btn btn-default", method: 'get' %>
 <p>
-Notes here...
+<%= "#{@individual.first_name} has #{@individual.notes.count} #{"note".pluralize(@individual.notes.count)} entered so far." %><p>
+<% @individual.notes.each do |note| %>
+<%= link_to "Note entered on #{note.created_at}", edit_note_path(note) %>:  <%= note.update_on_last_action %><br>
+<% end %>
   </div>
 
 

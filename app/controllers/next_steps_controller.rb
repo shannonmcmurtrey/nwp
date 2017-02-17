@@ -1,4 +1,5 @@
 class NextStepsController < ApplicationController
+  before_filter :verify_is_admin
   before_action :set_next_step, only: [:show, :edit, :update, :destroy]
 
   # GET /next_steps
