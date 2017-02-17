@@ -3,7 +3,8 @@
 
   <div class="form-inputs">
     <%= f.association :individual %>
-    <%= f.input :goal %>
+    <%= f.label "Goal" %>
+    <%= f.text_area(:goal, size: '50x10') %>
     <%= f.input :goal_start %>
     <%= f.input :goal_finish %>
     <%= f.input :completion_percentage %>

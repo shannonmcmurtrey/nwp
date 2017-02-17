@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217200411) do
+ActiveRecord::Schema.define(version: 20170217201416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -257,7 +257,7 @@ ActiveRecord::Schema.define(version: 20170217200411) do
 
   create_table "goals", force: :cascade do |t|
     t.integer  "individual_id"
-    t.string   "goal"
+    t.text     "goal"
     t.date     "goal_start"
     t.date     "goal_finish"
     t.float    "completion_percentage"
@@ -439,9 +439,9 @@ ActiveRecord::Schema.define(version: 20170217200411) do
     t.date     "note_date"
     t.string   "method_of_contact"
     t.string   "contact_length"
-    t.string   "update_on_last_action"
-    t.string   "needs_addressed"
-    t.string   "other_notes"
+    t.text     "update_on_last_action"
+    t.text     "needs_addressed"
+    t.text     "other_notes"
     t.date     "next_appointment"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
