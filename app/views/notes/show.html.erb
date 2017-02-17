@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Individual:</strong>
+  <%= @note.individual %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @note.user %>
+</p>
+
+<p>
+  <strong>Note date:</strong>
+  <%= @note.note_date %>
+</p>
+
+<p>
+  <strong>Method of contact:</strong>
+  <%= @note.method_of_contact %>
+</p>
+
+<p>
+  <strong>Contact length:</strong>
+  <%= @note.contact_length %>
+</p>
+
+<p>
+  <strong>Update on last action:</strong>
+  <%= @note.update_on_last_action %>
+</p>
+
+<p>
+  <strong>Needs addressed:</strong>
+  <%= @note.needs_addressed %>
+</p>
+
+<p>
+  <strong>Other notes:</strong>
+  <%= @note.other_notes %>
+</p>
+
+<p>
+  <strong>Next appointment:</strong>
+  <%= @note.next_appointment %>
+</p>
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213233511) do
+ActiveRecord::Schema.define(version: 20170217161154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -255,6 +255,17 @@ ActiveRecord::Schema.define(version: 20170213233511) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "goals", force: :cascade do |t|
+    t.integer  "individual_id"
+    t.string   "goal"
+    t.date     "goal_start"
+    t.date     "goal_finish"
+    t.float    "completion_percentage"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["individual_id"], name: "index_goals_on_individual_id", using: :btree
+  end
+
   create_table "household_members", force: :cascade do |t|
     t.integer  "individual_id"
     t.string   "name"
@@ -411,6 +422,22 @@ ActiveRecord::Schema.define(version: 20170213233511) do
     t.index ["cohort_id"], name: "index_meetings_on_cohort_id", using: :btree
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.integer  "individual_id"
+    t.integer  "user_id"
+    t.date     "note_date"
+    t.string   "method_of_contact"
+    t.string   "contact_length"
+    t.string   "update_on_last_action"
+    t.string   "needs_addressed"
+    t.string   "other_notes"
+    t.date     "next_appointment"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["individual_id"], name: "index_notes_on_individual_id", using: :btree
+    t.index ["user_id"], name: "index_notes_on_user_id", using: :btree
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.string   "address_line_1"
@@ -502,10 +529,13 @@ ActiveRecord::Schema.define(version: 20170213233511) do
   add_foreign_key "attendances", "individuals"
   add_foreign_key "attendances", "meetings"
   add_foreign_key "cohorts", "organizations"
+  add_foreign_key "goals", "individuals"
   add_foreign_key "household_members", "individuals"
   add_foreign_key "individuals", "cohorts"
   add_foreign_key "individuals", "organizations"
   add_foreign_key "individuals", "users"
   add_foreign_key "meetings", "cohorts"
+  add_foreign_key "notes", "individuals"
+  add_foreign_key "notes", "users"
   add_foreign_key "users", "organizations"
 end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  individual: one
+  goal: MyString
+  goal_start: 2017-02-17
+  goal_finish: 2017-02-17
+  completion_percentage: 1.5
+
+two:
+  individual: two
+  goal: MyString
+  goal_start: 2017-02-17
+  goal_finish: 2017-02-17
+  completion_percentage: 1.5

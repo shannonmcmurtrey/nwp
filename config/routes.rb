@@ -2,6 +2,8 @@ require 'Nwpadmin'
 Rails.application.routes.draw do
 
 
+  resources :notes
+  resources :goals
   resources :attendances
   resources :meetings
   resources :individuals, :has_many => :household_members

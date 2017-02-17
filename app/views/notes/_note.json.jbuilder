@@ -1,0 +1,2 @@
+json.extract! note, :id, :individual_id, :user_id, :note_date, :method_of_contact, :contact_length, :update_on_last_action, :needs_addressed, :other_notes, :next_appointment, :created_at, :updated_at
+json.url note_url(note, format: :json)

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Individual:</strong>
+  <%= @goal.individual %>
+</p>
+
+<p>
+  <strong>Goal:</strong>
+  <%= @goal.goal %>
+</p>
+
+<p>
+  <strong>Goal start:</strong>
+  <%= @goal.goal_start %>
+</p>
+
+<p>
+  <strong>Goal finish:</strong>
+  <%= @goal.goal_finish %>
+</p>
+
+<p>
+  <strong>Completion percentage:</strong>
+  <%= @goal.completion_percentage %>
+</p>
+
+<%= link_to 'Edit', edit_goal_path(@goal) %> |
+<%= link_to 'Back', goals_path %>

@@ -1,0 +1,19 @@
+<%= simple_form_for(@note) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :individual %>
+    <%= f.association :user %>
+    <%= f.input :note_date %>
+    <%= f.input :method_of_contact %>
+    <%= f.input :contact_length %>
+    <%= f.input :update_on_last_action %>
+    <%= f.input :needs_addressed %>
+    <%= f.input :other_notes %>
+    <%= f.input :next_appointment %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

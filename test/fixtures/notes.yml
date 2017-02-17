@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  individual: one
+  user: one
+  note_date: 2017-02-17
+  method_of_contact: MyString
+  contact_length: MyString
+  update_on_last_action: MyString
+  needs_addressed: MyString
+  other_notes: MyString
+  next_appointment: 2017-02-17
+
+two:
+  individual: two
+  user: two
+  note_date: 2017-02-17
+  method_of_contact: MyString
+  contact_length: MyString
+  update_on_last_action: MyString
+  needs_addressed: MyString
+  other_notes: MyString
+  next_appointment: 2017-02-17
