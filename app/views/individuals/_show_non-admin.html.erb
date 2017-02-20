@@ -1,3 +1,7 @@
 <p id="notice"><%= notice %></p>
   
   <h2>Hello <%= @individual.first_name %>. Thank you for participating in the Northwest Project!</h2>
+  <%= "You currently are working on #{@individual.goals.count} #{"goal".pluralize(@individual.goals.count)}." %><p>
+<% @individual.goals.each do |goal| %>
+<%= link_to "Goal: \"#{goal.goal}\" that was created on #{goal.created_at.strftime("%m/%d/%Y")} is currently #{goal.completion_percentage}% complete. ", edit_goal_path(goal) %> <br>
+ <% end %>

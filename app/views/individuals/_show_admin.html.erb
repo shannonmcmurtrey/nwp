@@ -619,7 +619,8 @@
 <p>
 <%= "#{@individual.first_name} has #{@individual.goals.count} #{"goal".pluralize(@individual.goals.count)}." %><p>
 <% @individual.goals.each do |goal| %>
-<%= link_to "Goal created on #{goal.created_at.strftime("%m/%d/%Y")}: #{goal.goal}", edit_goal_path(goal) %><br>
+<%= link_to "Goal: \"#{goal.goal}\" that was created on #{goal.created_at.strftime("%m/%d/%Y")} is currently #{goal.completion_percentage}% complete. ", edit_goal_path(goal) %> | <%= link_to 'Remove Goal', goal, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+<br>
 <% end %>
   </div>
 
