@@ -582,6 +582,8 @@
 
 <% end %>
 
+
+<!--  Assessments -->
 <div class="btn-group" data-toggle="buttons-checkbox">
       <a class="btn collapse-data-btn" data-toggle="collapse" href="#assessment-details">Assessments</a>
 </div>
@@ -589,10 +591,12 @@
 <p>
 <%= "#{@individual.first_name} has #{@individual.assessments.count} #{"assessment".pluralize(@individual.assessments.count)} entered so far." %><p>
 <% @individual.assessments.each do |assessment| %>
-<%= link_to "Assessment entered on #{assessment.created_at}", edit_assessment_path(assessment) %><br>
+<%= link_to "Assessment entered on #{assessment.created_at.strftime("%m/%d/%Y")}", edit_assessment_path(assessment) %><br>
 <% end %>
   </div>
 
+
+<!--  Client Notes -->
 <div class="btn-group" data-toggle="buttons-checkbox">
       <a class="btn collapse-data-btn" data-toggle="collapse" href="#notes-details">Client Notes</a>
 </div>
@@ -601,7 +605,21 @@
 <p>
 <%= "#{@individual.first_name} has #{@individual.notes.count} #{"note".pluralize(@individual.notes.count)} entered so far." %><p>
 <% @individual.notes.each do |note| %>
-<%= link_to "Note entered on #{note.created_at}", edit_note_path(note) %>:  <%= note.update_on_last_action %><br>
+<%= link_to "Note entered on #{note.created_at.strftime("%m/%d/%Y")} by #{note.user.first_name}", edit_note_path(note) %>:  <%= note.update_on_last_action %><br>
+<% end %>
+  </div>
+
+
+<!--  Goals -->
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#goals-details">Goals</a>
+</div>
+ <div id="goals-details" class="well collapse"> 
+ <%= link_to "Enter New Goal", new_goal_path(individual_id: @individual), class: "btn btn-default", method: 'get' %>
+<p>
+<%= "#{@individual.first_name} has #{@individual.goals.count} #{"goal".pluralize(@individual.goals.count)}." %><p>
+<% @individual.goals.each do |goal| %>
+<%= link_to "Goal created on #{goal.created_at.strftime("%m/%d/%Y")}: #{goal.goal}", edit_goal_path(goal) %><br>
 <% end %>
   </div>
 
