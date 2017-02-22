@@ -590,7 +590,7 @@
      <%= link_to "Enter New Goal", new_goal_path(individual_id: @individual), class: "btn btn-default", method: 'get' %>
      <% @individual.goals.each do |goal| %>
          <div>
-             <%= link_to "Goal: \"#{goal.goal}\" that was created on #{goal.created_at.strftime("%m/%d/%Y")} is currently #{goal.completion_percentage}% complete. ", edit_goal_path(goal) %>  |  <%= link_to 'Remove Goal', goal, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+             <%= link_to "Goal: \"#{goal.goal}\" that was created on #{goal.created_at.strftime("%m/%d/%Y")} is currently #{goal.completion_percentage}% complete. ", edit_goal_path(goal) %>  |  <%= link_to 'Remove Goal', goal, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %><br>
          </div>
          <div class="progress">
             <div class="progress-bar" style="width: <%= goal.completion_percentage %>%;" role="progressbar" aria-valuenow="<%= goal.completion_percentage %>" aria-valuemin="0" aria-valuemax="100">
@@ -609,7 +609,7 @@
  <div id="assessment-details" class="well collapse"> <%= link_to "Enter Follow Up Client Intake", new_assessment_path(individual_id: @individual), class: "btn btn-default", method: 'get' %>
 <p>
 <% @individual.assessments.each do |assessment| %>
-<%= link_to "Assessment entered on #{assessment.created_at.strftime("%m/%d/%Y")}", edit_assessment_path(assessment) %>  |  <%= link_to 'Remove Assessment', assessment, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+<%= link_to "Assessment entered on #{assessment.created_at.strftime("%m/%d/%Y")}", edit_assessment_path(assessment) %>  |  <%= link_to 'Remove Assessment', assessment, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %><br>
 <% end %>
   </div>
 
@@ -623,7 +623,7 @@
 <p>
 
 <% @individual.notes.each do |note| %>
-<%= link_to "Note entered on #{note.created_at.strftime("%m/%d/%Y")} by #{note.user.first_name}", edit_note_path(note) %>:  <%= note.update_on_last_action %>  |  <%= link_to 'Remove Note', note, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+<%= link_to "Note entered on #{note.created_at.strftime("%m/%d/%Y")} by #{note.user.first_name}", edit_note_path(note) %>:  <%= note.update_on_last_action %>  |  <%= link_to 'Remove Note', note, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %><br>
 <% end %>
   </div>
 
