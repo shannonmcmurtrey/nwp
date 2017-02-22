@@ -59,9 +59,10 @@ class AssessmentsController < ApplicationController
   # DELETE /assessments/1
   # DELETE /assessments/1.json
   def destroy
+    @individual = @assessment.individual
     @assessment.destroy
     respond_to do |format|
-      format.html { redirect_to assessments_url, notice: 'Assessment was successfully destroyed.' }
+      format.html { redirect_to @individual, notice: 'Goal was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
