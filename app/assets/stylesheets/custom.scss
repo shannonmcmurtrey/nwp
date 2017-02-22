@@ -1,5 +1,11 @@
-@import "bootstrap-sprockets";
+$navbarBackground: #000;
+$navbarText: #fff;
+$navbarLinkColor: #888;
+$navbarBrandColor: #FFF;
+
 @import "bootstrap";
+@import "bootstrap-sprockets";
+
 
 /* universal */
 

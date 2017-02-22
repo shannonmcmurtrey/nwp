@@ -582,14 +582,32 @@
 
 <% end %>
 
+<!--  Goals -->
+<div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#goals-details">Goals (<%= @individual.goals.count %>)</a>
+</div>
+<div id="goals-details" class="well collapse"> 
+     <%= link_to "Enter New Goal", new_goal_path(individual_id: @individual), class: "btn btn-default", method: 'get' %>
+     <% @individual.goals.each do |goal| %>
+         <div>
+             <%= link_to "Goal: \"#{goal.goal}\" that was created on #{goal.created_at.strftime("%m/%d/%Y")} is currently #{goal.completion_percentage}% complete. ", edit_goal_path(goal) %> | <%= link_to 'Remove Goal', goal, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+         </div>
+         <div class="progress">
+            <div class="progress-bar" style="width: <%= goal.completion_percentage %>%;" role="progressbar" aria-valuenow="<%= goal.completion_percentage %>" aria-valuemin="0" aria-valuemax="100">
+              <span class="sr-only"><%= goal.completion_percentage %>% Complete</span>
+            </div>
+          </div> 
+
+     <% end %>
+</div>
+
 
 <!--  Assessments -->
 <div class="btn-group" data-toggle="buttons-checkbox">
-      <a class="btn collapse-data-btn" data-toggle="collapse" href="#assessment-details">Assessments</a>
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#assessment-details">Assessments (<%= @individual.assessments.count %>)</a>
 </div>
  <div id="assessment-details" class="well collapse"> <%= link_to "Enter Follow Up Client Intake", new_assessment_path(individual_id: @individual), class: "btn btn-default", method: 'get' %>
 <p>
-<%= "#{@individual.first_name} has #{@individual.assessments.count} #{"assessment".pluralize(@individual.assessments.count)} entered so far." %><p>
 <% @individual.assessments.each do |assessment| %>
 <%= link_to "Assessment entered on #{assessment.created_at.strftime("%m/%d/%Y")}", edit_assessment_path(assessment) %><br>
 <% end %>
@@ -598,29 +616,14 @@
 
 <!--  Client Notes -->
 <div class="btn-group" data-toggle="buttons-checkbox">
-      <a class="btn collapse-data-btn" data-toggle="collapse" href="#notes-details">Client Notes</a>
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#notes-details">Client Notes (<%= @individual.notes.count %>)</a>
 </div>
  <div id="notes-details" class="well collapse"> 
  <%= link_to "Enter Client Note", new_note_path(individual_id: @individual, user_id: current_user), class: "btn btn-default", method: 'get' %>
 <p>
-<%= "#{@individual.first_name} has #{@individual.notes.count} #{"note".pluralize(@individual.notes.count)} entered so far." %><p>
+
 <% @individual.notes.each do |note| %>
 <%= link_to "Note entered on #{note.created_at.strftime("%m/%d/%Y")} by #{note.user.first_name}", edit_note_path(note) %>:  <%= note.update_on_last_action %><br>
-<% end %>
-  </div>
-
-
-<!--  Goals -->
-<div class="btn-group" data-toggle="buttons-checkbox">
-      <a class="btn collapse-data-btn" data-toggle="collapse" href="#goals-details">Goals</a>
-</div>
- <div id="goals-details" class="well collapse"> 
- <%= link_to "Enter New Goal", new_goal_path(individual_id: @individual), class: "btn btn-default", method: 'get' %>
-<p>
-<%= "#{@individual.first_name} has #{@individual.goals.count} #{"goal".pluralize(@individual.goals.count)}." %><p>
-<% @individual.goals.each do |goal| %>
-<%= link_to "Goal: \"#{goal.goal}\" that was created on #{goal.created_at.strftime("%m/%d/%Y")} is currently #{goal.completion_percentage}% complete. ", edit_goal_path(goal) %> | <%= link_to 'Remove Goal', goal, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
-<br>
 <% end %>
   </div>
 
