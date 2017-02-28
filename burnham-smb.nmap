@@ -1,0 +1,2 @@
+# Nmap 6.47 scan initiated Thu Feb 23 10:33:43 2017 as: nmap -sS -p 445 -oA burnham-smb -O 10.35.1.0/24
+# Nmap done at Thu Feb 23 10:37:10 2017 -- 256 IP addresses (0 hosts up) scanned in 207.90 seconds
