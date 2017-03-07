@@ -119,6 +119,7 @@ class AssessmentsController < ApplicationController
                                          :medical_weight,
                                          :medical_physical_family_member_impact,
                                          :health_insurance,
+                                         :health_insurance_primary,
                                          :health_insurance_children,
                                          :health_insurance_spouse_or_significant_other,
                                          :primary_care_physician_primary,

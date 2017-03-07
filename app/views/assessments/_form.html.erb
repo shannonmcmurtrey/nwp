@@ -55,7 +55,7 @@
    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_employed', 'option-value': '1'} do %> 
    <%= f.input :if_unemployed_eligible_to_work,
                :label => "If you are not currently employed, are you eligible to work?",
-               :collection => {"Yes"=>0, "No"=>1},
+               :collection => {"Yes"=>true, "No"=>false},
                :label_method => :first,
                :value_method => :last  %>
    <% end %> 
@@ -64,13 +64,13 @@
 </div>
    <%= f.input :filed_1040_in_last_year,
                :label => "Did you file 1040 tax return for last calendar year?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
    <%= f.input :last_calendar_years_income, :label => "Last calendar year's adjusted gross income (from 1040 tax return)?" %>
    <%= f.input :currently_receive_earned_income_tax_credit,
                :label => "Do you currently receive earned income tax credit?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_receive_earned_income_tax_credit', 'option-value': '1'} do %>            
@@ -112,12 +112,12 @@
  
  <%= f.input :educational_training_last_six_months,
                :label => "Have you completed an educational or training program in the last 6 months?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
 <%= f.input :education_currently_enrolled,
                :label => "Are you currently enrolled in education?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_education_currently_enrolled', 'option-value': '1'} do %>            
@@ -141,15 +141,15 @@
       <h3>Have you ever been told by a medical clinician that you have...</h3>
       <%= f.input :medical_high_blood_sugar,
                :label => "...high blood sugar?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
       <%= f.input :medical_diabetes,
                :label => "..diabetes?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_diabetes', 'option-value': '1'} do %>            
+      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_diabetes', 'option-value': 'true'} do %>            
          <%= f.input :medical_diabetes_type,
                :label => "Which type?",
                :collection => {"Type 1"=>"type 1", "Type 2"=>"type 2", "Gestational"=>"gestational"},
@@ -159,34 +159,28 @@
        <% end %>
        <%= f.input :medical_pulmonary_disease,
                :label => "...pulmonary disease (COPD/asthma)?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
        <%= f.input :medical_elevated_blood_pressure,
                :label => "..elevated blood pressure?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_elevated_blood_pressure', 'option-value': '1'} do %>            
-         <%= f.input :medical_diabetes_type,
-               :label => "Gestational?",
-               :collection => {"Yes"=>"yes", "No"=>"no"},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-      <% end %>
+      
       <%= f.input :medical_mental_health_diagnosis,
                :label => "...mental health diagnosis?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
       <%= f.input :medical_tobacco_products,
                :label => "Do you use tobacco products?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
       <%= f.input :medical_alcohol,
                :label => "Do you drink alcohol?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
       <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_alcohol', 'option-value': '1'} do %>            
@@ -219,7 +213,7 @@
 
           <%= f.input :health_insurance_primary,
                    :label => "What type of health coverage do YOU have?",
-                   :collection => {"No coverage"=>0,"Employer-provided coverate"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5},
+                   :collection => {"No coverage"=>0,"Employer-provided coverage"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5},
                       :label_method => :first,
                       :value_mathod => :last %>
           <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_health_insurance_primary', 'option-value': '5'} do %> 
@@ -229,7 +223,7 @@
           <% end %>
           <%= f.input :health_insurance_children,
                    :label => "What type of health coverage do your CHILDREN have?",
-                   :collection => {"No coverage"=>0,"Employer-provided coverate"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5},
+                   :collection => {"No coverage"=>0,"Employer-provided coverage"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5},
                       :label_method => :first,
                       :value_mathod => :last %>
           <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_health_insurance_children', 'option-value': '5'} do %> 
@@ -240,7 +234,7 @@
 
            <%= f.input :health_insurance_spouse_or_significant_other,
                    :label => "What type of health coverage does your SPOUSE OR SIGNIFICANT OTHER have?",
-                   :collection => {"No coverage"=>0,"Employer-provided coverate"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5},
+                   :collection => {"No coverage"=>0,"Employer-provided coverage"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5},
                       :label_method => :first,
                       :value_mathod => :last %>
           <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_health_insurance_spouse_or_significant_other', 'option-value': '5'} do %> 
@@ -280,25 +274,25 @@
       
         <%= f.input :household_member_in_jail,
                :label => "Is a household member currently in jail?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_household_member_in_jail', 'option-value': '1'} do %>            
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_household_member_in_jail', 'option-value': 'true'} do %>            
           <%= f.input :household_member_in_jail_current_criminal_resoution_need,
                :label => "Is there a current need for resolution of criminal background?",
-               :collection => {"Yes"=>"yes", "No"=>"no"},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
         <% end %>
         <%= f.input :convicted_of_crime_last_six_months,
                :label => "Have you been convicted of a crime in the last six months?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-       <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_convicted_of_crime_last_six_months', 'option-value': '1'} do %>            
+       <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_convicted_of_crime_last_six_months', 'option-value': 'true'} do %>            
           <%= f.input :in_need_of_current_criminal_resolution,
                :label => "Is there a current need for resolution of criminal background?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
         <% end %>
@@ -306,21 +300,21 @@
 
         <%= f.input :other_legal_matters_need_resolved,
                :label => "Any other legal matters that need resolved?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
 
   <div class="well">
     <%= f.input :cocaine_crack_speed,
                :label => "Have you ever used cocaine, crack, or speed?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_cocaine_crack_speed', 'option-value': '1'} do %>   
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_cocaine_crack_speed', 'option-value': 'true'} do %>   
           <%= f.label "When was the last time you used?" %>
           <%= f.date_select :drug_date_of_last_use_ccs,
                :label => "When was the last time you used?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last,
                   :start_year => 1950, 
@@ -328,14 +322,14 @@
         <% end %>
     <%= f.input :meth,
                :label => "Have you ever used meth?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_meth', 'option-value': '1'} do %>   
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_meth', 'option-value': 'true'} do %>   
           <%= f.label "When was the last time you used?" %>
           <%= f.date_select :drug_date_of_last_use_meth,
                :label => "When was the last time you used?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last,
                   :start_year => 1950, 
@@ -343,14 +337,14 @@
         <% end %>
       <%= f.input :marijuana,
                :label => "Have you ever used marijuana?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_marijuana', 'option-value': '1'} do %>   
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_marijuana', 'option-value': 'true'} do %>   
           <%= f.label "When was the last time you used?" %>
           <%= f.date_select :drug_date_of_last_use_marijuana,
                :label => "When was the last time you used?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last,
                   :start_year => 1950, 
@@ -358,14 +352,14 @@
         <% end %>
         <%= f.input :heroin_opiates,
                :label => "Have you ever used Heroin/Opiates?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_heroin_opiates', 'option-value': '1'} do %>   
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_heroin_opiates', 'option-value': 'true'} do %>   
           <%= f.label "When was the last time you used?" %>
           <%= f.date_select :drug_date_of_last_use_heroin,
                :label => "When was the last time you used?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last,
                   :start_year => 1950, 
@@ -373,14 +367,14 @@
         <% end %>
         <%= f.input :other_boolean,
                :label => "Have you ever used any other drug not listed previously?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_other_boolean', 'option-value': '1'} do %>   
+        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_other_boolean', 'option-value': 'true'} do %>   
           <%= f.label "When was the last time you used?" %>
           <%= f.date_select :drug_date_of_last_use_other,
                :label => "When was the last time you used?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last,
                   :start_year => 1950, 
@@ -393,25 +387,25 @@
     <h3>Social Capital and Civic Engagement Questionnaire</h3>
      <%= f.input :written_plan_to_become_self_sufficient,
                :label => "As of today, I have a written plan for how I am going to reach my goals and become self-sufficient.",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
      <%= f.input :current_budget_and_savings_plan,
                :label => "As of today, I have a budget and savings plan to help build my assets.",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
      <%= f.input :safe_and_stable_place_to_live,
                :label => "As of today, I have a safe and stable place to live.",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
      <%= f.input :people_in_my_life_i_can_trust_for_support,
                :label => "Are there pople in your life whom you trust and can count on for emotional or moral support?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-     <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_people_in_my_life_i_can_trust_for_support', 'option-value': '1'} do %>   
+     <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_people_in_my_life_i_can_trust_for_support', 'option-value': 'true'} do %>   
           <%= f.input :number_of_people_trusted_for_emotional_or_moral_support,
                :label => "How many?" %><p>
           <%= f.input :number_of_people_help_financially,
@@ -419,10 +413,10 @@
         <% end %>
      <%= f.input :people_in_my_life_serving_as_mentors,
                :label => "Are there pople in your life who have served as mentors or have guided you to resources such as job opportunities, clubs, and legal services?",
-               :collection => {"Yes"=>1, "No"=>0},
+               :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-     <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_people_in_my_life_serving_as_mentors', 'option-value': '1'} do %>   
+     <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_people_in_my_life_serving_as_mentors', 'option-value': 'true'} do %>   
      <%= f.input :number_of_people_trusted_for_mentorship,
                :label => "How many of these people do you currently know and can reach out to?" %><p>
      <% end %>
@@ -474,17 +468,17 @@
   </div>
   <div class="well">
     <h2>In the past 6 months, how many times have you...</h2>
-      <%= f.input :last_six_months_worked_on_neighborhood_project, input_html: {value: '0', step:'1'}, label: "Worked on a neighborhood project?"%>
-      <%= f.input :last_six_months_worked_with_neighborhood_partners, input_html: {value: '0', step:'1'}, label: "Worked with neighbord in your neighborhood to improve or fix something?"%>
-      <%= f.input :last_six_months_volunteered, input_html: {value: '0', step:'1'}, label: "Volunteered? (0 for no, if yes, average number of hours per month)"%>
-      <%= f.input :last_six_months_attended_public_meetings_for_neighborhood, input_html: {value: '0', step:'1'}, label: "Attended any public meeting in which there was a discussion of your neighborhood concerns and/or development"%>
-      <%= f.input :last_six_months_attended_public_meetings_for_schools, input_html: {value: '0', step:'1'}, label: "Attended a public meeting in which there was a discussion about schools or education"%>
-      <%= f.input :last_six_months_attended_politial_rally, input_html: {value: '0', step:'1'}, label: "Attended a political meeting or rally?"%>
-      <%= f.input :last_six_months_had_friends_in_home, input_html: {value: '0', step:'1'}, label: "Had friends over to your home?"%>
-      <%= f.input :last_six_months_been_at_friends_home, input_html: {value: '0', step:'1'}, label: "Been at friend's home"%>
-      <%= f.input :last_six_months_been_in_home_of_friend_of_different_race, input_html: {value: '0', step:'1'}, label: "Been in the home of a friend from a different race"%>
-      <%= f.input :last_six_months_been_in_home_of_someone_from_different_neighbor, input_html: {value: '0', step:'1'}, label: "Been in the home of someone from a different neighborhood"%>
-      <%= f.input :last_six_months_had_friend_from_different_neighborhood_in_my_ho, input_html: {value: '0', step:'1'}, label: "Had someone from a different neighborhood in your home?"%>
+      <%= f.input :last_six_months_worked_on_neighborhood_project, label: "Worked on a neighborhood project?"%>
+      <%= f.input :last_six_months_worked_with_neighborhood_partners, label: "Worked with neighbord in your neighborhood to improve or fix something?"%>
+      <%= f.input :last_six_months_volunteered, label: "Volunteered? (0 for no, if yes, average number of hours per month)"%>
+      <%= f.input :last_six_months_attended_public_meetings_for_neighborhood, label: "Attended any public meeting in which there was a discussion of your neighborhood concerns and/or development"%>
+      <%= f.input :last_six_months_attended_public_meetings_for_schools, label: "Attended a public meeting in which there was a discussion about schools or education"%>
+      <%= f.input :last_six_months_attended_politial_rally, label: "Attended a political meeting or rally?"%>
+      <%= f.input :last_six_months_had_friends_in_home, label: "Had friends over to your home?"%>
+      <%= f.input :last_six_months_been_at_friends_home, label: "Been at friend's home"%>
+      <%= f.input :last_six_months_been_in_home_of_friend_of_different_race, label: "Been in the home of a friend from a different race"%>
+      <%= f.input :last_six_months_been_in_home_of_someone_from_different_neighbor, label: "Been in the home of someone from a different neighborhood"%>
+      <%= f.input :last_six_months_had_friend_from_different_neighborhood_in_my_ho, label: "Had someone from a different neighborhood in your home?"%>
   </div>
     <div class="well">
     <h2>In the past 6 months have you...</h2>
@@ -532,33 +526,32 @@
                   :value_mathod => :last %>
             <%= f.input :examined_credit_score_in_last_six_months,
                :label => "Examined your credit score?",
-               :collection => {"No"=>0, 
-                               "Yes"=>1,
-                               "N/A"=>3},
+               :collection => {"No"=>false, 
+                               "Yes"=>true},
                   :label_method => :first,
                   :value_mathod => :last %>
-            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_examined_credit_score_in_last_six_months', 'option-value': '1'} do %>   
+            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_examined_credit_score_in_last_six_months', 'option-value': 'true'} do %>   
               <%= f.input :credit_score,
                :label => "What is your credit score?" %><p>
             <% end %>
   </div>
    <%= f.input :belong_to_neighborhood_association,
                :label => "Do you belong to any group or organization in your neighborhood (i.e. neighborhood association, PTA/PTSA, etc.)?",
-               :collection => {"No"=>0, 
-                               "Yes"=>1},
+               :collection => {"Yes"=>true, 
+                               "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_belong_to_neighborhood_association', 'option-value': '1'} do %>   
+            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_belong_to_neighborhood_association', 'option-value': 'true'} do %>   
               <%= f.input :neighborhood_association_name,
                :label => "What is the organization/group name?" %><p>
             <% end %>
            <%= f.input :currently_serve_as_officer_or_on_committee,
                :label => "Do you currently serve as an officer or serve on a committee for a local club or organization?",
-               :collection => {"No"=>0, 
-                               "Yes"=>1},
+               :collection => {"Yes"=>true, 
+                               "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_serve_as_officer_or_on_committee', 'option-value': '1'} do %>   
+            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_serve_as_officer_or_on_committee', 'option-value': 'true'} do %>   
               <%= f.input :officer_or_committee_organization_name,
                :label => "What is the organization/group name?" %><p>
             <% end %>
@@ -606,11 +599,11 @@
                :label => "What is your religious/spiritual preference?" %>
         <%= f.input :member_of_religious_group,
                :label => "Are you a member of a local church, synagogue, mosque or other religious congregation?",
-               :collection => {"No"=>0, 
-                               "Yes"=>1},
+               :collection => {"Yes"=>true, 
+                               "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_member_of_religious_group', 'option-value': '1'} do %>   
+            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_member_of_religious_group', 'option-value': 'true'} do %>   
               <%= f.input :name_of_place_of_worship,
                :label => "What is the name of the church/place of worship that you attend?" %><p>
             <% end %>
@@ -707,20 +700,20 @@
             :collection => {"Less than high school"=>0, "High School Diploma (or equivalent, HiSET)"=>1, "Attended, but did not complete college or technical training"=>2, "Completed technical training (CNA, cosmetology, auto mechanic, etc)"=>3, "Associate's Degree (2-year degree)"=>4, "Bachelor's Degree (4-year degree)"=>5, "Master's Degree"=>6}, 
                :label_method => :first,
                :value_method => :last %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '0'} do %> 
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_highest_education_attained', 'option-value': '0'} do %> 
       <%= f.input :last_grade_completed, :label => "What was the last grade you completed?" %>
    <% end %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '3'} do %> 
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_highest_education_attained', 'option-value': '3'} do %> 
       <%= f.input :technical_training_degree, :label => "What type of technical degree did you get?" %>
    <% end %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '4'} do %> 
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_highest_education_attained', 'option-value': '4'} do %> 
       <%= f.input :associates_degree_type, :label => "What was your Associates degree in?" %>
    <% end %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '5'} do %> 
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_highest_education_attained', 'option-value': '5'} do %> 
       <%= f.input :bachelors_degree_type, :label => "What was your Bachelor's degree in?" %>
    <% end %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_highest_education_attained', 'option-value': '6'} do %> 
-      <%= f.input :associates_degree_type, :label => "What was your Masters degree in?" %>
+   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_highest_education_attained', 'option-value': '6'} do %> 
+      <%= f.input :masters_degree_type, :label => "What was your Masters degree in?" %>
    <% end %>
 
 
