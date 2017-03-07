@@ -183,14 +183,14 @@
                :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_alcohol', 'option-value': '1'} do %>            
+      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_alcohol', 'option-value': 'true'} do %>            
          <%= f.input :medical_alcohol_avg_drinks_per_week, input_html: {value: '3', step:'1'}, label: "On average, how many drinks do you consume per week?"%>
       <% end %>
 </div>
 
 
-      <%= f.input :medical_height, input_html: {value: '60', step:'1'}, label: "Height (in inches, i.e. 60 inches is 5 feet):"%>
-      <%= f.input :medical_weight, input_html: {value: '125', step:'1'}, label: "Weight (lb):"%>
+      <%= f.input :medical_height, label: "Height (in inches, i.e. 60 inches is 5 feet):"%>
+      <%= f.input :medical_weight, label: "Weight (lb):"%>
       <%= f.input :medical_physical_family_member_impact,
                :label => "**PHYSICAL HEALTH: Please select which of the following best describes your family's current situation:",
                :collection => {"A family member's health problems prohibit employment or other goal options.  Or, family member is in need of 24 hour care."=>1, 
