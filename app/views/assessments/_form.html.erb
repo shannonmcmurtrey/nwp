@@ -50,7 +50,7 @@
         <%= f.input :employer %>
         <%= f.input :position %>
         <%= f.input :hours_worked_per_week, :label => "Hours worked per week (Average number of hours per week for the last 30 days)" %>
-        <%= f.input :monthly_wage, :label => "Circle leader only - Earned income before taxes and withholdings?" %>
+        <%= f.input :monthly_wage, :label => "Total monthly family income - Earned income before taxes and withholdings?" %>
    <% end %>
    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_employed', 'option-value': '1'} do %> 
    <%= f.input :if_unemployed_eligible_to_work,
@@ -234,7 +234,7 @@
 
            <%= f.input :health_insurance_spouse_or_significant_other,
                    :label => "What type of health coverage does your SPOUSE OR SIGNIFICANT OTHER have?",
-                   :collection => {"No coverage"=>0,"Employer-provided coverage"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5},
+                   :collection => {"No coverage"=>0,"Employer-provided coverage"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5, "N/A"=>6},
                       :label_method => :first,
                       :value_mathod => :last %>
           <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_health_insurance_spouse_or_significant_other', 'option-value': '5'} do %> 
@@ -258,7 +258,7 @@
 
       <%= f.input :medical_treatment_location,
                    :label => "Where do you seek medical treatment?",
-                   :collection => {"ER"=>0,"Urgent Care"=>1, "Priamry Care"=>2, "Free Clinics)"=>3},
+                   :collection => {"ER"=>0,"Urgent Care"=>1, "Primary Care"=>2, "Free Clinics"=>3},
                       :label_method => :first,
                       :value_mathod => :last %>
         <%= f.input :current_health,
@@ -408,8 +408,6 @@
      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_people_in_my_life_i_can_trust_for_support', 'option-value': 'true'} do %>   
           <%= f.input :number_of_people_trusted_for_emotional_or_moral_support,
                :label => "How many?" %><p>
-          <%= f.input :number_of_people_help_financially,
-               :label => "How many of these people would be able to help you in times of financial trouble?" %><p>
         <% end %>
      <%= f.input :people_in_my_life_serving_as_mentors,
                :label => "Are there pople in your life who have served as mentors or have guided you to resources such as job opportunities, clubs, and legal services?",
@@ -428,25 +426,6 @@
   </div>
    <div class="well">
     <h2>I trust the following people:</h2>
-
-     <%= f.input :i_trust_people_in_my_neighborhood,
-               :label => "...people in your neighborhood",
-               :collection => {"Strongly Agree"=>0, 
-                               "Somewhat Agree"=>1,
-                               "Neutral"=>2,
-                               "Somewhat Disagree"=>3,
-                               "Disagree"=>4},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-     <%= f.input :i_trust_police_in_my_community,
-               :label => "...police in your neighborhood",
-               :collection => {"Strongly Agree"=>0, 
-                               "Somewhat Agree"=>1,
-                               "Neutral"=>2,
-                               "Somewhat Disagree"=>3,
-                               "Disagree"=>4},
-                  :label_method => :first,
-                  :value_mathod => :last %>
      <%= f.input :i_trust_police_in_my_community,
                :label => "...police in your community",
                :collection => {"Strongly Agree"=>0, 
@@ -476,7 +455,6 @@
       <%= f.input :last_six_months_attended_politial_rally, label: "Attended a political meeting or rally?"%>
       <%= f.input :last_six_months_had_friends_in_home, label: "Had friends over to your home?"%>
       <%= f.input :last_six_months_been_at_friends_home, label: "Been at friend's home"%>
-      <%= f.input :last_six_months_been_in_home_of_friend_of_different_race, label: "Been in the home of a friend from a different race"%>
       <%= f.input :last_six_months_been_in_home_of_someone_from_different_neighbor, label: "Been in the home of someone from a different neighborhood"%>
       <%= f.input :last_six_months_had_friend_from_different_neighborhood_in_my_ho, label: "Had someone from a different neighborhood in your home?"%>
   </div>

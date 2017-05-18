@@ -149,7 +149,7 @@
   
   <%= f.input :highest_education_attained_by_parent_or_caretaker, 
             :label => "**Educational Attainment by parent or caretaker: (Highest Degree Earned)",
-            :collection => {"Less than high school"=>"Less than high school", "High School Diploma (or equivalent, HiSET)"=>"High School Diploma (or equivalent, HiSET)", "Attended, but did not complete college or technical training"=>"Attended, but did not complete college or technical training", "Completed technical training (CNA, cosmetology, auto mechanic, etc)"=>"Completed technical training (CNA, cosmetology, auto mechanic, etc)", "Associate's Degree (2-year degree)"=>"Associate's Degree (2-year degree)", "Bachelor's Degree (4-year degree)"=>"Bachelor's Degree (4-year degree)", "Master's Degree"=>"Master's Degree"}, 
+            :collection => {"Less than high school"=>"Less than high school", "High School Diploma (or equivalent, HiSET)"=>"High School Diploma (or equivalent, HiSET)", "Attended, but did not complete college or technical training"=>"Attended, but did not complete college or technical training", "Completed technical training (CNA, cosmetology, auto mechanic, etc)"=>"Completed technical training (CNA, cosmetology, auto mechanic, etc)", "Associate's Degree (2-year degree)"=>"Associate's Degree (2-year degree)", "Bachelor's Degree (4-year degree)"=>"Bachelor's Degree (4-year degree)", "Master's Degree"=>"Master's Degree", "Unknown"=>"Unknown"}, 
                :label_method => :first,
                :value_method => :last %>
 </div>
@@ -223,7 +223,7 @@
               :value_method => :last %>
 
    <%= f.input :children_currently_in_quality_care,
-               :label => "Are you children (2+ years old) currently in accredited child care / after school care?",
+               :label => "Are your children (2+ years old) currently in accredited child care / after school care?",
                :collection => {"Yes"=>0, "No"=>1, "N/A"=>2},
                :label_method => :first,
                :value_method => :last %>
