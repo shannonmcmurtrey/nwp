@@ -19,9 +19,9 @@ class IndividualsController < ApplicationController
     @individuals = Individual.where(:cohort_id => nil)
   end
 
-  def demographics
+  def quarterly_report
     @cohorts = Cohort.all
-
+    @individuals = Individual.all
   end
 
   def assign_individual_to_cohort

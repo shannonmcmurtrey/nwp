@@ -1,16 +1,16 @@
-<h2>Demographics Report</h2>
-<%= select_tag 'cohort_id', options_for_select(@cohorts.map{|cohort| ["#{cohort.meeting_night} #{cohort.meeting_night}", cohort.id] }), {:include_blank => true, :class => 'form-control col-md-3', :id => 'cohort_select'} %>
+<h2>Quarterly Report</h2>
+<!-- %= select_tag 'cohort_id', options_for_select(@cohorts.map{|cohort| ["#{cohort.meeting_night} #{cohort.meeting_night}", cohort.id] }), {:include_blank => true, :class => 'form-control col-md-3', :id => 'cohort_select'} % -->
 
-<div id="demographics_report" class="well">
+<div id="quarterly_report" class="well">
   <h1 class="text-center">Baseline Report: <%= I18n.t("date.month_names")[Date.today.month] %> <%= Date.today.year  %></h1>
   <div id="report_data">
   <h2>
 	<%= Individual.where('id IN (SELECT DISTINCT(cohort_id) FROM individuals)').count %> cohorts serving <%= Individual.where("cohort_id IS NOT NULL").count %>  individuals.
   </h2>
-  <% @cohorts.each  do | cohort | %>
+  <% @individuals.each  do | i | %>
 	  <div><h3>Affortable Housing</h3>
         <div>
-        	<%= cohort.individuals.where("cohort_id IS NOT NULL").count %>
+        	
 
         </div>
 	  </div>

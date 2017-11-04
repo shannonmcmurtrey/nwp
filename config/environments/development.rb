@@ -53,4 +53,8 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # requires must go inside the Initializer block
+  require 'ruport' # Ruby Reporting Tool
+  require 'ruport/acts_as_reportable' # ActiveRecord data collection for Ruport.
 end

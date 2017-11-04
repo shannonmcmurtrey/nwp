@@ -21,6 +21,8 @@ gem 'underscore-rails'
 gem 'dependent-fields-rails'
 gem 'cocoon'
 gem 'paper_trail'
+gem 'ruport'
+gem 'acts_as_reportable'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
