@@ -615,17 +615,19 @@
 
 
 <!--  Client Notes -->
-<div class="btn-group" data-toggle="buttons-checkbox">
-      <a class="btn collapse-data-btn" data-toggle="collapse" href="#notes-details">Client Notes (<%= @individual.notes.count %>)</a>
-</div>
- <div id="notes-details" class="well collapse"> 
- <%= link_to "Enter Client Note", new_note_path(individual_id: @individual, user_id: current_user), class: "btn btn-default", method: 'get' %>
-<p>
+<% if current_user.social_worker %>
+    <div class="btn-group" data-toggle="buttons-checkbox">
+        <a class="btn collapse-data-btn" data-toggle="collapse" href="#notes-details">Client Notes (<%= @individual.notes.count %>)</a>
+    </div>
+    <div id="notes-details" class="well collapse"> 
+        <%= link_to "Enter Client Note", new_note_path(individual_id: @individual, user_id: current_user), class: "btn btn-default", method: 'get' %>
+        <p>
 
-<% @individual.notes.each do |note| %>
-<%= link_to "Note entered on #{note.created_at.strftime("%m/%d/%Y")} by #{note.user.first_name}", edit_note_path(note) %>:  <%= note.update_on_last_action %>  |  <%= link_to 'Remove Note', note, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %><br>
-<% end %>
+        <% @individual.notes.each do |note| %>
+          <%= link_to "Note entered on #{note.created_at.strftime("%m/%d/%Y")} by #{note.user.first_name}", edit_note_path(note) %>:  <%= note.update_on_last_action %>  |  <%= link_to 'Remove Note', note, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %><br>
+        <% end %>
   </div>
+<% end %>
 
 
 </div>
