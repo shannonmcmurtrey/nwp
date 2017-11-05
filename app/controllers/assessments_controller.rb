@@ -76,7 +76,8 @@ class AssessmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assessment_params
-      params.require(:assessment).permit(:self_sufficency_goal,
+      params.require(:assessment).permit(:date_collected,
+                                         :self_sufficency_goal,
                                          :self_sufficiency_goal_other,
                                          :still_resident_of_neighborhood_years,
                                          :still_resident_of_neighborhood_months,
