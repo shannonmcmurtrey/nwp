@@ -624,7 +624,7 @@
         <p>
 
         <% @individual.notes.each do |note| %>
-          <%= link_to "Note entered on #{note.created_at.strftime("%m/%d/%Y")} by #{note.user.first_name}", edit_note_path(note) %>:  <%= note.update_on_last_action %>  |  <%= link_to 'Remove Note', note, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %><br>
+          <%= link_to "Note entered on #{note.created_at.strftime("%m/%d/%Y")} by #{note.user.first_name} #{note.user.last_name}", edit_note_path(note) %>:  <%= note.update_on_last_action %>  |  <%= link_to 'Remove Note', note, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %><br>
         <% end %>
   </div>
 <% end %>
