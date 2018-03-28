@@ -198,6 +198,10 @@ end
                                          :square_footage_of_house, :notes, :code, :last_grade_completed,
                                          :technical_training_degree, :associates_degree_type,
                                          :bachelors_degree_type, :masters_degree_type, :user_id,
+                                         :ACE_sexually_abused, :ACE_unloved, :ACE_uncared_for, :ACE_broken_home, 
+                                         :ACE_mother_pushed_shoved_grabbed_slapped, :ACE_lived_with_addict, 
+                                         :ACE_household_member_mentally_ill, :ACE_household_member_went_to_prison, 
+                                         :ACE_swore_at_or_put_down, :ACE_pushed_shoved_grabbed_slapped,
                                          household_members_attributes: [:id, :name, :relationship, :age, :school, :care_provider, :_destroy])
     end
     def verify_is_admin
