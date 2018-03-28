@@ -177,43 +177,7 @@
                item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_lived_with_member_went_to_jail]', 'radio-value': 'Yes'} do %>            
-        <%= f.input :childhood_jailed_family_member_which, :label => "If yes, which member of the household?" %>
-   <% end %>
-
-   <h3>As a child, did you ever witness or were aware that your parent/gaurdian/caregiver was...</h3>
-
-   <%= f.input :childhood_caregiver_was_pushed_shoved_grabbed_slapped, 
-               :label => "...ever pushed, grabbed, slapped, or had something thrown at her/him?",
-               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
-               :label_method => :last,
-               :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
-               :as => :radio_buttons %>
-
-   <%= f.input :childhood_caregiver_bitten_or_hit, 
-               :label => "...ever bitten hit with a fist, or hit with something hard?",
-               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
-               :label_method => :last,
-               :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
-               :as => :radio_buttons %>
-
-   <%= f.input :childhood_caregiver_hit_repeatedly, 
-               :label => "...ever repeatedly hit?",
-               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
-               :label_method => :last,
-               :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
-               :as => :radio_buttons %>
-
-   <%= f.input :childhood_caregiver_threatened_with_weapon, 
-               :label => "...ever threatened with, or hurt by a knife or gun?",
-               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
-               :label_method => :last,
-               :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
-               :as => :radio_buttons %>
+   
 
    </div></div>
 </div>
