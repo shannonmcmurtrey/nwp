@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105013330) do
+ActiveRecord::Schema.define(version: 20180328162333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -312,9 +312,9 @@ ActiveRecord::Schema.define(version: 20171105013330) do
     t.integer  "childhood_raisedby_other_than_parents_by_who"
     t.integer  "childhood_residence_away_from_family"
     t.integer  "childhood_residence_away_from_family_length_in_months"
-    t.integer  "childhood_swore_at_or_put_down"
+    t.integer  "ACE_swore_at_or_put_down"
     t.integer  "childhood_made_to_feel_afraid_of_injury"
-    t.integer  "childhood_pushed_shoved_grabbed_slapped"
+    t.integer  "ACE_pushed_shoved_grabbed_slapped"
     t.integer  "childhood_hit_hard"
     t.integer  "childhood_lived_with_alcoholic"
     t.integer  "childhood_lived_with_drug_user"
@@ -403,6 +403,14 @@ ActiveRecord::Schema.define(version: 20171105013330) do
     t.string   "masters_degree_type"
     t.integer  "user_id"
     t.string   "suffix"
+    t.integer  "ACE_sexually_abused"
+    t.integer  "ACE_unloved"
+    t.integer  "ACE_uncared_for"
+    t.integer  "ACE_broken_home"
+    t.integer  "ACE_mother_pushed_shoved_grabbed_slapped"
+    t.integer  "ACE_lived_with_addict"
+    t.integer  "ACE_household_member_mentally_ill"
+    t.integer  "ACE_household_member_went_to_prison"
     t.index ["cohort_id"], name: "index_individuals_on_cohort_id", using: :btree
     t.index ["organization_id"], name: "index_individuals_on_organization_id", using: :btree
     t.index ["user_id"], name: "index_individuals_on_user_id", using: :btree

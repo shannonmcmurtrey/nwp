@@ -53,7 +53,7 @@
 
    <%= f.input :preferred_method_of_contact, 
                :label => "Preferred Method of Contact", 
-               :collection => {"Mobile"=>0, "Home Phone"=>1, "Email"=>2, "Text"=>3}, 
+               :collection => {"Mobile"=>0, "Home Phone"=>1, "Email"=>2, "Text"=>3, "Facebook"=>4}, 
                :label_method => :first,
                :value_method => :last %>
 
@@ -91,110 +91,87 @@
    <%= f.input :springfield_non_native_population %>
    <%= f.input :springfield_non_native_distance %>
    <% end %>
-    <div class="well">
-   <%= f.input :childhood_raisedby_other_than_parents, 
-               :label => "Were you raised by anyone other than your parents?",
-               :collection => {"Yes"=>0, "No"=>1, "Temporarily"=>2}, 
-               :label_method => :first,
-               :value_method => :last,
-               item_wrapper_class: :block_radio_button_collection,
-               :as => :radio_buttons,
-               wrapper: :vertical_radio_and_checkboxes %>
-
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': '0'} do %>
-     <%= f.input :childhood_raisedby_other_than_parents_length_in_months, :label => "If temporarily, for how long (in months)?" %>
-   <% end %>
-
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_raisedby_other_than_parents]', 'radio-value': '0'} do %>
-     <%= f.input :childhood_raisedby_other_than_parents_by_who, :label => "If yes, by who?" %>
-   <% end %>
-
-   <%= f.input :childhood_residence_away_from_family, 
-               :label => "Did you ever reside in a foster home, group home, or in a home without your family?",
-               :collection => {"Yes"=>0, "No"=>1}, 
-               :label_method => :first,
-               :value_method => :last,
-               item_wrapper_class: :block_radio_button_collection,
-               :as => :radio_buttons,
-               wrapper: :vertical_radio_and_checkboxes %>
-
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'radio-name': 'individual[childhood_residence_away_from_family]', 'radio-value': 'Yes'} do %>            
-        <%= f.input :childhood_residence_away_from_family_length_in_months, 
-               :label => "If yes, for how many months?" %>
-   <% end %>
+ <div class="well">
+   
    <div class= "well">
-   <h3>How often did your parent or other adult in the household you grew up in...</h3>
-   <%= f.input :childhood_swore_at_or_put_down, 
-               :label => "...swear at, insult, or put you down?",
-               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+   <h3>Adverse Childhood Experience (ACE) Questionnaire</h3>
+   <%= f.input :ACE_swore_at_or_put_down, 
+               :label => "Did a parent or other adult in the household often... Swear at you, insult you, put you down, or humiliate you? or Act in a way that made you afraid that you might be physically hurt?",
+               :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
                item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons%>
 
-   <%= f.input :childhood_made_to_feel_afraid_of_injury, 
-               :label => "...act in a way that made you afraid you would be physically hurt?",
-               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+   <%= f.input :ACE_pushed_shoved_grabbed_slapped, 
+               :label => "Did a parent or other adult in the household often... Push, grab, slap, or throw something at you? or ever hit you so hard that you had marks or were injured?",
+               :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
                item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
-   <%= f.input :childhood_pushed_shoved_grabbed_slapped, 
-               :label => "...push, grab, shove, or slap you?",
-               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+   <%= f.input :ACE_sexually_abused, 
+               :label => "Did an adult or person at least 5 years older than you ever... touch or fondle you or have you touch their body in a sexual way? or try to or actually have oral, anal, or vaginal sex with you",
+               :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
                item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
-   <%= f.input :childhood_hit_hard, 
-               :label => "...hit you so hard that you had marks or were injured?",
-               :collection => [[0, 'Never'], [1, 'Sometimes'], [2, "Often"]], 
+   <%= f.input :ACE_unloved, 
+               :label => "Did you often feel that... no one in your family loved you or thought you were important or special? or your family didn't look out for each other, feel close to each other, or support each other?",
+               :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
                item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
-   <h3>As a child, did you...</h3>
-
-   <%= f.input :childhood_lived_with_alcoholic, 
-               :label => "...live with anyone who was a problem drinker or alcoholic?",
-               :collection => [[0, 'No'], [1, 'Yes']], 
-               :label_method => :last,
-               :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
-               :as => :radio_buttons %>
-
-
-   <%= f.input :childhood_lived_with_drug_user, 
-               :label => "...live with anyone who used illegal drugs?",
-               :collection => [[0, 'No'], [1, 'Yes']], 
-               :label_method => :last,
-               :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
-               :as => :radio_buttons %>
-
-   <%= f.input :childhood_lived_with_depressed_or_mentally_ill, 
-               :label => "...live with a household member who was depressed or mentally ill?",
-               :collection => [[0, 'No'], [1, 'Yes']], 
+   <%= f.input :ACE_uncared_for, 
+               :label => "Did you often feel that... you didn't have enough to eat, had to wear dirty clothes, and had no one to protect you? or your parents were too drunk/high to take care of you or take you to the doctor if you needed it?",
+               :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
                item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
 
-   <%= f.input :childhood_lived_with_member_who_attempted_suicide, 
-               :label => "...live with a household member who attempted suicide?",
-               :collection => [[0, 'No'], [1, 'Yes']], 
+   <%= f.input :ACE_broken_home, 
+               :label => "Were your parents ever separated or divorced?",
+               :collection => [[1, 'Yes'], [0, 'No']],  
                :label_method => :last,
                :value_method => :first,
                item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
-   <%= f.input :childhood_lived_with_member_went_to_jail, 
-               :label => "...have a member of your household go to jail or prison?",
-               :collection => [[0, 'No'], [1, 'Yes']], 
+   <%= f.input :ACE_mother_pushed_shoved_grabbed_slapped, 
+               :label => "Was your mother/stepmother: often pushed, grabbed, slapped, or had something thrown at her? or sometimes or often kicked, bitten, hit with a fist or hit with something hard? or ever repeatedly hit over at least a few minutes or threatened with a gun or knife?",
+               :collection => [[1, 'Yes'], [0, 'No']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+
+   <%= f.input :ACE_lived_with_addict, 
+               :label => "Did you live with anyone who was a problem drinker or alcoholic or who used street drugs?",
+               :collection => [[1, 'Yes'], [0, 'No']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   <%= f.input :ACE_household_member_mentally_ill, 
+               :label => "Was a household member depressed or mentally ill or did a household member attempt suicide?",
+               :collection => [[1, 'Yes'], [0, 'No']], 
+               :label_method => :last,
+               :value_method => :first,
+               item_wrapper_class: :block_radio_button_collection,
+               :as => :radio_buttons %>
+
+   <%= f.input :ACE_household_member_went_to_prison, 
+               :label => "Did a household member go to prison?",
+               :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
                item_wrapper_class: :block_radio_button_collection,
@@ -248,7 +225,7 @@
    	
       <h3>Accountability:</h3>
       <%= f.input :willing_and_able_to_commit_to_program, 
-                  :label=>"Are you able and willing to commit to a one-year program with a two-year research follow-up, and to attend weekly classes an weekly meetings?",
+                  :label=>"Are you able to commit to a 16-week program with weekly?",
                   :collection => {"Yes"=>true, "No"=>false}, 
                   :label_method => :first,
                   :value_method => :last%>
@@ -264,7 +241,44 @@
    <% end %>
 </div>
 
+
+
 <div class="btn-group" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#household-details">Household</a>
+</div>
+ <div id="household-details" class="well collapse">    
+      <% if @individual.household_members.count == 0 %>
+          <h3>Add Household Members (Other than yourself)</h3>
+        <% else %>
+          <h3>Current Members of Household (Other than yourself)</h3>
+        <% end %>
+        <div class="nested-fields">
+            <table class="table" id="members">
+               <tr>
+                  <th>Name</th>
+                  <th>Relationship</th>
+                  <th>Age</th>
+                  <th>School</th>
+                  <th>Care Provider</th>
+                  <th></th>
+                </tr>
+                <%= f.simple_fields_for :household_members, :wrapper => false do |household_member| %>
+                  <%= render 'household_member_fields', f: household_member %>
+                <% end %>
+               <tr>
+                 <td colspan="6">
+                   <div class="nested-fields">
+                     <%= link_to_add_association 'add household member', f, :household_members %>
+                   </div>
+                 </td>
+            </table>
+        </div>
+</div>
+
+
+
+
+<!-- div class="btn-group" data-toggle="buttons-checkbox">
       <a class="btn collapse-data-btn" data-toggle="collapse" href="#employment-details">Employment</a>
 </div>
  <div id="employment-details" class="well collapse">
@@ -298,6 +312,9 @@
    <%= f.input :how_many_jobs_in_last_six_months, :label => "How many jobs have you had in the last six months?" %>
    <%= f.input :total_family_income_from_all_sources, :label => "Total Monthly Family Income/Assistance (from all sources):" %>
 </div>
+
+
+
 <div class="btn-group" data-toggle="buttons-checkbox">
       <a class="btn collapse-data-btn" data-toggle="collapse" href="#income-details">Income</a>
 </div>
@@ -371,44 +388,13 @@
    <% end %> 
 
     <%= f.input :parenting_class, 
-                :label => "In the last three years, have you ever completed a parenting program? (Pregnancy ABC's; 1-2-3 Magic; Love & Logic; Triple P -- Positive Parenting Program; etc.)",
+                :label => "In the last three years, have you ever completed a parenting program? (Pregnancy ABC's; 1-2-3 Magic; Love & Logic; Triple P - Positive Parenting Program; etc.)",
                 :collection => {"Yes"=>0, "No"=>1},
                 :label_method => :first,
                 :value_method => :last %>  
     <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'individual_parenting_class', 'option-value': '0'} do %> 
       <%= f.input :parenting_class_which, :label => "Which program?" %>
    <% end %> 
-</div>
-<div class="btn-group" data-toggle="buttons-checkbox">
-      <a class="btn collapse-data-btn" data-toggle="collapse" href="#household-details">Household</a>
-</div>
- <div id="household-details" class="well collapse">    
- 	    <% if @individual.household_members.count == 0 %>
-          <h3>Add Household Members (Other than yourself)</h3>
-        <% else %>
-          <h3>Current Members of Household (Other than yourself)</h3>
-        <% end %>
-        <div class="nested-fields">
-            <table class="table" id="members">
-               <tr>
-                  <th>Name</th>
-                  <th>Relationship</th>
-                  <th>Age</th>
-                  <th>School</th>
-                  <th>Care Provider</th>
-                  <th></th>
-                </tr>
-                <%= f.simple_fields_for :household_members, :wrapper => false do |household_member| %>
-                  <%= render 'household_member_fields', f: household_member %>
-                <% end %>
-               <tr>
-                 <td colspan="6">
-                   <div class="nested-fields">
-                     <%= link_to_add_association 'add household member', f, :household_members %>
-                   </div>
-                 </td>
-            </table>
-        </div>
 </div>
       
 <div class="btn-group" data-toggle="buttons-checkbox">
@@ -573,7 +559,7 @@
               :label_method => :first,
               :value_method => :last %>
 
-  </div>
+  </div -->
 
 <div class="col-md-10 text-center">
 	   <%= f.button :submit, :value => "#{(@individual.persisted? ? 'Update information' : 'Apply to the Northwest Project')}" %>
@@ -582,7 +568,7 @@
 
 <% end %>
 
-<!--  Goals -->
+<!-- Goals -->
 <div class="btn-group" data-toggle="buttons-checkbox">
       <a class="btn collapse-data-btn" data-toggle="collapse" href="#goals-details">Goals (<%= @individual.goals.count %>)</a>
 </div>
