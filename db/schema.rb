@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328162333) do
+ActiveRecord::Schema.define(version: 20180402161801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -220,6 +220,9 @@ ActiveRecord::Schema.define(version: 20180328162333) do
     t.string   "masters_degree_type"
     t.integer  "marital_status"
     t.date     "date_collected"
+    t.integer  "primary_adult_enrolled_parenting"
+    t.integer  "SS_quality_childcare"
+    t.integer  "ss_criminal"
     t.index ["individual_id"], name: "index_assessments_on_individual_id", using: :btree
   end
 
