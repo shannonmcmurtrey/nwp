@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_filter :authenticate_user!
-  before_action :set_paper_trail_whodunnit, except: :create
+  before_action :authenticate_user!, 
+                :set_paper_trail_whodunnit, except: :create
 
   protect_from_forgery with: :exception
 

@@ -1,5 +1,5 @@
 class IndividualsController < ApplicationController
-  before_filter :verify_is_admin, :except => [:check_code, :new, :create, :show, :edit, :update]
+  before_action :verify_is_admin, :except => [:check_code, :new, :create, :show, :edit, :update]
   before_action :set_individual, only: [:show, :edit, :update, :destroy]
 
 

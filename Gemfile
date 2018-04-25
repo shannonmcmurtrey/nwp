@@ -1,8 +1,34 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
+
+#git_source(:github) do |repo_name|
+ # repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
+ # "https://github.com/#{repo_name}.git"
+#end
+
+# Looking to use the Edge version? gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 5.2.0'
+
+# Use Puma as the app server
+gem 'puma', '~> 3.11'
+
+# Use Rack Timeout. Read more: https://github.com/heroku/rack-timeout
+#gem 'rack-timeout', '~> 0.4'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.5'
+
+# Use PostgreSQL as the database for Active Record
+gem 'pg', '~> 1.0'
+
+# Use Redis Rails to set up a Redis backed Cache and / or Session
+gem 'redis-rails', '~> 5.0'
+
+# Use Sidekiq as a background job processor through Active Job
+gem 'sidekiq'
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data'
 
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'bootstrap-sass', '3.3.6'
 gem 'rails_admin'
 gem 'rails_admin_history_rollback'
@@ -10,7 +36,7 @@ gem 'bootstrap_form'
 
 gem 'sendgrid'
 
-gem 'ahoy_matey'
+gem 'ahoy_matey', '~> 2'
 gem 'autoprefixer-rails'
 gem 'devise'
 
@@ -24,10 +50,10 @@ gem 'paper_trail'
 gem 'ruport'
 gem 'acts_as_reportable'
 
+
+
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
-# Use Puma as the app server
-gem 'puma', '~> 3.0'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -41,10 +67,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -65,5 +88,4 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+

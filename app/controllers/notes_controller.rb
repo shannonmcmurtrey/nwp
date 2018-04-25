@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_filter :verify_is_admin
+  before_action :verify_is_admin
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
   # GET /notes

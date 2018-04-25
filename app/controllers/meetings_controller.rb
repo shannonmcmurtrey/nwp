@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_filter :verify_is_admin
+  before_action :verify_is_admin
   before_action :set_meeting, only: [:show, :edit, :update, :destroy]
 
   # GET /meetings
@@ -71,5 +71,8 @@ class MeetingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_params
       params.require(:meeting).permit(:name, :topic, :meeting_date, :cohort_id)
+    end
+    def verify_is_admin
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
     end
 end
