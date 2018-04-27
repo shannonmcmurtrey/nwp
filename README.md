@@ -8,8 +8,8 @@ This project is intended to help The Northwest Project manage their data in a HI
 4) Open a web browswer to http://localhost:3000 and log in with the username and e-mail added in db/seeds.rb  
 
 
-* If you download the zip file you may have trouble extracting on Windows, you should be able to 'skip' without creating any problems.
-* In Windows you will also need to setup sharing before you go to step 2.
+\* If you download the zip file you may have trouble extracting on Windows, you should be able to 'skip' without creating any problems.
+\* In Windows you will also need to setup sharing before you go to step 2.
 ###### H6 command to import .dump file into docker pg container
 ###### H6 docker exec -i <<container name>> pg_restore -h localhost --clean --no-acl --no-owner -U postgres -d nwp_development < /Users/shannonmcmurtrey/Dropbox/Development/rails_projects/nwp/prod.dump
 
