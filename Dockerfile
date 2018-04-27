@@ -11,6 +11,6 @@ RUN bundle install --binstubs
 
 COPY . .
 
-LABEL maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
+LABEL maintainer="Shannon McMurtrey <shannon.mcmurtrey@gmail.com>"
 
 CMD puma -C config/puma.rb

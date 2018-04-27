@@ -3,8 +3,12 @@ version: '2'
 services:
   postgres:
     image: 'postgres:10.3-alpine'
+    ports:
+          - '5432:5432'
     volumes:
-      - '/Users/shannonmcmurtrey/Dropbox/Development/rails_projects/nwp/data:/var/lib/postgresql/data'
+      - 'postgres:/var/lib/postgresql/data'
+      # first run used postgres: volume to setup db, 2nd run uses volume below for db import.
+      #- '/Users/shannonmcmurtrey/Dropbox/Development/rails_projects/nwp/data:/var/lib/postgresql/data'
     env_file:
       - '.env'
 
