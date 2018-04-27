@@ -22,5 +22,4 @@
 !.elasticbeanstalk/*.global.yml
 
 /.nwp.env
-/.env
 /prod.dump
