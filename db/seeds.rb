@@ -20,3 +20,14 @@ User.create!(first_name:  "Eric",
 	         social_worker: true,
              email: "eric96@live.missouristate.edu",
              password:              "password")
+
+Organization.create!(name: "The Fairbanks", 
+	                 address_line_1: "washington", 
+	                 address_line_2: "", 
+	                 city: "Springfield", 
+	                 state: "MO", 
+	                 zip: "65802", 
+	                 phone_number: nil, 
+	                 website: "", 
+	                 primary_contact: "", 
+	                 code: "nwp")
