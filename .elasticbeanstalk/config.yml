@@ -1,0 +1,28 @@
+branch-defaults:
+  master:
+    environment: nwp-web
+environment-defaults:
+  Custom-env:
+    branch: null
+    repository: null
+  nwp-env:
+    branch: null
+    repository: null
+  nwp-web:
+    branch: null
+    repository: null
+  rails-nwp-env:
+    branch: null
+    repository: null
+global:
+  application_name: nwp
+  default_ec2_keyname: nwp
+  default_platform: 64bit Amazon Linux 2016.09 v2.2.0 running Ruby 2.3 (Puma)
+  default_region: us-west-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  sc: git
+  workspace_type: Application

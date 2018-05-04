@@ -58,7 +58,7 @@ GEM
       safely_block (>= 0.2.1)
       user_agent_parser
     arel (9.0.0)
-    autoprefixer-rails (8.3.0.1)
+    autoprefixer-rails (8.4.1)
       execjs
     bcrypt (3.1.11)
     bindex (0.5.0)
@@ -150,7 +150,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     nested_form (0.3.2)
-    nio4r (2.3.0)
+    nio4r (2.3.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
@@ -307,7 +307,7 @@ GEM
     user_agent_parser (2.4.1)
     warden (1.2.7)
       rack (>= 1.0)
-    web-console (3.6.1)
+    web-console (3.6.2)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
