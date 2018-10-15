@@ -16,7 +16,8 @@ class CohortsController < ApplicationController
 
   # GET /cohorts/new
   def new
-    @cohort = Cohort.new
+    @organization = Organization.find(params[:organization_id])
+    @cohort = Cohort.new(organization_id: params[:organization_id])
   end
 
   # GET /cohorts/1/edit
@@ -26,8 +27,9 @@ class CohortsController < ApplicationController
   # POST /cohorts
   # POST /cohorts.json
   def create
+    @organization = Organization.find(params[:cohort][:organization_id])
     @cohort = Cohort.new(cohort_params)
-
+    @cohort.organization_id = @organization.id
     respond_to do |format|
       if @cohort.save
         format.html { redirect_to @cohort, notice: 'Cohort was successfully created.' }
@@ -67,6 +69,8 @@ class CohortsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_cohort
       @cohort = Cohort.find(params[:id])
+      @organization = @cohort.organization
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

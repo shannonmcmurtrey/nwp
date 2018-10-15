@@ -6,6 +6,10 @@ This project is intended to help The Northwest Project manage their data in a HI
 2) Open the nwp folder in your terminal and type `docker-compose up --build`   
 3) Open a second terminal window in the same folder and type `docker-compose exec website rake db:setup`  
 4) Open a web browswer to http://localhost:3000 and log in with the username and e-mail added in db/seeds.rb  
+5) To deploy, login to heroku, push and release:
+    heroku container:login
+ 	heroku container:push web --app calm-bastion-14149
+ 	heroku container:release web --app calm-bastion-14149 
 
 
 \* If you download the zip file you may have trouble extracting on Windows, you should be able to 'skip' without creating any problems.  
