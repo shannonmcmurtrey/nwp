@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_25_212246) do
+ActiveRecord::Schema.define(version: 2018_12_27_234423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,9 +91,9 @@ ActiveRecord::Schema.define(version: 2018_04_25_212246) do
     t.integer "medical_height"
     t.integer "medical_weight"
     t.integer "medical_physical_family_member_impact"
-    t.integer "health_insurance"
-    t.integer "health_insurance_primary"
-    t.integer "health_insurance_children"
+    t.integer "ssa_health_insurance"
+    t.integer "ssa_health_insurance_primary"
+    t.integer "ssa_health_insurance_children"
     t.integer "health_insurance_spouse_or_significant_other"
     t.integer "primary_care_physician_primary"
     t.integer "primary_care_physician_children"
@@ -155,12 +155,12 @@ ActiveRecord::Schema.define(version: 2018_04_25_212246) do
     t.string "religious_or_spiritual_preference"
     t.string "name_of_place_of_worship"
     t.integer "how_often_attend_religious_services"
-    t.integer "primary_adult_enrolled_best_description_academic"
-    t.integer "family_best_description_current_situation_income"
-    t.integer "primary_adult_enrolled_best_description_employment"
+    t.integer "ssa_primary_adult_enrolled_best_description_academic"
+    t.integer "ssa_family_best_description_current_situation_income"
+    t.integer "ssa_primary_adult_enrolled_best_description_employment"
     t.integer "family_best_description_current_situation_food"
-    t.integer "family_best_description_current_situation_housing"
-    t.integer "family_best_description_current_situation_transportation"
+    t.integer "ssa_family_best_description_current_situation_housing"
+    t.integer "ssa_family_best_description_current_situation_transportation"
     t.boolean "currently_have_required_auto_insurance"
     t.boolean "currently_have_valid_drivers_license"
     t.integer "no_license_reason"
@@ -221,8 +221,8 @@ ActiveRecord::Schema.define(version: 2018_04_25_212246) do
     t.integer "individual_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "health_insurance_primary_other"
-    t.string "health_insurance_children_other"
+    t.string "ssa_health_insurance_primary_other"
+    t.string "ssa_health_insurance_children_other"
     t.string "health_insurance_spouse_or_significant_other_other"
     t.date "drug_date_of_last_use_ccs"
     t.date "drug_date_of_last_use_meth"
@@ -244,6 +244,18 @@ ActiveRecord::Schema.define(version: 2018_04_25_212246) do
     t.integer "primary_adult_enrolled_parenting"
     t.integer "SS_quality_childcare"
     t.integer "ss_criminal"
+    t.float "how_many_allies"
+    t.boolean "attended_at_least_two_meetings_in_last_six_months"
+    t.boolean "have_you_recently_worked_with_an_ally"
+    t.integer "ss_non_criminal"
+    t.integer "ss_support_system"
+    t.integer "ss_food"
+    t.integer "ss_home_safety"
+    t.integer "ss_community_involvement"
+    t.integer "ssa_highest_grade_completed"
+    t.string "ssa_title_of_training"
+    t.string "ssa_title_of_degree"
+    t.integer "ssa_community_involvement"
     t.index ["individual_id"], name: "index_assessments_on_individual_id"
   end
 

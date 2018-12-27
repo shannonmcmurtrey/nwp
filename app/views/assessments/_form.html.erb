@@ -24,13 +24,13 @@
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-housing">Housing</a>
         </div>
         <div id="ss-assessment-housing" class="well">
-           <%= f.input :family_best_description_current_situation_housing,
+           <%= f.input :ssa_family_best_description_current_situation_housing,
                :label => "Please select which of the following best describes your family's current situation:",
-               :collection => {"Family is currently homeless (i.e. homeless shelter, on the streets, out of vehicle, residing in treatment facility or are staying with friends"=>1,
+               :collection => {"Family is currently homeless (i.e. homeless shelter, on the streets, in vehicle, or are staying with friends."=>1,
                                "Family is in transitional housing (i.e. temporary housing, hotel, motel, short term lease (less than six months) or current residence is in need of major repairs"=>2, 
-                               "Family is currently living in permanent housing and there is a threat of eviction"=>3,
-                               "Family is currently living in permanent housing but the cost exceeds 50% of family income"=>4,
-                               "Family is currently living in permanent non-subsidized housing"=>5},
+                               "Family is currently living in permanent housing; but marginally adequate, or is subsidized"=>3,
+                               "Family is currently living in permanent adequate housing but the cost exceeds 30% of family income, or is subsidized."=>4,
+                               "Family is currently living in permanent unsubsidized housing"=>5},
                   :label_method => :first,
                   :value_mathod => :last %>
         </div>
@@ -40,7 +40,7 @@
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-transportation">Transportation</a>
         </div>
         <div id="ss-assessment-transportation" class="well">
-            <%= f.input :family_best_description_current_situation_transportation,
+            <%= f.input :ssa_family_best_description_current_situation_transportation,
                :label => "Please help me select which of the following best describes your family's current situation:",
                :collection => {"No transportation"=>1,
                                "No transportation; but are able to borrow car, access public transportation but have limited resources for fare, no license"=>2, 
@@ -60,10 +60,6 @@
                                "Family obtains adequate meals without the use of supplemental resources"=>5},
                   :label_method => :first,
                   :value_mathod => :last % -->
-           
-            
-            
-           
         </div>
 
 
@@ -71,12 +67,12 @@
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-employment">Employment</a>
         </div>
         <div id="ss-assessment-employment" class="well">
-          <%= f.input :primary_adult_enrolled_best_description_employment,
+          <%= f.input :ssa_primary_adult_enrolled_best_description_employment,
                :label => "Please select which of the following best describes your situation:",
                :collection => {"Unemployed or never worked"=>1,
                                "Unemployed for less than 3 months."=>2, 
                                "Part-time employment"=>3,
-                               "Full-time employment without fringe benefits"=>4,
+                               "Full-time employment without benefits"=>4,
                                "Full-time employment with a living wage and benefits"=>5},
                   :label_method => :first,
                   :value_mathod => :last %>
@@ -87,23 +83,33 @@
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-education">Educational / Academic Attainment</a>
         </div>
         <div id="ss-assessment-education" class="well">
-          <%= f.input :primary_adult_enrolled_best_description_academic,
+          <%= f.input :ssa_primary_adult_enrolled_best_description_academic,
                :label => "Select which of the following best describes the situation for the primary adult enrolled in the program:",
-               :collection => {"Lack of academic skills is currently a barrier to employment or other goal attainment"=>1,
-                               "Lack of academic skills severely limits employment or other goal attainment.  Able to read with pictures and perform basic addition and/or subtraction."=>2, 
-                               "Lack of academic skills limits employment or other goal attainment.  Able to read and complete basic job applications and can perform basic calculations"=>3,
-                               "Academic skills occasionally limit employment or other goal attainment.  Can read and perform math calculations at a high school level"=>4,
-                               "Academic skills are not a barrier to employment or other goal attainment"=>5},
+               :collection => {"Lack of academic skills is currently a barrier to employment or other goal attainment. Literacy problems; or less than high school"=>1,
+                               "Lack of academic skills severely limits employment or other goal attainment.  Able to read with pictures and perform basic addition and/or subtraction. High school diploma (or equivalent, HISET/GED)"=>2, 
+                               "Lack of academic skills limits employment or other goal attainment.  Able to read and complete basic job applications and can perform basic calculations. Attended, but did not complete college or technical training"=>3,
+                               "Academic skills occasionally limit employment or other goal attainment.  Can read and perform math calculations at a high school level. Associate's degree or Completed Technical Training (CNA, cosmetology, auto mechanic, etc)"=>4,
+                               "Academic skills are not a barrier to employment or other goal attainment. Completed degree program"=>5},
                   :label_method => :first,
                   :value_mathod => :last %>
+            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_ssa_primary_adult_enrolled_best_description_academic', 'option-value': '1'} do %> 
+               <%= f.label "Last grade completed." %>
+               <%= f.text_field :ssa_highest_grade_completed, :class => "form-control" %>        
+            <% end %>
+            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_ssa_primary_adult_enrolled_best_description_academic', 'option-value': '4'} do %> 
+               <%= f.label "Title of Technical/Professional/Vocational Training." %>
+               <%= f.text_field :ssa_title_of_training, :class => "form-control" %>        
+            <% end %>
+            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_ssa_primary_adult_enrolled_best_description_academic', 'option-value': '5'} do %> 
+               <%= f.label "Title of Bachelor's or Master's Degree." %>
+               <%= f.text_field :ssa_title_of_degree, :class => "form-control" %>        
+            <% end %>
         </div>
-
-
         <div class="btn-group" data-toggle="buttons-checkbox">
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-income">Income / Budget</a>
         </div>
         <div id="ss-assessment-income" class="well">
-          <%= f.input :family_best_description_current_situation_income,
+          <%= f.input :ssa_family_best_description_current_situation_income,
                :label => "Please select which of the following best describes your families current situation:",
                :collection => {"No regular or consistent income"=>1,
                                "Income does not meet basic needs."=>2, 
@@ -119,8 +125,8 @@
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-insurance">Health Insurance</a>
         </div>
         <div id="ss-assessment-insurance" class="well">
-          <%= f.input :health_insurance,
-               :label => "**HEALTH INSURANCE: Select which of the following best describes your family's current situation:",
+          <%= f.input :ssa_health_insurance,
+               :label => "Select which of the following best describes your family's current situation:",
                :collection => {"No health insurance for any family member"=>1, 
                                "Not all family members are insured"=>2,
                                "All family members are covered by government insurance"=>3,
@@ -129,56 +135,25 @@
                   :label_method => :first,
                   :value_mathod => :last %>
             <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_health_insurance', 'option-value': '2|3|4|5'} do %> 
-
-            <%= f.input :health_insurance_primary,
-                   :label => "What type of health coverage do YOU have?",
-                   :collection => {"No coverage"=>0,"Employer-provided coverage"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5},
-                      :label_method => :first,
-                      :value_mathod => :last %>
-            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_health_insurance_primary', 'option-value': '5'} do %> 
-            <%= f.label "If other, please describe." %>
-            <%= f.text_field :health_insurance_primary_other, :class => "form-control" %>        
+            <%= f.label "If yes, list insurance type:" %>
+            <%= f.text_field :ssa_health_insurance_type, :class => "form-control" %>        
 
             <% end %>
-            <%= f.input :health_insurance_children,
-                   :label => "What type of health coverage do your CHILDREN have?",
-                   :collection => {"No coverage"=>0,"Employer-provided coverage"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5},
-                      :label_method => :first,
-                      :value_mathod => :last %>
-            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_health_insurance_children', 'option-value': '5'} do %> 
-            <%= f.label "If other, please describe." %>
-            <%= f.text_field :health_insurance_children_other, :class => "form-control" %>        
-
-            <% end %>
-
-            <%= f.input :health_insurance_spouse_or_significant_other,
-                   :label => "What type of health coverage does your SPOUSE OR SIGNIFICANT OTHER have?",
-                   :collection => {"No coverage"=>0,"Employer-provided coverage"=>1, "Individually Purchased Private Health Plan"=>2, "Individually purchased through affordable healthcare act (healthcare.gov)"=>3, "Government sponsored health plan (medicare, medicaid, veterans health administration"=>4, "Other"=>5, "N/A"=>6},
-                      :label_method => :first,
-                      :value_mathod => :last %>
-            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_health_insurance_spouse_or_significant_other', 'option-value': '5'} do %> 
-               <%= f.label "If other, please describe." %>
-               <%= f.text_field :health_insurance_spouse_or_significant_other_other, :class => "form-control" %>        
-
-               <% end %>
             </div>
         </div>
-
-
         <div class="btn-group" data-toggle="buttons-checkbox">
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-physical">Physical Health</a>
         </div>
         <div id="ss-assessment-physical" class="well">
-          <%= f.input :medical_physical_family_member_impact,
-               :label => "**PHYSICAL HEALTH: Please select which of the following best describes your family's current situation:",
-               :collection => {"A family member's health problems prohibit employment or other goal options.  Or, family member is in need of 24 hour care."=>1, 
-                               "A family member's health problem regularly interferes with employment or other goals"=>2,
+          <%= f.input :ssa_medical_physical_family_member_impact,
+               :label => "Please select which of the following best describes your family's current situation:",
+               :collection => {"A family member's health problems prohibit employment.  Or, family member is in need of 24 hour care."=>1, 
+                               "A family member's health problem regularly interferes with employment or other goal options"=>2,
                                "A family member's health problems occasionally interferes with employment or other goal options"=>3,
                                "A family member's physical health problem does not interfere with employment or other goal options"=>4,
                                "There are no physical health problems for any family member at this time"=>5},
                   :label_method => :first,
                   :value_mathod => :last %>
-      
       <% end %>
 
 
@@ -186,7 +161,7 @@
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-mental">Mental Health / Substance Abuse</a>
         </div>
         <div id="ss-assessment-mental" class="well">
-          <%= f.input :family_best_description_current_situation_mental_health,
+          <%= f.input :ssa_family_best_description_current_situation_mental_health,
                :label => "Please select which of the following best describes your family's current situation:",
                :collection => {"A family member's mental health and/or substance abuse prohibit employment or other goal atttainment"=>1,
                                "A family member's mental health and/or substance abuse regularly interferes with employment/other goals"=>2, 
@@ -202,7 +177,7 @@
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-psychosocial">Psychosocial & Environmental Stressors</a>
         </div>
         <div id="ss-assessment-psychosocial" class="well">
-           <%= f.input :primary_adult_enrolled_best_description_stressors,
+           <%= f.input :ssa_primary_adult_enrolled_best_description_stressors,
                :label => "Please select which of the following describes the situation for the primary adult enrolled in the program:",
                :collection => {"Current stressors are so great that participant is unable to focus on employment or other goal attainment"=>1,
                                "Current stressors considerably affect participant's ability to focus on employment or other goal attainment"=>2, 
@@ -218,7 +193,7 @@
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-parenting">Parenting Skills</a>
         </div>
         <div id="ss-assessment-parenting" class="well">
-           <%= f.input :primary_adult_enrolled_parenting,
+           <%= f.input :ssa_primary_adult_enrolled_parenting,
                :label => "Please select which of the following describes your family's current situation:",
                :collection => {"Current known or suspected safety concerns regarding parenting skills"=>1,
                                "New to parenting or has limited parenting skills (unfamiliar with child development, unrealistic expectations, etc.)"=>2, 
@@ -234,14 +209,13 @@
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-childcare">Quality Childcare</a>
         </div>
         <div id="ss-assessment-childcare" class="well">
-           <%= f.input :SS_quality_childcare, 
+           <%= f.input :ssa_quality_childcare, 
               :label => "Please select which of the following best describes your family's current situation:",
               :collection => {"Child care is needed for education or employment goal but is unavailable"=>1,
                               "Child care and subsidy are available but child care provider will not / cannot accept subsidy, or cost is unaffordable"=>2,
                               "Child care is available and affordable (may use subsidy) but of poor quality.  There is no emergency backup caregiver or plan"=>3,
                               "Child care is available, and affordable (may use subsidy), and good quality.  There is no emergency backup caregiver or plan"=>4,
-                              "Child care is available, affordable, good quality and there is at least one emergency backup caregiver or plan."=>5, 
-                              "Childcare not needed"=>0},
+                              "Child care is available, affordable, good quality and there is at least one emergency backup caregiver or plan and/or childcare is not needed."=>5},
               :label_method => :first,
               :value_method => :last %>
         </div>
@@ -251,10 +225,10 @@
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-criminal">Legal (Criminal)</a>
         </div>
         <div id="ss-assessment-criminal" class="well">
-           <%= f.input :ss_criminal, 
+           <%= f.input :ssa_criminal, 
               :label => "Please select which of the following best describes your current situation:",
               :collection => {"Current outstanding warrants or tickets; or has a felony conviction or arrest in the past year"=>1,
-                              "Current charges / trial pending; noncompliance with probation / parole; has extensive criminal history."=>2,
+                              "Current charges / trial pending; noncompliance with probation / parole; has extensive criminal history (felony)."=>2,
                               "Currently on probation / parole and is fully compliant; or has a moderate criminal history"=>3,
                               "Completed probation / parole within the past 12 months, no new charges filed; or minor criminal charges."=>4,
                               "No criminal history."=>5},
@@ -267,7 +241,15 @@
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-noncriminal">Legal (Non-criminal)</a>
         </div>
         <div id="ss-assessment-noncriminal" class="well">
-          Legal non-criminal question
+          <%= f.input :ssa_legal_non_criminal, 
+              :label => "Please select which of the following best describes your current situation:",
+              :collection => {"Significant legal issues and is not addressing them or does not understand the problem involves legal issues."=>1,
+                              "Identified legal issues but is unable to proceed without legal assistance."=>2,
+                              "Responded to legal issues with appropriate legal assistance."=>3,
+                              "Currently has legal representation and issues are moving towards resolution."=>4,
+                              "No legal issues or issues have been fully resolved."=>5},
+              :label_method => :first,
+              :value_method => :last %>
         </div>
 
 
@@ -275,7 +257,63 @@
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-support">Support System</a>
         </div>
         <div id="ss-assessment-support" class="well">
-          Support System question
+          <%= f.input :ssa_support_system, 
+              :label => "Please select which of the following best describes your family's current situation:",
+              :collection => {"No personal support systems and no knowledge of available community supports."=>1,
+                              "No personal support, but knows where to go in the community for help when experiencing a need or crisis."=>2,
+                              "1-3 personal supports and basic community networks are available in times of need."=>3,
+                              "3-5 personal supports available and is connected with at least one community support (non-profit, church, etc.)."=>4,
+                              "5+ personal supports available and is able to give support in return; active in community support networks."=>5},
+              :label_method => :first,
+              :value_method => :last %>
+        </div>
+
+
+        <div class="btn-group" data-toggle="buttons-checkbox">
+            <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-food">Food</a>
+        </div>
+        <div id="ss-assessment-food" class="well">
+          <%= f.input :ssa_food, 
+              :label => "Please select which of the following best describes your family's food situation:",
+              :collection => {"No food, or means to prepare it. Rely primarily on sources of free or low-cost food."=>1,
+                              "Household meeting most food needs with SNAP benefits."=>2,
+                              "Can meet basic food needs, but require occasional assistance."=>3,
+                              "Can meet basic food needs without assistance."=>4,
+                              "Can choose to purchase any food household desires."=>5},
+              :label_method => :first,
+              :value_method => :last %>
+        </div>
+
+
+        <div class="btn-group" data-toggle="buttons-checkbox">
+            <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-home-safety">Home Safety</a>
+        </div>
+        <div id="ss-home-safety" class="well">
+          <%= f.input :ssa_home_safety, 
+              :label => "Please select which of the following best describes your family's home safety situation:",
+              :collection => {"Home or residence is not safe; possible CPS involvement."=>1,
+                              "Safety is threatened but there is temporary protection available."=>2,
+                              "Current level of safety is minimally adequate."=>3,
+                              "Enviornment is safe, however, future safety is uncertain."=>4,
+                              "Environment is notably safe and stable."=>5},
+              :label_method => :first,
+              :value_method => :last %>
+        </div>
+
+
+        <div class="btn-group" data-toggle="buttons-checkbox">
+            <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-community-involvement">Community Involvement</a>
+        </div>
+        <div id="ss-community-involvement" class="well">
+          <%= f.input :ssa_community_involvement, 
+              :label => "Please select which of the following best describes your family's community involvement:",
+              :collection => {"Not applicable due to difficult life situations, keeping family in 'survival' mode."=>1,
+                              "Socially isolated and lacking confidence or desire to become more involved."=>2,
+                              "Lack knowledge about how to be more involved in the community."=>3,
+                              "Some community involvement (PTA, neighborhood association, support group, etc.) but dealing with barriers like transportation and childcare issues."=>4,
+                              "Actively involved in community."=>5},
+              :label_method => :first,
+              :value_method => :last %>
         </div>
 
     </div>
@@ -403,7 +441,7 @@
                :collection => {"Up to 25%"=>25, "26 - 50%"=>5, "51-75%"=>75, "76-99%"=>99},
                   :label_method => :first,
                   :value_mathod => :last %>
-        <%= f.label "What diploma, degree, or certificate will you receive whne you complete the program?" %>
+        <%= f.label "What diploma, degree, or certificate will you receive when you complete the program?" %>
         <%= f.text_field :education_degree_type, :class => "form-control" %>
   <% end %>
 
@@ -821,26 +859,6 @@
       <a class="btn collapse-data-btn" data-toggle="collapse" href="#education-details">Education</a>
 </div>
  <div id="education-details" class="well collapse in">  <h3>Education:</h3>
-<%= f.input :highest_education_attained, 
-            :label => "**Educational Attainment: (Highest Degree Earned)",
-            :collection => {"Less than high school"=>0, "High School Diploma (or equivalent, HiSET)"=>1, "Attended, but did not complete college or technical training"=>2, "Completed technical training (CNA, cosmetology, auto mechanic, etc)"=>3, "Associate's Degree (2-year degree)"=>4, "Bachelor's Degree (4-year degree)"=>5, "Master's Degree"=>6}, 
-               :label_method => :first,
-               :value_method => :last %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_highest_education_attained', 'option-value': '0'} do %> 
-      <%= f.input :last_grade_completed, :label => "What was the last grade you completed?" %>
-   <% end %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_highest_education_attained', 'option-value': '3'} do %> 
-      <%= f.input :technical_training_degree, :label => "What type of technical degree did you get?" %>
-   <% end %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_highest_education_attained', 'option-value': '4'} do %> 
-      <%= f.input :associates_degree_type, :label => "What was your Associates degree in?" %>
-   <% end %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_highest_education_attained', 'option-value': '5'} do %> 
-      <%= f.input :bachelors_degree_type, :label => "What was your Bachelor's degree in?" %>
-   <% end %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_highest_education_attained', 'option-value': '6'} do %> 
-      <%= f.input :masters_degree_type, :label => "What was your Masters degree in?" %>
-   <% end %>
 
 </div>
  <%= f.input :marital_status,
@@ -852,4 +870,4 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+
