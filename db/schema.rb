@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_27_234423) do
+ActiveRecord::Schema.define(version: 2018_12_28_164221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,8 +170,8 @@ ActiveRecord::Schema.define(version: 2018_12_27_234423) do
     t.boolean "worked_with_ally_in_last_six_months"
     t.text "economic_stability_goals_for_next_six_months"
     t.text "goals_accomplished_in_previous_six_months"
-    t.integer "family_best_description_current_situation_mental_health"
-    t.integer "primary_adult_enrolled_best_description_stressors"
+    t.integer "ssa_family_best_description_current_situation_mental_health"
+    t.integer "ssa_primary_adult_enrolled_best_description_stressors"
     t.boolean "completed_parenting_program_in_last_three_years"
     t.string "parenting_program_name"
     t.boolean "children_currently_in_accredited_child_care_after_school_care"
@@ -241,7 +241,7 @@ ActiveRecord::Schema.define(version: 2018_12_27_234423) do
     t.string "masters_degree_type"
     t.integer "marital_status"
     t.date "date_collected"
-    t.integer "primary_adult_enrolled_parenting"
+    t.integer "ssa_primary_adult_enrolled_parenting"
     t.integer "SS_quality_childcare"
     t.integer "ss_criminal"
     t.float "how_many_allies"
@@ -256,6 +256,14 @@ ActiveRecord::Schema.define(version: 2018_12_27_234423) do
     t.string "ssa_title_of_training"
     t.string "ssa_title_of_degree"
     t.integer "ssa_community_involvement"
+    t.string "ssa_health_insurance_type"
+    t.integer "ssa_medical_physical_family_member_impact"
+    t.integer "ssa_criminal"
+    t.integer "ssa_legal_non_criminal"
+    t.integer "ssa_support_system"
+    t.integer "ssa_food"
+    t.integer "ssa_home_safety"
+    t.integer "ssa_quality_childcare"
     t.index ["individual_id"], name: "index_assessments_on_individual_id"
   end
 
