@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_164221) do
+ActiveRecord::Schema.define(version: 2019_01_04_170713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -264,6 +264,7 @@ ActiveRecord::Schema.define(version: 2018_12_28_164221) do
     t.integer "ssa_food"
     t.integer "ssa_home_safety"
     t.integer "ssa_quality_childcare"
+    t.string "voter"
     t.index ["individual_id"], name: "index_assessments_on_individual_id"
   end
 

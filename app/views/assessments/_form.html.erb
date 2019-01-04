@@ -19,7 +19,52 @@
     <%= f.input :date_collected, :label => "Date collected" %>
     <div class="well">
       <h3>Self-Sufficiency Assessment</h3>
-        
+        <div class="btn-group" data-toggle="buttons-checkbox">
+           <a class="btn collapse-data-btn" data-toggle="collapse" href="#misc">Follow-up</a>          
+        </div>
+        <div id="misc" class="well">
+          <%= f.input :still_resident_of_neighborhood_years, :label=>"How many years have you been a resident of your neighborhood?" %>
+          <%= f.input :still_resident_of_neighborhood_months, :label=>"...and how many months (past the years in the previous field) have you been a resident of your neighborhood?" %>
+
+          <%= f.input :self_sufficency_goal,
+               :label => "What is your major goal for becoming self-sufficient?",
+               :collection => {"Employment"=>0, "Education"=>1, "Other"=>2},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+          <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_self_sufficency_goal', 'option-value': '2'} do %>            
+          <%= f.input :self_sufficiency_goal_other, 
+                    :label => "Please describe your goal for becoming self-sufficient:"%>
+          <% end %> 
+          <%= f.input :filed_1040_in_last_year,
+               :label => "Did you file 1040 tax return for last calendar year?",
+               :collection => {"Yes"=>true, "No"=>false},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+          <%= f.input :last_calendar_years_income, :label => "Last calendar year's adjusted gross income (from 1040 tax return)?" %>
+          <%= f.input :currently_receive_earned_income_tax_credit,
+               :label => "Do you currently receive earned income tax credit?",
+               :collection => {"Yes"=>true, "No"=>false},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+          <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_receive_earned_income_tax_credit', 'option-value': '1'} do %>            
+          <%= f.input :earned_income_tax_credit_amount, :label => "Amount?"%>
+          <% end %>  
+          <%= f.input :currently_registered_to_vote,
+               :label => "Are you currently registered to vote?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+          <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_registered_to_vote', 'option-value': '1'} do %>            
+            <%= f.input :voter, :label => "Do you vote?",
+               :collection => {"Yes"=>"yes", "No"=>"no"},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+          <% end %>
+
+         
+        </div>
+
+
         <div class="btn-group" data-toggle="buttons-checkbox">
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-housing">Housing</a>
         </div>
@@ -327,18 +372,7 @@
 
 
 
-     <%= f.input :still_resident_of_neighborhood_years, :label=>"How many years have you been a resident of your neighborhood?" %>
-     <%= f.input :still_resident_of_neighborhood_months, :label=>"...and how many months (past the years in the previous field) have you been a resident of your neighborhood?" %>
-
-  <%= f.input :self_sufficency_goal,
-               :label => "What is your major goal for becoming self-sufficient?",
-               :collection => {"Employment"=>0, "Education"=>1, "Other"=>2},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-  <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_self_sufficency_goal', 'option-value': '2'} do %>            
-        <%= f.input :self_sufficiency_goal_other, 
-                    :label => "Please describe your goal for becoming self-sufficient:"%>
-  <% end %>
+     
 
 
 <div class="btn-group" data-toggle="buttons-checkbox">
@@ -372,52 +406,6 @@
 
    <%= f.input :number_of_jobs_in_last_six_months, :label => "How many jobs have you had in the last six months?" %>
 </div>
-   <%= f.input :filed_1040_in_last_year,
-               :label => "Did you file 1040 tax return for last calendar year?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-   <%= f.input :last_calendar_years_income, :label => "Last calendar year's adjusted gross income (from 1040 tax return)?" %>
-   <%= f.input :currently_receive_earned_income_tax_credit,
-               :label => "Do you currently receive earned income tax credit?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-   <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_receive_earned_income_tax_credit', 'option-value': '1'} do %>            
-        <%= f.input :earned_income_tax_credit_amount, :label => "Amount?"%>
-  <% end %>
-  <%= f.input :child_support, 
-               :label => "Child Support:", 
-               :collection => {"eligible, no income benefit"=>0, "eligible, partial or irregular income"=>1, "eligible, receives full amount of income ordered"=>2, "not eligible / not applicable"=>3}, 
-               :label_method => :first,
-               :value_method => :last %> 
-  
-  <%= f.input :currently_registered_to_vote,
-               :label => "Are you currently registered to vote?",
-               :collection => {"Yes"=>1, "No"=>0},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-  <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_registered_to_vote', 'option-value': '1'} do %>            
-        <%= f.input :vote_local, :label => "Do you vote for local elections? (i.e. taxes, mayor, city council)",
-               :collection => {"Yes"=>"yes", "No"=>"no"},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= f.input :vote_state, :label => "Do you vote for state elections? (i.e. taxes, governor, senate)",
-               :collection => {"Yes"=>"yes", "No"=>"no"},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= f.input :vote_federal, :label => "Do you vote for federal elections? (i.e. president, congress)",
-               :collection => {"Yes"=>"yes", "No"=>"no"},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= f.input :vote_frequency,
-               :label => "How often do you vote?",
-               :collection => {"Never"=>0, "Not very often"=>1, "Pretty regularly"=>2, "Very regularly"=>3},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-
-  <% end %>
-
   
  
  <%= f.input :educational_training_last_six_months,
@@ -436,7 +424,7 @@
         <%= f.label "What are you studying?" %>
         <%= f.text_field :education_studying, :class => "form-control" %>
          <%= f.label "How many months will it take to complete the program?" %>
-        <%= f.input :education_program_length_in_months, input_html: {value: '48', step:'1'}, label: false%>
+        <%= f.input :education_program_length_in_months, input_html: {value: '', step:'1'}, label: false%>
         <%= f.input :education_progress,
                :label => "How much have you completed?",
                :collection => {"Up to 25%"=>25, "26 - 50%"=>5, "51-75%"=>75, "76-99%"=>99},
@@ -494,7 +482,7 @@
                   :label_method => :first,
                   :value_mathod => :last %>
       <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_alcohol', 'option-value': 'true'} do %>            
-         <%= f.input :medical_alcohol_avg_drinks_per_week, input_html: {value: '3', step:'1'}, label: "On average, how many drinks do you consume per week?"%>
+         <%= f.input :medical_alcohol_avg_drinks_per_week, input_html: {value: '', step:'1'}, label: "On average, how many drinks do you consume per week?"%>
       <% end %>
 </div>
 

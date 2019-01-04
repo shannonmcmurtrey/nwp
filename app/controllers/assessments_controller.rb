@@ -303,7 +303,9 @@ class AssessmentsController < ApplicationController
                                          :ssa_health_insurance_children,
                                          :ssa_health_insurance_children_other,
                                          :ssa_highest_grade_completed,
-                                         :ssa_title_of_training
+                                         :ssa_title_of_training,
+                                         :ssa_primary_adult_enrolled_parenting, 
+                                         :voter
                                          )
     end
     def verify_is_admin

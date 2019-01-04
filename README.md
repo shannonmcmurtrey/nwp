@@ -10,6 +10,11 @@ This project is intended to help The Northwest Project manage their data in a HI
     heroku container:login
  	heroku container:push web --app calm-bastion-14149
  	heroku container:release web --app calm-bastion-14149 
+ 	If rake db:migrate needed, first push, then release web to docker then:
+ 	(create the migration) docker exec nwp_website_1 rails g migration migration_name
+ 	docker exec nwp_website_1 rake db:migrate (local migrate and test)
+ 	heroku run rake db:migrate --app calm-bastion-14149 (heroku migrate)
+
 
 
 \* If you download the zip file you may have trouble extracting on Windows, you should be able to 'skip' without creating any problems.  
