@@ -18,7 +18,7 @@
     <%= f.hidden_field :individual_id, :value => @individual.id %>
     <%= f.input :date_collected, :label => "Date collected" %>
     <div class="well">
-      <h3>Self-Sufficiency Assessment</h3>
+      <h3>Assessment</h3>
         <div class="btn-group" data-toggle="buttons-checkbox">
            <a class="btn collapse-data-btn" data-toggle="collapse" href="#misc">Follow-up</a>          
         </div>
@@ -144,21 +144,22 @@
                       :label_method => :first,
                       :value_mathod => :last %>
       
-        <!-- %= f.input :household_member_in_jail,
-               :label => "Is a household member currently in jail?",
+        <%= f.input :convicted_of_crime_last_six_months,
+               :label => "Have you been convicted of a crime in the last six months?",
                :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
-                  :value_mathod => :last % -->
+                  :value_mathod => :last %>
           <%= f.input :household_member_in_jail_current_criminal_resoution_need,
                :label => "Any current need for legal resolution?",
                :collection => {"Yes"=>true, "No"=>false},
                   :label_method => :first,
                   :value_mathod => :last %>
-        
+          
 
          
         </div>
 
+        <h2>Self Sufficiency Assessment</h3>
 
         <div class="btn-group" data-toggle="buttons-checkbox">
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-housing">Housing</a>
@@ -470,9 +471,7 @@
      
 
 
-<div class="btn-group" data-toggle="buttons-checkbox">
-      <a class="btn collapse-data-btn" data-toggle="collapse" href="#employment-details">Employment</a>
-</div>
+
  <div id="employment-details" class="well">
   <h3>Employment:</h3>
    <%= f.input :currently_employed,
@@ -486,9 +485,9 @@
                     :collection => {"Full-Time"=>0, "Part-Time"=>1},
                     :label_method => :first,
                     :value_method => :last %>
-        <%= f.input :employer %>
-        <%= f.input :position %>
-        <%= f.input :hours_worked_per_week, :label => "Hours worked per week (Average number of hours per week for the last 30 days)" %>
+        <!-- %= f.input :employer % -->
+        <!-- %= f.input :position % -->
+        <!-- %= f.input :hours_worked_per_week, :label => "Hours worked per week (Average number of hours per week for the last 30 days)" % -->
         <%= f.input :monthly_wage, :label => "Total monthly family income - Earned income before taxes and withholdings?" %>
    <% end %>
    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_employed', 'option-value': '1'} do %> 
@@ -498,305 +497,21 @@
                :label_method => :first,
                :value_method => :last  %>
    <% end %> 
-
-   <%= f.input :number_of_jobs_in_last_six_months, :label => "How many jobs have you had in the last six months?" %>
+ <%= f.input :credit_score,
+               :label => "What is your credit score?" %><p>
 </div>
   
 
-  <div class="well">
-    <%= f.input :cocaine_crack_speed,
-               :label => "Have you ever used cocaine, crack, or speed?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_cocaine_crack_speed', 'option-value': 'true'} do %>   
-          <%= f.label "When was the last time you used?" %>
-          <%= f.date_select :drug_date_of_last_use_ccs,
-               :label => "When was the last time you used?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last,
-                  :start_year => 1950, 
-                  :end_year => Time.now.year %><p>
-        <% end %>
-    <%= f.input :meth,
-               :label => "Have you ever used meth?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_meth', 'option-value': 'true'} do %>   
-          <%= f.label "When was the last time you used?" %>
-          <%= f.date_select :drug_date_of_last_use_meth,
-               :label => "When was the last time you used?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last,
-                  :start_year => 1950, 
-                  :end_year => Time.now.year %><p>
-        <% end %>
-      <%= f.input :marijuana,
-               :label => "Have you ever used marijuana?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_marijuana', 'option-value': 'true'} do %>   
-          <%= f.label "When was the last time you used?" %>
-          <%= f.date_select :drug_date_of_last_use_marijuana,
-               :label => "When was the last time you used?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last,
-                  :start_year => 1950, 
-                  :end_year => Time.now.year %><p>
-        <% end %>
-        <%= f.input :heroin_opiates,
-               :label => "Have you ever used Heroin/Opiates?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_heroin_opiates', 'option-value': 'true'} do %>   
-          <%= f.label "When was the last time you used?" %>
-          <%= f.date_select :drug_date_of_last_use_heroin,
-               :label => "When was the last time you used?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last,
-                  :start_year => 1950, 
-                  :end_year => Time.now.year %><p>
-        <% end %>
-        <%= f.input :other_boolean,
-               :label => "Have you ever used any other drug not listed previously?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_other_boolean', 'option-value': 'true'} do %>   
-          <%= f.label "When was the last time you used?" %>
-          <%= f.date_select :drug_date_of_last_use_other,
-               :label => "When was the last time you used?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last,
-                  :start_year => 1950, 
-                  :end_year => Time.now.year %><p>
-        <% end %>
-  </div>
 
 
-  <div class="well">
-    <h3>Social Capital and Civic Engagement Questionnaire</h3>
-     <%= f.input :written_plan_to_become_self_sufficient,
-               :label => "As of today, I have a written plan for how I am going to reach my goals and become self-sufficient.",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-     <%= f.input :current_budget_and_savings_plan,
-               :label => "As of today, I have a budget and savings plan to help build my assets.",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-     <%= f.input :safe_and_stable_place_to_live,
-               :label => "As of today, I have a safe and stable place to live.",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-     <%= f.input :people_in_my_life_i_can_trust_for_support,
-               :label => "Are there pople in your life whom you trust and can count on for emotional or moral support?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-     <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_people_in_my_life_i_can_trust_for_support', 'option-value': 'true'} do %>   
-          <%= f.input :number_of_people_trusted_for_emotional_or_moral_support,
-               :label => "How many?" %><p>
-        <% end %>
-     <%= f.input :people_in_my_life_serving_as_mentors,
-               :label => "Are there pople in your life who have served as mentors or have guided you to resources such as job opportunities, clubs, and legal services?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-     <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_people_in_my_life_serving_as_mentors', 'option-value': 'true'} do %>   
-     <%= f.input :number_of_people_trusted_for_mentorship,
-               :label => "How many of these people do you currently know and can reach out to?" %><p>
-     <% end %>
-     <%= f.input :most_people_can_be_trusted,
-               :label => "Generally speaking, would you say that most people can be trusted or that you need to be very careful in dealing with people",
-               :collection => {"Most people can be trusted"=>1, "You can't be too careful"=>0},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-  </div>
-   <div class="well">
-    <h2>I trust the following people:</h2>
-     <%= f.input :i_trust_police_in_my_community,
-               :label => "...police in your community",
-               :collection => {"Strongly Agree"=>0, 
-                               "Somewhat Agree"=>1,
-                               "Neutral"=>2,
-                               "Somewhat Disagree"=>3,
-                               "Disagree"=>4},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-      <%= f.input :i_trust_local_govt,
-               :label => "...local government",
-               :collection => {"Strongly Agree"=>0, 
-                               "Somewhat Agree"=>1,
-                               "Neutral"=>2,
-                               "Somewhat Disagree"=>3,
-                               "Disagree"=>4},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-  </div>
-  <div class="well">
-    <h2>In the past 6 months, how many times have you...</h2>
-      <%= f.input :last_six_months_worked_on_neighborhood_project, label: "Worked on a neighborhood project?"%>
-      <%= f.input :last_six_months_worked_with_neighborhood_partners, label: "Worked with neighbord in your neighborhood to improve or fix something?"%>
-      <%= f.input :last_six_months_volunteered, label: "Volunteered? (0 for no, if yes, average number of hours per month)"%>
-      <%= f.input :last_six_months_attended_public_meetings_for_neighborhood, label: "Attended any public meeting in which there was a discussion of your neighborhood concerns and/or development"%>
-      <%= f.input :last_six_months_attended_public_meetings_for_schools, label: "Attended a public meeting in which there was a discussion about schools or education"%>
-      <%= f.input :last_six_months_attended_politial_rally, label: "Attended a political meeting or rally?"%>
-      <%= f.input :last_six_months_had_friends_in_home, label: "Had friends over to your home?"%>
-      <%= f.input :last_six_months_been_at_friends_home, label: "Been at friend's home"%>
-      <%= f.input :last_six_months_been_in_home_of_someone_from_different_neighbor, label: "Been in the home of someone from a different neighborhood"%>
-      <%= f.input :last_six_months_had_friend_from_different_neighborhood_in_my_ho, label: "Had someone from a different neighborhood in your home?"%>
-  </div>
-    <div class="well">
-    <h2>In the past 6 months have you...</h2>
-      <%= f.input :last_six_months_donated_food_or_other_goods,
-               :label => "Donated food, clothing, or other goods to an individual or organization?",
-               :collection => {"No"=>0, 
-                               "Yes"=>1,
-                               "N/A"=>3},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-            <%= f.input :last_six_months_received_food_clothing_or_other_donated_goods,
-               :label => "Received food, clothing, or other donated goods?",
-               :collection => {"No"=>0, 
-                               "Yes"=>1,
-                               "N/A"=>3},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-            <%= f.input :last_six_months_obtained_a_car,
-               :label => "Obtained a car?",
-               :collection => {"No"=>0, 
-                               "Yes"=>1,
-                               "N/A"=>3},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-            <%= f.input :last_six_months_obtained_a_better_paying_job,
-               :label => "Obtained a better paying job?",
-               :collection => {"No"=>0, 
-                               "Yes"=>1,
-                               "N/A"=>3},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-            <%= f.input :last_six_months_paid_off_credit_card_bill_or_title_loan,
-               :label => "Paid off credit card bill or pay day or title loan?",
-               :collection => {"No"=>0, 
-                               "Yes"=>1,
-                               "N/A"=>3},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-            <%= f.input :last_six_months_opened_or_added_money_to_savings_account,
-               :label => "Opened or added money to a savings account?",
-               :collection => {"No"=>0, 
-                               "Yes"=>1,
-                               "N/A"=>3},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-            <%= f.input :examined_credit_score_in_last_six_months,
-               :label => "Examined your credit score?",
-               :collection => {"No"=>false, 
-                               "Yes"=>true},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_examined_credit_score_in_last_six_months', 'option-value': 'true'} do %>   
-              <%= f.input :credit_score,
-               :label => "What is your credit score?" %><p>
-            <% end %>
-  </div>
-   <%= f.input :belong_to_neighborhood_association,
-               :label => "Do you belong to any group or organization in your neighborhood (i.e. neighborhood association, PTA/PTSA, etc.)?",
-               :collection => {"Yes"=>true, 
-                               "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_belong_to_neighborhood_association', 'option-value': 'true'} do %>   
-              <%= f.input :neighborhood_association_name,
-               :label => "What is the organization/group name?" %><p>
-            <% end %>
-           <%= f.input :currently_serve_as_officer_or_on_committee,
-               :label => "Do you currently serve as an officer or serve on a committee for a local club or organization?",
-               :collection => {"Yes"=>true, 
-                               "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_currently_serve_as_officer_or_on_committee', 'option-value': 'true'} do %>   
-              <%= f.input :officer_or_committee_organization_name,
-               :label => "What is the organization/group name?" %><p>
-            <% end %>
 
-    <div class="well">
-      <h3>IMMEDIATE NEIGHBORS:  These are the 10 or 20 households closest to you.</h3>
-         <%= f.input :how_often_do_you_talk_to_immediate_neighbors,
-               :label => "About how often do you talk to or visit with your immediate neighbors?",
-               :collection => {"Daily"=>4,
-                               "Weekly"=>3, 
-                               "Monthly"=>2,
-                               "Yearly"=>1,
-                               "Never"=>0},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= f.input :neighborhood_safe_place_to_live_rating,
-               :label => "Overall, how would you rate your neighborhood as a place to live?",
-               :collection => {"Excellent"=>4,
-                               "Good"=>3, 
-                               "Fair"=>2,
-                               "Poor"=>1},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= f.input :my_impact_on_neighborhood_safety,
-               :label => "How much impact do you think you can have in making your neighborhood a better place to live?",
-               :collection => {"No impact"=>0,
-                               "A small impact"=>1, 
-                               "A moderate impact"=>2,
-                               "A big impact"=>3},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-
-    </div>
-    <div class="well">
-         <%= f.input :people_running_my_community_care_about_me,
-               :label => "The people running my community care about what happens to me",
-               :collection => {"Strongly Agree"=>4,
-                               "Somewhat Agree"=>3, 
-                               "Neutral"=>2,
-                               "Somewhat Disagree"=>1,
-                               "Disagree"=>0},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= f.input :religious_or_spiritual_preference,
-               :label => "What is your religious/spiritual preference?" %>
-        <%= f.input :member_of_religious_group,
-               :label => "Are you a member of a local church, synagogue, mosque or other religious congregation?",
-               :collection => {"Yes"=>true, 
-                               "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-            <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_member_of_religious_group', 'option-value': 'true'} do %>   
-              <%= f.input :name_of_place_of_worship,
-               :label => "What is the name of the church/place of worship that you attend?" %><p>
-            <% end %>
-            <%= f.input :how_often_attend_religious_services,
-               :label => "Not including weddings and funerals, how often do you attend religious services?",
-               :collection => {"Every week"=>4,
-                               "Almost every week"=>3, 
-                               "Once or twice a month"=>2,
-                               "A few times per year"=>1,
-                               "Not at all"=>0},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-            
-
-    </div>
-
+  
+   
+  
+   
+   
+    
+    
 
  <%= f.input :marital_status,
               :label => "Marital Status",
