@@ -290,6 +290,7 @@ class AssessmentsController < ApplicationController
                                          :masters_degree_type,
                                          :marital_status,
                                          :individual_id, 
+                                         :ssa_health_insurance,
                                          :ssa_health_insurance_type,
                                          :ssa_legal_non_criminal,
                                          :ssa_support_system,

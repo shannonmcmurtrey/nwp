@@ -61,6 +61,101 @@
                   :value_mathod => :last %>
           <% end %>
 
+ <div class="well">
+      <h3>Have you ever been told by a medical clinician that you have...</h3>
+      <%= f.input :medical_high_blood_sugar,
+               :label => "...high blood sugar?",
+               :collection => {"Yes"=>true, "No"=>false},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= f.input :medical_diabetes,
+               :label => "..diabetes?",
+               :collection => {"Yes"=>true, "No"=>false},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_diabetes', 'option-value': 'true'} do %>            
+         <%= f.input :medical_diabetes_type,
+               :label => "Which type?",
+               :collection => {"Type 1"=>"type 1", "Type 2"=>"type 2", "Gestational"=>"gestational"},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+
+       <% end %>
+       <%= f.input :medical_pulmonary_disease,
+               :label => "...pulmonary disease (COPD/asthma)?",
+               :collection => {"Yes"=>true, "No"=>false},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+       <%= f.input :medical_elevated_blood_pressure,
+               :label => "..elevated blood pressure?",
+               :collection => {"Yes"=>true, "No"=>false},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      
+      <%= f.input :medical_mental_health_diagnosis,
+               :label => "...mental health diagnosis?",
+               :collection => {"Yes"=>true, "No"=>false},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= f.input :medical_tobacco_products,
+               :label => "Do you use tobacco products?",
+               :collection => {"Yes"=>true, "No"=>false},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= f.input :medical_alcohol,
+               :label => "Do you drink alcohol?",
+               :collection => {"Yes"=>true, "No"=>false},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_alcohol', 'option-value': 'true'} do %>            
+         <%= f.input :medical_alcohol_avg_drinks_per_week, input_html: {value: '', step:'1'}, label: "On average, how many drinks do you consume per week?"%>
+      <% end %>
+</div>
+
+
+      <%= f.input :medical_height, label: "Height (in inches, i.e. 60 inches is 5 feet):"%>
+      <%= f.input :medical_weight, label: "Weight (lb):"%>
+      
+      <%= f.input :primary_care_physician_primary,
+               :label => "Do you have a primary care physician?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+
+      <%= f.input :primary_care_physician_children,
+               :label => "Do your children have a primary care physician?",
+               :collection => {"Yes"=>1, "No"=>0},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+
+      <%= f.input :medical_treatment_location,
+                   :label => "Where do you seek medical treatment?",
+                   :collection => {"ER"=>0,"Urgent Care"=>1, "Primary Care"=>2, "Free Clinics"=>3},
+                      :label_method => :first,
+                      :value_mathod => :last %>
+        <%= f.input :current_health,
+                   :label => "How would you describe your current health?",
+                   :collection => {"Excellent"=>4,"Very Good"=>3, "Good"=>2, "Fair"=>1, "Poor"=>0},
+                      :label_method => :first,
+                      :value_mathod => :last %>
+        <%= f.input :happiness_level,
+                   :label => "How happy are you?",
+                   :collection => {"Very Happy"=>4,"Happy"=>3, "Neutral"=>2, "Unhappy"=>1, "Very unhappy"=>0},
+                      :label_method => :first,
+                      :value_mathod => :last %>
+      
+        <!-- %= f.input :household_member_in_jail,
+               :label => "Is a household member currently in jail?",
+               :collection => {"Yes"=>true, "No"=>false},
+                  :label_method => :first,
+                  :value_mathod => :last % -->
+          <%= f.input :household_member_in_jail_current_criminal_resoution_need,
+               :label => "Any current need for legal resolution?",
+               :collection => {"Yes"=>true, "No"=>false},
+                  :label_method => :first,
+                  :value_mathod => :last %>
+        
+
          
         </div>
 
@@ -108,7 +203,7 @@
         </div>
 
 
-        <div class="btn-group" data-toggle="buttons-checkbox">
+        <!-- div class="btn-group" data-toggle="buttons-checkbox">
             <a class="btn collapse-data-btn" data-toggle="collapse" href="#ss-assessment-employment">Employment</a>
         </div>
         <div id="ss-assessment-employment" class="well">
@@ -121,7 +216,7 @@
                                "Full-time employment with a living wage and benefits"=>5},
                   :label_method => :first,
                   :value_mathod => :last %>
-        </div>
+        </div -->
 
 
         <div class="btn-group" data-toggle="buttons-checkbox">
@@ -407,148 +502,6 @@
    <%= f.input :number_of_jobs_in_last_six_months, :label => "How many jobs have you had in the last six months?" %>
 </div>
   
- 
- <%= f.input :educational_training_last_six_months,
-               :label => "Have you completed an educational or training program in the last 6 months?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-<%= f.input :education_currently_enrolled,
-               :label => "Are you currently enrolled in education?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-  <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_education_currently_enrolled', 'option-value': '1'} do %>            
-        <%= f.label :education_institution_name %>
-        <%= f.text_field :education_institution_name, :class => "form-control" %>
-        <%= f.label "What are you studying?" %>
-        <%= f.text_field :education_studying, :class => "form-control" %>
-         <%= f.label "How many months will it take to complete the program?" %>
-        <%= f.input :education_program_length_in_months, input_html: {value: '', step:'1'}, label: false%>
-        <%= f.input :education_progress,
-               :label => "How much have you completed?",
-               :collection => {"Up to 25%"=>25, "26 - 50%"=>5, "51-75%"=>75, "76-99%"=>99},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= f.label "What diploma, degree, or certificate will you receive when you complete the program?" %>
-        <%= f.text_field :education_degree_type, :class => "form-control" %>
-  <% end %>
-
-
-  <div class="well">
-      <h3>Have you ever been told by a medical clinician that you have...</h3>
-      <%= f.input :medical_high_blood_sugar,
-               :label => "...high blood sugar?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-      <%= f.input :medical_diabetes,
-               :label => "..diabetes?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_diabetes', 'option-value': 'true'} do %>            
-         <%= f.input :medical_diabetes_type,
-               :label => "Which type?",
-               :collection => {"Type 1"=>"type 1", "Type 2"=>"type 2", "Gestational"=>"gestational"},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-
-       <% end %>
-       <%= f.input :medical_pulmonary_disease,
-               :label => "...pulmonary disease (COPD/asthma)?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-       <%= f.input :medical_elevated_blood_pressure,
-               :label => "..elevated blood pressure?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-      
-      <%= f.input :medical_mental_health_diagnosis,
-               :label => "...mental health diagnosis?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-      <%= f.input :medical_tobacco_products,
-               :label => "Do you use tobacco products?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-      <%= f.input :medical_alcohol,
-               :label => "Do you drink alcohol?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-      <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_medical_alcohol', 'option-value': 'true'} do %>            
-         <%= f.input :medical_alcohol_avg_drinks_per_week, input_html: {value: '', step:'1'}, label: "On average, how many drinks do you consume per week?"%>
-      <% end %>
-</div>
-
-
-      <%= f.input :medical_height, label: "Height (in inches, i.e. 60 inches is 5 feet):"%>
-      <%= f.input :medical_weight, label: "Weight (lb):"%>
-      
-      <%= f.input :primary_care_physician_primary,
-               :label => "Do you have a primary care physician?",
-               :collection => {"Yes"=>1, "No"=>0},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-
-      <%= f.input :primary_care_physician_children,
-               :label => "Do your children have a primary care physician?",
-               :collection => {"Yes"=>1, "No"=>0},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-
-      <%= f.input :medical_treatment_location,
-                   :label => "Where do you seek medical treatment?",
-                   :collection => {"ER"=>0,"Urgent Care"=>1, "Primary Care"=>2, "Free Clinics"=>3},
-                      :label_method => :first,
-                      :value_mathod => :last %>
-        <%= f.input :current_health,
-                   :label => "How would you describe your current health?",
-                   :collection => {"Excellent"=>4,"Very Good"=>3, "Good"=>2, "Fair"=>1, "Poor"=>0},
-                      :label_method => :first,
-                      :value_mathod => :last %>
-        <%= f.input :happiness_level,
-                   :label => "How happy are you?",
-                   :collection => {"Very Happy"=>4,"Happy"=>3, "Neutral"=>2, "Unhappy"=>1, "Very unhappy"=>0},
-                      :label_method => :first,
-                      :value_mathod => :last %>
-      
-        <%= f.input :household_member_in_jail,
-               :label => "Is a household member currently in jail?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_household_member_in_jail', 'option-value': 'true'} do %>            
-          <%= f.input :household_member_in_jail_current_criminal_resoution_need,
-               :label => "Is there a current need for resolution of criminal background?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <% end %>
-        <%= f.input :convicted_of_crime_last_six_months,
-               :label => "Have you been convicted of a crime in the last six months?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-       <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'assessment_convicted_of_crime_last_six_months', 'option-value': 'true'} do %>            
-          <%= f.input :in_need_of_current_criminal_resolution,
-               :label => "Is there a current need for resolution of criminal background?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
-        <% end %>
-       
-
-        <%= f.input :other_legal_matters_need_resolved,
-               :label => "Any other legal matters that need resolved?",
-               :collection => {"Yes"=>true, "No"=>false},
-                  :label_method => :first,
-                  :value_mathod => :last %>
 
   <div class="well">
     <%= f.input :cocaine_crack_speed,
@@ -844,12 +797,7 @@
 
     </div>
 
-<div class="btn-group" data-toggle="buttons-checkbox">
-      <a class="btn collapse-data-btn" data-toggle="collapse" href="#education-details">Education</a>
-</div>
- <div id="education-details" class="well collapse in">  <h3>Education:</h3>
 
-</div>
  <%= f.input :marital_status,
               :label => "Marital Status",
             :collection => {"Married"=>0, "Divorced"=>1, "Widowed"=>2, "Single (never married)"=>3, "Separated"=>4}, 
