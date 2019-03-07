@@ -53,6 +53,18 @@ services:
     env_file:
       - '.env'
 
+  dashboard:
+    image: 'grafana/grafana'
+    env_file: 
+      - '.env'
+    depends_on:
+      - 'postgres'
+      - 'redis'
+    ports: 
+      - '3001:3000'
+    
+
 volumes:
   redis:
   postgres:
+  grafana_data:
