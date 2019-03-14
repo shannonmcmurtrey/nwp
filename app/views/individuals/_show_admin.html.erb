@@ -91,97 +91,83 @@
    <%= f.input :springfield_non_native_population %>
    <%= f.input :springfield_non_native_distance %>
    <% end %>
- <div class="well">
-   
-   <div class= "well">
-   <h3>Adverse Childhood Experience (ACE) Questionnaire</h3>
-   <%= f.input :ACE_swore_at_or_put_down, 
+ 
+ 
+ <div class="well">  
+     <h3>Adverse Childhood Experience (ACE) Questionnaire</h3>
+     <%= f.input :ACE_swore_at_or_put_down, 
                :label => "Did a parent or other adult in the household often... Swear at you, insult you, put you down, or humiliate you? or Act in a way that made you afraid that you might be physically hurt?",
                :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons%>
-
-   <%= f.input :ACE_pushed_shoved_grabbed_slapped, 
+     <%= f.input :ACE_pushed_shoved_grabbed_slapped, 
                :label => "Did a parent or other adult in the household often... Push, grab, slap, or throw something at you? or ever hit you so hard that you had marks or were injured?",
                :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
-   <%= f.input :ACE_sexually_abused, 
+     <%= f.input :ACE_sexually_abused, 
                :label => "Did an adult or person at least 5 years older than you ever... touch or fondle you or have you touch their body in a sexual way? or try to or actually have oral, anal, or vaginal sex with you",
                :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
-   <%= f.input :ACE_unloved, 
+     <%= f.input :ACE_unloved, 
                :label => "Did you often feel that... no one in your family loved you or thought you were important or special? or your family didn't look out for each other, feel close to each other, or support each other?",
                :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
-   <%= f.input :ACE_uncared_for, 
+     <%= f.input :ACE_uncared_for, 
                :label => "Did you often feel that... you didn't have enough to eat, had to wear dirty clothes, and had no one to protect you? or your parents were too drunk/high to take care of you or take you to the doctor if you needed it?",
                :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
 
-   <%= f.input :ACE_broken_home, 
+     <%= f.input :ACE_broken_home, 
                :label => "Were your parents ever separated or divorced?",
                :collection => [[1, 'Yes'], [0, 'No']],  
                :label_method => :last,
                :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
-   <%= f.input :ACE_mother_pushed_shoved_grabbed_slapped, 
+     <%= f.input :ACE_mother_pushed_shoved_grabbed_slapped, 
                :label => "Was your mother/stepmother: often pushed, grabbed, slapped, or had something thrown at her? or sometimes or often kicked, bitten, hit with a fist or hit with something hard? or ever repeatedly hit over at least a few minutes or threatened with a gun or knife?",
                :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
 
-   <%= f.input :ACE_lived_with_addict, 
+     <%= f.input :ACE_lived_with_addict, 
                :label => "Did you live with anyone who was a problem drinker or alcoholic or who used street drugs?",
                :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
-   <%= f.input :ACE_household_member_mentally_ill, 
+     <%= f.input :ACE_household_member_mentally_ill, 
                :label => "Was a household member depressed or mentally ill or did a household member attempt suicide?",
                :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
 
-   <%= f.input :ACE_household_member_went_to_prison, 
+     <%= f.input :ACE_household_member_went_to_prison, 
                :label => "Did a household member go to prison?",
                :collection => [[1, 'Yes'], [0, 'No']], 
                :label_method => :last,
                :value_method => :first,
-               item_wrapper_class: :block_radio_button_collection,
                :as => :radio_buttons %>
+ </div>
 
-   
-
-   </div></div>
-</div>
-
+<div>
    <div class="btn-group" data-toggle="buttons-checkbox">
       <a class="btn collapse-data-btn" data-toggle="collapse" href="#accountability-details">Accountability</a>
     </div>
