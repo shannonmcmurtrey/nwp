@@ -1,0 +1,32 @@
+# Nmap 7.60 scan initiated Thu Mar  7 20:49:07 2019 as: nmap -p22 -oG ssh 192.168.1.0/24
+Host: 192.168.1.1 (router.asus.com)	Status: Up
+Host: 192.168.1.1 (router.asus.com)	Ports: 22/closed/tcp//ssh///
+Host: 192.168.1.126 (745E1C0EFF6B)	Status: Up
+Host: 192.168.1.126 (745E1C0EFF6B)	Ports: 22/closed/tcp//ssh///
+Host: 192.168.1.136 (st-24FD5B0000011A3F)	Status: Up
+Host: 192.168.1.136 (st-24FD5B0000011A3F)	Ports: 22/closed/tcp//ssh///
+Host: 192.168.1.147 ()	Status: Up
+Host: 192.168.1.147 ()	Ports: 22/open/tcp//ssh///
+Host: 192.168.1.158 (miner1)	Status: Up
+Host: 192.168.1.158 (miner1)	Ports: 22/open/tcp//ssh///
+Host: 192.168.1.159 ()	Status: Up
+Host: 192.168.1.159 ()	Ports: 22/closed/tcp//ssh///
+Host: 192.168.1.181 (HarmonyHub)	Status: Up
+Host: 192.168.1.181 (HarmonyHub)	Ports: 22/closed/tcp//ssh///
+Host: 192.168.1.186 (iPhone)	Status: Up
+Host: 192.168.1.186 (iPhone)	Ports: 22/closed/tcp//ssh///
+Host: 192.168.1.193 ()	Status: Up
+Host: 192.168.1.193 ()	Ports: 22/closed/tcp//ssh///
+Host: 192.168.1.197 ()	Status: Up
+Host: 192.168.1.197 ()	Ports: 22/filtered/tcp//ssh///
+Host: 192.168.1.198 (antMiner)	Status: Up
+Host: 192.168.1.198 (antMiner)	Ports: 22/open/tcp//ssh///
+Host: 192.168.1.199 ()	Status: Up
+Host: 192.168.1.199 ()	Ports: 22/closed/tcp//ssh///
+Host: 192.168.1.200 (DEV6A236C)	Status: Up
+Host: 192.168.1.200 (DEV6A236C)	Ports: 22/closed/tcp//ssh///
+Host: 192.168.1.203 ()	Status: Up
+Host: 192.168.1.203 ()	Ports: 22/closed/tcp//ssh///
+Host: 192.168.1.239 (Philips-hue)	Status: Up
+Host: 192.168.1.239 (Philips-hue)	Ports: 22/closed/tcp//ssh///
+# Nmap done at Thu Mar  7 20:49:11 2019 -- 256 IP addresses (15 hosts up) scanned in 3.88 seconds

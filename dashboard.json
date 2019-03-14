@@ -1,0 +1,4035 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 1,
+    "iteration": 1552532004912,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 22,
+        "panels": [],
+        "title": "Self Sufficiency Scores",
+        "type": "row"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorPrefix": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 1
+        },
+        "id": 16,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Housing",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_family_best_description_current_situation_housing) as \"Housing\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Housing",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 1
+        },
+        "id": 18,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Housing",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_family_best_description_current_situation_housing) as \"Housing\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS latest_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = latest_assessments.individual_id AND\n  individuals.id = latest_assessments.individual_id AND\n  assessments.date_collected = latest_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Housing",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 12,
+          "y": 1
+        },
+        "id": 20,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Transportation",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_family_best_description_current_situation_transportation) as \"Transportation\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Transportation",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 18,
+          "y": 1
+        },
+        "id": 19,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Transportation",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_family_best_description_current_situation_transportation) as \"Transportation\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS latest_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = latest_assessments.individual_id AND\n  individuals.id = latest_assessments.individual_id AND\n  assessments.date_collected = latest_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Transportation",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 5
+        },
+        "id": 23,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Education",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_primary_adult_enrolled_best_description_academic) as \"Education\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Education",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 5
+        },
+        "id": 24,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Education",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_primary_adult_enrolled_best_description_academic) as \"Education\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS latest_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = latest_assessments.individual_id AND\n  individuals.id = latest_assessments.individual_id AND\n  assessments.date_collected = latest_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent:  Education",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 12,
+          "y": 5
+        },
+        "id": 26,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Income",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_family_best_description_current_situation_income) as \"Income\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Income ",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 18,
+          "y": 5
+        },
+        "id": 27,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Income",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_family_best_description_current_situation_income) as \"Income\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS latest_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = latest_assessments.individual_id AND\n  individuals.id = latest_assessments.individual_id AND\n  assessments.date_collected = latest_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Income ",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 9
+        },
+        "id": 30,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "H Ins.",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_health_insurance) as \"H Ins.\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Health Insurance",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 9
+        },
+        "id": 31,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "H Ins.",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_health_insurance) as \"H Ins.\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS latest_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = latest_assessments.individual_id AND\n  individuals.id = latest_assessments.individual_id AND\n  assessments.date_collected = latest_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Health Insurance",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 12,
+          "y": 9
+        },
+        "id": 32,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Phys H",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_medical_physical_family_member_impact) as \"Phys H\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Physical Health",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 18,
+          "y": 9
+        },
+        "id": 33,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Phys H",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_medical_physical_family_member_impact) as \"Phys H\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS latest_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = latest_assessments.individual_id AND\n  individuals.id = latest_assessments.individual_id AND\n  assessments.date_collected = latest_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Physical Health",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 13
+        },
+        "id": 34,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Mental H",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_family_best_description_current_situation_mental_health) as \"Mental H\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Mental Health",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 13
+        },
+        "id": 35,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Mental H",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_family_best_description_current_situation_mental_health) as \"Mental H\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Mental Health",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 12,
+          "y": 13
+        },
+        "id": 36,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Environment",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_primary_adult_enrolled_best_description_stressors) as \"Environment\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Environment",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 18,
+          "y": 13
+        },
+        "id": 37,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Environment",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_primary_adult_enrolled_best_description_stressors) as \"Environment\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Environment",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 17
+        },
+        "id": 38,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Parenting",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_primary_adult_enrolled_parenting) as \"Parenting\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Parenting",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 17
+        },
+        "id": 39,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Parenting",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_primary_adult_enrolled_parenting) as \"Parenting\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Parenting",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 12,
+          "y": 17
+        },
+        "id": 40,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Childcare",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_quality_childcare) as \"Childcare\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Childcare",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 18,
+          "y": 17
+        },
+        "id": 41,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Childcare",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_quality_childcare) as \"Childcare\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Childcare",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 21
+        },
+        "id": 42,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Legal/Criminal",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_criminal) as \"Legal/Criminal\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Legal/Criminal",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 21
+        },
+        "id": 43,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Legal/Criminal",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_criminal) as \"Legal/Criminal\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Legal/Criminal",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 12,
+          "y": 21
+        },
+        "id": 44,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Legal/Criminal",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_legal_non_criminal) as \"Legal/Criminal\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Legal/Non-Criminal",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 18,
+          "y": 21
+        },
+        "id": 45,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Legal/Criminal",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_legal_non_criminal) as \"Legal/Criminal\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Legal/Non-Criminal",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#C4162A",
+          "#FADE2A",
+          "#37872D"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 25
+        },
+        "id": 46,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "avg",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_support_system) \nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Support Systems",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 25
+        },
+        "id": 47,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "avg",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_support_system) \nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Support Systems",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 12,
+          "y": 25
+        },
+        "id": 48,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "avg",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_food) \nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Food",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 18,
+          "y": 25
+        },
+        "id": 49,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "avg",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_food) \nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Food",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 29
+        },
+        "id": 50,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "avg",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_home_safety) \nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Home Safety",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 29
+        },
+        "id": 51,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "avg",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_home_safety) \nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Home Safety",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 12,
+          "y": 29
+        },
+        "id": 52,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "avg",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_community_involvement) \nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Intake: Community Involvement",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "decimals": 2,
+        "format": "none",
+        "gauge": {
+          "maxValue": 5,
+          "minValue": 1,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 18,
+          "y": 29
+        },
+        "id": 53,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "avg",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.ssa_community_involvement) \nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,4",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent: Community Involvement",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "columns": [],
+        "fontSize": "100%",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 33
+        },
+        "id": 14,
+        "links": [],
+        "pageSize": null,
+        "scroll": true,
+        "showHeader": true,
+        "sort": {
+          "col": 1,
+          "desc": true
+        },
+        "styles": [
+          {
+            "alias": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "pattern": "Time",
+            "type": "date"
+          },
+          {
+            "alias": "",
+            "colorMode": null,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "decimals": 2,
+            "pattern": "/.*/",
+            "thresholds": [],
+            "type": "number",
+            "unit": "short"
+          }
+        ],
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  cohorts.meeting_night as \"Cohort\", assessments.individual_id as \"ID\", individuals.first_name as \"First Name\", \n  individuals.last_name as \"Last Name\", assessments.ssa_family_best_description_current_situation_housing as \"Housing\",\n  assessments.ssa_family_best_description_current_situation_transportation as \"Transportation\",\n  assessments.ssa_primary_adult_enrolled_best_description_academic as \"Education\",\n  assessments.ssa_family_best_description_current_situation_income as \"Income\",\n  assessments.ssa_health_insurance as \"H Ins.\",\n  assessments.ssa_medical_physical_family_member_impact as \"Phys H\",\n  assessments.ssa_family_best_description_current_situation_mental_health as \"Mental H\",\n  assessments.ssa_primary_adult_enrolled_best_description_stressors as \"Environ\",\n  assessments.ssa_primary_adult_enrolled_parenting as \"Parenting\",\n  assessments.ssa_quality_childcare as \"Childcare\",\n  assessments.ssa_criminal as \"Legal / Crim\",\n  assessments.ssa_legal_non_criminal as \"Legal / Non-Crim\",\n  assessments.ssa_support_system as \"Support System\",\n  assessments.ssa_food as \"Food\",\n  assessments.ssa_home_safety as \"Home Safety\",\n  assessments.ssa_community_involvement as \"Community Involvement\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS latest_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = latest_assessments.individual_id AND\n  assessments.date_collected = latest_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\nORDER BY\n  cohorts.meeting_night, assessments.individual_id asc",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Self Sufficiency Scores on intake",
+        "transform": "table",
+        "type": "table"
+      },
+      {
+        "columns": [],
+        "fontSize": "100%",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 33
+        },
+        "id": 25,
+        "links": [],
+        "pageSize": null,
+        "scroll": true,
+        "showHeader": true,
+        "sort": {
+          "col": null,
+          "desc": false
+        },
+        "styles": [
+          {
+            "alias": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "pattern": "Time",
+            "type": "date"
+          },
+          {
+            "alias": "",
+            "colorMode": null,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "decimals": 2,
+            "pattern": "/.*/",
+            "thresholds": [],
+            "type": "number",
+            "unit": "short"
+          }
+        ],
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  cohorts.meeting_night as \"Cohort\", assessments.individual_id as \"ID\", individuals.first_name as \"First Name\", \n  individuals.last_name as \"Last Name\", assessments.ssa_family_best_description_current_situation_housing as \"Housing\",\n  assessments.ssa_family_best_description_current_situation_transportation as \"Transportation\",\n  assessments.ssa_primary_adult_enrolled_best_description_academic as \"Education\",\n  assessments.ssa_family_best_description_current_situation_income as \"Income\",\n  assessments.ssa_health_insurance as \"H Ins.\",\n  assessments.ssa_medical_physical_family_member_impact as \"Phys H\",\n  assessments.ssa_family_best_description_current_situation_mental_health as \"Mental H\",\n  assessments.ssa_primary_adult_enrolled_best_description_stressors as \"Environ\",\n  assessments.ssa_primary_adult_enrolled_parenting as \"Parenting\",\n  assessments.ssa_quality_childcare as \"Childcare\",\n  assessments.ssa_criminal as \"Legal / Crim\",\n  assessments.ssa_legal_non_criminal as \"Legal / Non-Crim\",\n  assessments.ssa_support_system as \"Support System\",\n  assessments.ssa_food as \"Food\",\n  assessments.ssa_home_safety as \"Home Safety\",\n  assessments.ssa_community_involvement as \"Community Involvement\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS latest_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = latest_assessments.individual_id AND\n  assessments.date_collected = latest_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort)\nORDER BY\n  cohorts.meeting_night, assessments.individual_id asc",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent Self Sufficiency Scores",
+        "transform": "table",
+        "type": "table"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 41
+        },
+        "id": 10,
+        "panels": [],
+        "title": "Credit Scores",
+        "type": "row"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "format": "none",
+        "gauge": {
+          "maxValue": 800,
+          "minValue": 0,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 42
+        },
+        "id": 8,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Credit Score",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.credit_score) as \"Credit Score\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS first_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = first_assessments.individual_id AND\n  individuals.id = first_assessments.individual_id AND\n  assessments.date_collected = first_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort) AND\n  assessments.credit_score > 0\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "400,600",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Earliest Credit Score: Average",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "cacheTimeout": null,
+        "colorBackground": false,
+        "colorValue": false,
+        "colors": [
+          "#F2495C",
+          "#FADE2A",
+          "#73BF69"
+        ],
+        "format": "none",
+        "gauge": {
+          "maxValue": 800,
+          "minValue": 0,
+          "show": true,
+          "thresholdLabels": false,
+          "thresholdMarkers": true
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 42
+        },
+        "id": 28,
+        "interval": null,
+        "links": [],
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "nullPointMode": "connected",
+        "nullText": null,
+        "postfix": "",
+        "postfixFontSize": "50%",
+        "prefix": "",
+        "prefixFontSize": "50%",
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "sparkline": {
+          "fillColor": "rgba(31, 118, 189, 0.18)",
+          "full": false,
+          "lineColor": "rgb(31, 120, 193)",
+          "show": false
+        },
+        "tableColumn": "Credit Score",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  avg(assessments.credit_score) as \"Credit Score\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS latest_assessments, assessments, individuals, cohorts\nWHERE\n  assessments.individual_id = latest_assessments.individual_id AND\n  individuals.id = latest_assessments.individual_id AND\n  assessments.date_collected = latest_assessments.date_collected AND\n  individuals.cohort_id = cohorts.id AND cohorts.meeting_night IN ($Cohort) AND\n  assessments.credit_score > 0\n",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hours_worked_per_week"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "assessments",
+            "timeColumn": "created_at",
+            "timeColumnType": "timestamp",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "thresholds": "400,600",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent Credit Score: Average",
+        "type": "singlestat",
+        "valueFontSize": "80%",
+        "valueMaps": [
+          {
+            "op": "=",
+            "text": "N/A",
+            "value": "null"
+          }
+        ],
+        "valueName": "avg"
+      },
+      {
+        "columns": [],
+        "fontSize": "100%",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 46
+        },
+        "id": 29,
+        "links": [],
+        "pageSize": null,
+        "scroll": true,
+        "showHeader": true,
+        "sort": {
+          "col": 0,
+          "desc": true
+        },
+        "styles": [
+          {
+            "alias": "Entered On",
+            "dateFormat": "YYYY-MM-DD",
+            "pattern": "created_at",
+            "type": "date"
+          },
+          {
+            "alias": "",
+            "colorMode": null,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "decimals": 2,
+            "pattern": "/.*/",
+            "thresholds": [],
+            "type": "number",
+            "unit": "short"
+          }
+        ],
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "hide": false,
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  assessments.individual_id as \"ID\", assessments.credit_score as \"Credit Score\"\nFROM\n  (SELECT\n     individual_id, MIN(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS latest_assessments\nINNER JOIN\n  assessments\nON\n  assessments.individual_id = latest_assessments.individual_id AND\n  assessments.date_collected = latest_assessments.date_collected AND\n  assessments.credit_score > 0\nORDER BY\n  assessments.credit_score desc",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Earliest Credit Scores",
+        "transform": "table",
+        "type": "table"
+      },
+      {
+        "columns": [],
+        "fontSize": "100%",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 54
+        },
+        "id": 6,
+        "links": [],
+        "pageSize": null,
+        "scroll": true,
+        "showHeader": true,
+        "sort": {
+          "col": 0,
+          "desc": true
+        },
+        "styles": [
+          {
+            "alias": "Entered On",
+            "dateFormat": "YYYY-MM-DD",
+            "pattern": "created_at",
+            "type": "date"
+          },
+          {
+            "alias": "",
+            "colorMode": null,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "decimals": 2,
+            "pattern": "/.*/",
+            "thresholds": [],
+            "type": "number",
+            "unit": "short"
+          }
+        ],
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "hide": false,
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "SELECT\n  assessments.individual_id as \"ID\", assessments.credit_score as \"Credit Score\"\nFROM\n  (SELECT\n     individual_id, MAX(date_collected) AS date_collected\n   FROM\n     assessments\n   GROUP BY\n     individual_id) AS latest_assessments\nINNER JOIN\n  assessments\nON\n  assessments.individual_id = latest_assessments.individual_id AND\n  assessments.date_collected = latest_assessments.date_collected AND\n  assessments.credit_score > 0\nORDER BY\n  assessments.credit_score desc",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "timeColumn": "time",
+            "where": [
+              {
+                "name": "$__timeFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Most Recent Credit Scores",
+        "transform": "table",
+        "type": "table"
+      }
+    ],
+    "schemaVersion": 18,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "tags": [],
+            "text": "All",
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "PostgreSQL",
+          "definition": "select meeting_night from cohorts",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Cohort",
+          "multi": true,
+          "name": "Cohort",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "GB 001",
+              "value": "GB 001"
+            },
+            {
+              "selected": false,
+              "text": "GB 002 ",
+              "value": "GB 002 "
+            },
+            {
+              "selected": false,
+              "text": "GB 003",
+              "value": "GB 003"
+            },
+            {
+              "selected": false,
+              "text": "GB 004",
+              "value": "GB 004"
+            },
+            {
+              "selected": false,
+              "text": "GB Inactive",
+              "value": "GB Inactive"
+            },
+            {
+              "selected": false,
+              "text": "HOW 001",
+              "value": "HOW 001"
+            },
+            {
+              "selected": false,
+              "text": "HOW 002",
+              "value": "HOW 002"
+            },
+            {
+              "selected": false,
+              "text": "HW Inactive",
+              "value": "HW Inactive"
+            },
+            {
+              "selected": false,
+              "text": "RB 001",
+              "value": "RB 001"
+            },
+            {
+              "selected": false,
+              "text": "RB Inactive",
+              "value": "RB Inactive"
+            },
+            {
+              "selected": false,
+              "text": "WC 001",
+              "value": "WC 001"
+            },
+            {
+              "selected": false,
+              "text": "WC Inactive",
+              "value": "WC Inactive"
+            },
+            {
+              "selected": false,
+              "text": "WH 001",
+              "value": "WH 001"
+            },
+            {
+              "selected": false,
+              "text": "WH 002",
+              "value": "WH 002"
+            },
+            {
+              "selected": false,
+              "text": "WH Inactive",
+              "value": "WH Inactive"
+            }
+          ],
+          "query": "select meeting_night from cohorts",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "",
+    "title": "The Northwest Project",
+    "uid": "Fh64FbCiz",
+    "version": 213
+  }
